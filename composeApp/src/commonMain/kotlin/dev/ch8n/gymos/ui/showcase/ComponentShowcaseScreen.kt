@@ -13,8 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.Image
+import androidx.compose.ui.layout.ContentScale
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.*
+import gymos.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.painterResource
 
 sealed class ShowcaseScreen {
     object List : ShowcaseScreen()
@@ -51,7 +55,8 @@ fun ShowcaseList(onComponentClick: (String) -> Unit) {
         "GymChip",
         "GymIcon",
         "GymSectionHeader",
-        "GymAvatar"
+        "GymAvatar",
+        "WorkoutImage"
     )
 
     Scaffold(
@@ -134,6 +139,7 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymIcon" -> GymIconShowcase()
                 "GymSectionHeader" -> GymHeaderShowcase()
                 "GymAvatar" -> GymAvatarShowcase()
+                "WorkoutImage" -> WorkoutImageShowcase()
             }
         }
     }
@@ -259,8 +265,32 @@ fun GymHeaderShowcase() {
 
 @Composable
 fun GymAvatarShowcase() {
-    // Note: In a real app we would use an image painter. For showcase we'll use a placeholder or dummy.
-    // Since I can't easily get a painter here without resources, I'll use a simple placeholder if I can't find one.
-    // I'll skip the actual Painter usage and just show the structure expectations.
-    Text("Avatar requires a Painter resource. See GymAvatar.kt implementation.", color = GymTheme.colors.textSecondary)
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("User Avatar") {
+            GymAvatar(painter = painterResource(Res.drawable.img_avatar))
+        }
+        ShowcaseSection("Large Avatar") {
+            GymAvatar(
+                painter = painterResource(Res.drawable.img_avatar),
+                size = 80.dp
+            )
+        }
+    }
+}
+
+@Composable
+fun WorkoutImageShowcase() {
+    ShowcaseSection("Workout Image") {
+        GymCard(
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+            contentPadding = PaddingValues(0.dp)
+        ) {
+            Image(
+                painter = painterResource(Res.drawable.img_workout_upper_body),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
+    }
 }
