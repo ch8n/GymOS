@@ -10,7 +10,7 @@ fun GymTheme(
 ) {
     CompositionLocalProvider(
         LocalGymColors provides DarkGymColors,
-        LocalGymTypography provides DefaultGymTypography,
+        LocalGymTypography provides gymTypography(),
         LocalGymShapes provides DefaultGymShapes,
         LocalGymSpacing provides GymSpacing(),
         content = content

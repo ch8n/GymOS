@@ -1,11 +1,14 @@
 package dev.ch8n.gymos.theme
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import gymos.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.Font
 
 @Immutable
 data class GymTypography(
@@ -20,64 +23,69 @@ data class GymTypography(
     val tiny: TextStyle
 )
 
-private val LexendFontFamily = FontFamily.SansSerif
-private val NotoSansFontFamily = FontFamily.SansSerif
+@Composable
+fun gymTypography(): GymTypography {
+    val lexend = FontFamily(Font(Res.font.lexend))
+    val notoSans = FontFamily(Font(Res.font.notosans))
 
-val DefaultGymTypography = GymTypography(
-    displayLarge = TextStyle(
-        fontFamily = LexendFontFamily,
-        fontWeight = FontWeight.ExtraBold,
-        fontSize = 36.sp,
-        letterSpacing = (-0.5).sp
-    ),
-    displayMedium = TextStyle(
-        fontFamily = LexendFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 30.sp,
-        letterSpacing = (-0.5).sp
-    ),
-    h1 = TextStyle(
-        fontFamily = LexendFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        letterSpacing = (-0.5).sp
-    ),
-    h2 = TextStyle(
-        fontFamily = LexendFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        letterSpacing = (-0.5).sp
-    ),
-    h3 = TextStyle(
-        fontFamily = LexendFontFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
-        letterSpacing = 0.sp
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = NotoSansFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        letterSpacing = 0.sp
-    ),
-    bodyMedium = TextStyle(
-        fontFamily = NotoSansFontFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        letterSpacing = 0.sp
-    ),
-    captionBold = TextStyle(
-        fontFamily = NotoSansFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 12.sp,
-        letterSpacing = 0.1.sp
-    ),
-    tiny = TextStyle(
-        fontFamily = NotoSansFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 10.sp,
-        letterSpacing = 0.1.sp
+    return GymTypography(
+        displayLarge = TextStyle(
+            fontFamily = lexend,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 36.sp,
+            letterSpacing = (-0.5).sp
+        ),
+        displayMedium = TextStyle(
+            fontFamily = lexend,
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp,
+            letterSpacing = (-0.5).sp
+        ),
+        h1 = TextStyle(
+            fontFamily = lexend,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            letterSpacing = (-0.5).sp
+        ),
+        h2 = TextStyle(
+            fontFamily = lexend,
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            letterSpacing = (-0.5).sp
+        ),
+        h3 = TextStyle(
+            fontFamily = lexend,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 18.sp,
+            letterSpacing = 0.sp
+        ),
+        bodyLarge = TextStyle(
+            fontFamily = notoSans,
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp,
+            letterSpacing = 0.sp
+        ),
+        bodyMedium = TextStyle(
+            fontFamily = notoSans,
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp,
+            letterSpacing = 0.sp
+        ),
+        captionBold = TextStyle(
+            fontFamily = notoSans,
+            fontWeight = FontWeight.Bold,
+            fontSize = 12.sp,
+            letterSpacing = 0.1.sp
+        ),
+        tiny = TextStyle(
+            fontFamily = notoSans,
+            fontWeight = FontWeight.Medium,
+            fontSize = 10.sp,
+            letterSpacing = 0.1.sp
+        )
     )
-)
+}
 
-val LocalGymTypography = staticCompositionLocalOf { DefaultGymTypography }
+val LocalGymTypography = staticCompositionLocalOf<GymTypography> {
+    error("No GymTypography provided")
+}
