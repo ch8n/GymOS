@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GymOS Day View</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "gym-charcoal": "#233d4d",
+                        "gym-pumpkin": "#fe7f2d",
+                        "gym-pollen": "#fcca46",
+                        "gym-olive": "#a1c181",
+                        "gym-seagrass": "#619b8a",
+                        "primary": "#fe7f2d", // Pumpkin Spice as primary accent
+                        "secondary": "#fcca46", // Golden Pollen as secondary
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#233d4d", // Charcoal Blue as main dark background
+                        "surface-dark": "#2d4b5c", // Slightly lighter charcoal for cards
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }.no-scrollbar {
+            -ms-overflow-style: none;scrollbar-width: none;}.checkbox-bounce {
+            animation: bounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes bounce {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased selection:bg-gym-pumpkin selection:text-white text-slate-900 dark:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24 group/design-root">
+<header class="sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-black/5 dark:border-white/5 transition-colors duration-300">
+<div class="flex items-center justify-between px-4 py-3">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-slate-600 dark:text-white/70 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col items-center">
+<h2 class="text-lg font-bold tracking-tight">Wednesday, Oct 24</h2>
+<span class="text-gym-pumpkin text-xs font-bold uppercase tracking-wider mt-0.5 px-2 py-0.5 bg-gym-pumpkin/10 rounded-full">Today</span>
+</div>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-slate-600 dark:text-white/70 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">arrow_forward_ios</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-4 pt-4">
+<div class="mt-2">
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="text-xl font-extrabold tracking-tight text-gym-seagrass dark:text-gym-seagrass">CHEST</h3>
+<div class="h-px flex-1 bg-black/5 dark:bg-white/10 ml-4 mr-2"></div>
+<span class="text-xs font-medium text-slate-500 dark:text-white/40">2 Exercises</span>
+</div>
+<div class="group relative flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-3xl mb-3 shadow-sm border border-transparent dark:border-white/5 active:scale-[0.99] transition-all duration-200">
+<div class="flex items-center justify-center rounded-2xl bg-gym-pumpkin/10 dark:bg-white/5 text-gym-pumpkin shrink-0 size-14 transition-colors group-hover:bg-gym-pumpkin/20">
+<span class="material-symbols-outlined text-[28px]">fitness_center</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0 py-1">
+<p class="text-base font-bold leading-snug truncate">Barbell Bench Press</p>
+<p class="text-slate-500 dark:text-white/60 text-sm font-light mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-gym-olive">repeat</span>
+                            3 Sets x 10 Reps
+                        </p>
+</div>
+<div class="shrink-0 z-10">
+<label class="flex items-center justify-center cursor-pointer p-2 relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="size-7 rounded-full border-2 border-slate-300 dark:border-white/20 peer-checked:bg-gym-pumpkin peer-checked:border-gym-pumpkin peer-checked:text-white flex items-center justify-center transition-all checkbox-bounce bg-transparent">
+<span class="material-symbols-outlined text-[18px] opacity-0 peer-checked:opacity-100 font-bold">check</span>
+</div>
+</label>
+</div>
+</div>
+<div class="group relative flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-3xl mb-3 shadow-sm border border-transparent dark:border-white/5 active:scale-[0.99] transition-all duration-200">
+<div class="flex items-center justify-center rounded-2xl bg-gym-pumpkin/10 dark:bg-white/5 text-gym-pumpkin shrink-0 size-14 transition-colors group-hover:bg-gym-pumpkin/20">
+<span class="material-symbols-outlined text-[28px]">fitness_center</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0 py-1">
+<p class="text-base font-bold leading-snug truncate">Incline Dumbbell Press</p>
+<p class="text-slate-500 dark:text-white/60 text-sm font-light mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-gym-olive">repeat</span>
+                            3 Sets x 12 Reps
+                        </p>
+</div>
+<div class="shrink-0 z-10">
+<label class="flex items-center justify-center cursor-pointer p-2 relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="size-7 rounded-full border-2 border-slate-300 dark:border-white/20 peer-checked:bg-gym-pumpkin peer-checked:border-gym-pumpkin peer-checked:text-white flex items-center justify-center transition-all checkbox-bounce bg-transparent">
+<span class="material-symbols-outlined text-[18px] opacity-0 peer-checked:opacity-100 font-bold">check</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="text-xl font-extrabold tracking-tight text-gym-seagrass dark:text-gym-seagrass">TRICEPS</h3>
+<div class="h-px flex-1 bg-black/5 dark:bg-white/10 ml-4 mr-2"></div>
+<span class="text-xs font-medium text-slate-500 dark:text-white/40">2 Exercises</span>
+</div>
+<div class="group relative flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-3xl mb-3 shadow-sm border border-transparent dark:border-white/5 active:scale-[0.99] transition-all duration-200">
+<div class="flex items-center justify-center rounded-2xl bg-gym-pollen/10 dark:bg-white/5 text-gym-pollen shrink-0 size-14 transition-colors group-hover:bg-gym-pollen/20">
+<span class="material-symbols-outlined text-[28px] rotate-90">expand_circle_down</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0 py-1">
+<p class="text-base font-bold leading-snug truncate">Tricep Pushdown</p>
+<p class="text-slate-500 dark:text-white/60 text-sm font-light mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-gym-olive">repeat</span>
+                            4 Sets x 15 Reps
+                        </p>
+</div>
+<div class="shrink-0 z-10">
+<label class="flex items-center justify-center cursor-pointer p-2 relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="size-7 rounded-full border-2 border-slate-300 dark:border-white/20 peer-checked:bg-gym-pollen peer-checked:border-gym-pollen peer-checked:text-background-dark flex items-center justify-center transition-all checkbox-bounce bg-transparent">
+<span class="material-symbols-outlined text-[18px] opacity-0 peer-checked:opacity-100 font-bold">check</span>
+</div>
+</label>
+</div>
+</div>
+<div class="group relative flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-3xl mb-3 shadow-sm border border-transparent dark:border-white/5 active:scale-[0.99] transition-all duration-200">
+<div class="flex items-center justify-center rounded-2xl bg-gym-pollen/10 dark:bg-white/5 text-gym-pollen shrink-0 size-14 transition-colors group-hover:bg-gym-pollen/20">
+<span class="material-symbols-outlined text-[28px]">fitness_center</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0 py-1">
+<p class="text-base font-bold leading-snug truncate">Skullcrushers</p>
+<p class="text-slate-500 dark:text-white/60 text-sm font-light mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-gym-olive">repeat</span>
+                            3 Sets x 10 Reps
+                        </p>
+</div>
+<div class="shrink-0 z-10">
+<label class="flex items-center justify-center cursor-pointer p-2 relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="size-7 rounded-full border-2 border-slate-300 dark:border-white/20 peer-checked:bg-gym-pollen peer-checked:border-gym-pollen peer-checked:text-background-dark flex items-center justify-center transition-all checkbox-bounce bg-transparent">
+<span class="material-symbols-outlined text-[18px] opacity-0 peer-checked:opacity-100 font-bold">check</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-8 mb-12 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-slate-200 dark:border-white/10 rounded-3xl opacity-70">
+<div class="size-12 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-400 dark:text-white/30 mb-3">
+<span class="material-symbols-outlined">add</span>
+</div>
+<p class="text-slate-500 dark:text-white/50 text-sm">Tap + to add exercises</p>
+</div>
+</main>
+<button class="fixed bottom-24 right-4 z-30 flex items-center gap-2 bg-gym-pumpkin text-white pl-4 pr-5 py-3.5 rounded-full shadow-[0_8px_30px_rgba(254,127,45,0.4)] font-bold text-base transition-all duration-200 hover:scale-105 active:scale-95 hover:shadow-[0_12px_40px_rgba(254,127,45,0.5)]">
+<span class="material-symbols-outlined text-[24px]">add</span>
+<span>Add Exercise</span>
+</button>
+<nav class="fixed bottom-0 left-0 right-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-black/5 dark:border-white/5 pb-7 pt-3 px-6 shadow-lg">
+<ul class="flex items-center justify-between">
+<li>
+<a class="flex flex-col items-center gap-1.5 text-gym-pumpkin group" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[26px] fill-1 transition-transform group-hover:-translate-y-1">home</span>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-gym-pumpkin rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold tracking-wide">Home</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1.5 text-slate-400 dark:text-white/40 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">calendar_month</span>
+<span class="text-[10px] font-medium tracking-wide">Calendar</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1.5 text-slate-400 dark:text-white/40 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">bar_chart</span>
+<span class="text-[10px] font-medium tracking-wide">Progress</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1.5 text-slate-400 dark:text-white/40 hover:text-slate-900 dark:hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[26px] transition-transform group-hover:-translate-y-1">person</span>
+<span class="text-[10px] font-medium tracking-wide">Profile</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</body></html>

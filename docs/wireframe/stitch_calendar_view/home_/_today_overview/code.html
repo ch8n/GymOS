@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GymOS - Today Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fe7f2d", // Pumpkin Spice
+                        "secondary": "#fcca46", // Golden Pollen
+                        "tertiary": "#a1c181", // Muted Olive
+                        "quaternary": "#619b8a", // Seagrass
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#121f29", // Keeping deep dark blue-black for overall contrast
+                        "surface-dark": "#233d4d", // Charcoal Blue as requested
+                        "surface-darker": "#1a2e3b",
+                        "text-primary": "#ffffff",
+                        "text-secondary": "#619b8a", // Seagrass for secondary text
+                        "text-muted": "#a1c181", // Muted Olive for muted text
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }.scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden pb-24">
+<header class="sticky top-0 z-20 flex items-center bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 justify-between border-b border-transparent dark:border-white/5 transition-colors duration-300">
+<h2 class="text-xl md:text-2xl font-extrabold leading-tight tracking-[-0.015em] flex-1 text-gray-900 dark:text-white">GymOS</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="group flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-gray-200 dark:bg-surface-dark text-gray-700 dark:text-white transition-all hover:ring-2 hover:ring-primary border border-transparent dark:border-white/10">
+<img alt="User profile avatar" class="h-full w-full object-cover" data-alt="Portrait of a young fitness enthusiast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLOX4gFoqG09Of5pQYFEm6IkCnBowZoFcYLtoQQl5KkesRKiLNFA4t9jhAEbqOYumknMGcslPA-j2u2fAP803_SxcPOwOaaLzB1AGNEG8_gsPcWe6b__mpBakkXo9olagTo_sOzDz72bD4YK1foykKUN8OXQ_nczViJF0FXE6OFkTmF0_yhl3TKAYF5iCtBDjxqatcJfZZOd0PvwOILOBXqgxolv0edGonY_Z7YQUdrhOELXOF3kjXhIG6OtB9iBJPXWMNnDH0qHJ_"/>
+</button>
+</div>
+</header>
+<main class="flex-1 px-4 flex flex-col gap-6 pt-4">
+<div class="flex flex-col gap-1">
+<span class="text-sm font-medium uppercase tracking-wider text-primary">Today's Plan</span>
+<h1 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">Tue, Oct 24</h1>
+</div>
+<div class="group cursor-pointer rounded-2xl bg-white dark:bg-surface-dark p-4 shadow-sm hover:shadow-md transition-all active:scale-[0.99] border border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-4 justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-medium text-gray-500 dark:text-text-secondary">Scheduled Time</p>
+<p class="text-lg font-bold text-gray-900 dark:text-white">06:00 PM</p>
+</div>
+</div>
+<div class="shrink-0 text-gray-400 dark:text-text-secondary group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-surface-dark border border-transparent dark:border-white/10 pl-4 pr-4 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-gray-700 dark:text-quaternary">fitness_center</span>
+<p class="text-sm font-medium leading-normal text-gray-900 dark:text-white">Chest</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-surface-dark border border-transparent dark:border-white/10 pl-4 pr-4 transition-colors">
+<p class="text-sm font-medium leading-normal text-gray-900 dark:text-white">Triceps</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-surface-dark border border-transparent dark:border-white/10 pl-4 pr-4 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-gray-700 dark:text-quaternary">monitor_heart</span>
+<p class="text-sm font-medium leading-normal text-gray-900 dark:text-white">Cardio</p>
+</div>
+</div>
+<div class="@container">
+<div class="group relative flex flex-col items-stretch justify-start overflow-hidden rounded-[2rem] bg-white dark:bg-surface-dark shadow-lg transition-transform hover:scale-[1.01]">
+<div class="relative aspect-[16/10] w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark via-transparent to-transparent z-10 opacity-90"></div>
+<div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Man performing chest press with dumbbells in gym" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8yQp-A-4qrG1p9KhNoq3SRu0XYwUQc2hQhTM8xu6J33xoQ7XRioKMJvGvWtp7RiM6Tj7YmgUxS7jGtB9xWubFHLPuPWIIdhqsm--U1gh1MKmKI05kHhrqcHzciHNoK6axvYg5RqatVzOyIS60NhtSFiK2dsNsh1ZKUtNsPe4nTYIcImT49t4wMIfKY85lO3edtuDnYWUcDvtt1WlsG50hSOZMMT9mUtlCA4UZie0ATjVobsV6BfmDI7badIx-HL1bFAWlFK0jKKIY');">
+</div>
+<div class="absolute top-4 left-4 z-20 rounded-full bg-surface-dark/60 backdrop-blur-md px-3 py-1 border border-white/10">
+<p class="text-xs font-bold text-white uppercase tracking-wide">Hypertrophy</p>
+</div>
+</div>
+<div class="relative z-20 -mt-12 flex w-full flex-col gap-4 bg-gradient-to-b from-transparent to-surface-dark dark:to-surface-dark p-5 pt-0">
+<div class="flex flex-col gap-1">
+<h3 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white drop-shadow-sm">Upper Body Power</h3>
+<p class="text-base font-normal text-gray-600 dark:text-text-secondary">45 mins • 6 Exercises</p>
+</div>
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary py-4 text-white text-base font-bold leading-normal shadow-[0_0_20px_rgba(254,127,45,0.3)] transition-all active:scale-95 hover:shadow-[0_0_30px_rgba(254,127,45,0.5)]">
+<span class="material-symbols-outlined">play_arrow</span>
+<span>Start Workout</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 shadow-sm border border-gray-100 dark:border-white/5">
+<div class="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10 text-secondary">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">12 <span class="text-sm font-normal text-gray-500 dark:text-text-secondary">Days</span></p>
+<p class="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-text-secondary/60">Streak</p>
+</div>
+</div>
+<div class="flex flex-col justify-between rounded-2xl bg-white dark:bg-surface-dark p-4 shadow-sm border border-gray-100 dark:border-white/5">
+<div class="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-quaternary/10 text-quaternary">
+<span class="material-symbols-outlined">monitor_weight</span>
+</div>
+<div>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">84.1 <span class="text-sm font-normal text-gray-500 dark:text-text-secondary">kg</span></p>
+<p class="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-text-secondary/60">Last Weight</p>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 z-50 w-full border-t border-gray-200 dark:border-white/5 bg-white/90 dark:bg-surface-darker/90 backdrop-blur-lg pb-safe">
+<div class="grid grid-cols-4 h-16 items-center justify-items-center px-2">
+<button class="flex flex-col items-center justify-center gap-1 p-2 text-primary w-full">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-white transition-colors w-full">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Calendar</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-white transition-colors w-full">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-[10px] font-medium">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-white transition-colors w-full">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</nav>
+<div class="h-6"></div>
+</div>
+</body></html>

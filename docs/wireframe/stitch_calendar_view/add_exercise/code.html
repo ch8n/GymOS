@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GymOS - Add Exercise</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fe7f2d", // Pumpkin Spice
+                        "secondary": "#fcca46", // Golden Pollen
+                        "olive": "#a1c181", // Muted Olive
+                        "seagrass": "#619b8a", // Seagrass
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#233d4d", // Charcoal Blue
+                        "surface-dark": "#2d4e60", // Slightly lighter Charcoal for cards
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }.no-scrollbar {
+            -ms-overflow-style: none;scrollbar-width: none;}
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl pb-24">
+<div class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-black/5 dark:border-white/5">
+<div class="flex items-center justify-between p-4">
+<h2 class="text-xl font-bold leading-tight tracking-tight">Add Exercise</h2>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-slate-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+</div>
+<div class="px-4 pt-2 pb-2">
+<div class="relative flex w-full items-center rounded-full bg-white dark:bg-surface-dark h-12 shadow-sm border border-slate-200 dark:border-transparent transition-all focus-within:ring-2 focus-within:ring-primary/50">
+<div class="flex items-center justify-center pl-4 pr-2 text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="flex w-full bg-transparent border-none text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-seagrass focus:ring-0 focus:outline-none h-full rounded-r-full font-normal leading-normal" placeholder="Search bench press, squat..." type="text"/>
+</div>
+</div>
+<div class="px-4 py-3">
+<button class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-12 px-1 bg-white dark:bg-surface-dark border border-dashed border-primary/50 hover:bg-primary/5 active:bg-primary/10 transition-all">
+<div class="flex items-center gap-3 pl-4">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</div>
+<span class="text-sm font-bold text-primary tracking-wide">Create Custom Exercise</span>
+</div>
+<div class="pr-4 text-primary group-hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</div>
+</button>
+</div>
+<div class="flex gap-2 px-4 py-2 overflow-x-auto no-scrollbar w-full">
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-primary text-background-dark font-bold text-sm shadow-md shadow-primary/20">
+            All
+        </button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-white border border-slate-200 dark:border-transparent text-sm font-medium hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+            Chest
+        </button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-white border border-slate-200 dark:border-transparent text-sm font-medium hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+            Back
+        </button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-white border border-slate-200 dark:border-transparent text-sm font-medium hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+            Legs
+        </button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-white border border-slate-200 dark:border-transparent text-sm font-medium hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+            Shoulders
+        </button>
+<button class="flex h-9 shrink-0 items-center justify-center px-5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-white border border-slate-200 dark:border-transparent text-sm font-medium hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+            Arms
+        </button>
+</div>
+<div class="flex-1 flex flex-col pb-10">
+<div class="pt-6">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight px-4 pb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">history</span>
+                Recent
+            </h3>
+<div class="flex flex-col">
+<div class="group flex items-center justify-between p-4 mx-2 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-seagrass/10 dark:bg-seagrass/20 flex items-center justify-center text-seagrass">
+<span class="font-bold text-xs">BP</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-semibold text-base">Barbell Bench Press</span>
+<span class="text-slate-500 dark:text-gray-400 text-sm">Chest • Barbell</span>
+</div>
+</div>
+<button class="h-10 w-10 shrink-0 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-transparent text-primary flex items-center justify-center hover:bg-primary hover:text-background-dark hover:scale-105 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="group flex items-center justify-between p-4 mx-2 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-olive/10 dark:bg-olive/20 flex items-center justify-center text-olive">
+<span class="font-bold text-xs">LP</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-semibold text-base">Lat Pulldown</span>
+<span class="text-slate-500 dark:text-gray-400 text-sm">Back • Cable</span>
+</div>
+</div>
+<button class="h-10 w-10 shrink-0 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-transparent text-primary flex items-center justify-center hover:bg-primary hover:text-background-dark hover:scale-105 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight px-4 pb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">local_fire_department</span>
+                Popular Exercises
+            </h3>
+<div class="flex flex-col">
+<div class="group flex items-center justify-between p-4 mx-2 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-black/5 dark:border-white/5 last:border-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
+<span class="font-bold text-xs">SQ</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-semibold text-base">Barbell Squat</span>
+<span class="text-slate-500 dark:text-gray-400 text-sm">Legs • Barbell</span>
+</div>
+</div>
+<button class="h-10 w-10 shrink-0 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="group flex items-center justify-between p-4 mx-2 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-black/5 dark:border-white/5 last:border-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="font-bold text-xs">DL</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-semibold text-base">Deadlift</span>
+<span class="text-slate-500 dark:text-gray-400 text-sm">Back • Barbell</span>
+</div>
+</div>
+<button class="h-10 w-10 shrink-0 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="group flex items-center justify-between p-4 mx-2 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-black/5 dark:border-white/5 last:border-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-seagrass/10 dark:bg-seagrass/20 flex items-center justify-center text-seagrass">
+<span class="font-bold text-xs">OH</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-semibold text-base">Overhead Press</span>
+<span class="text-slate-500 dark:text-gray-400 text-sm">Shoulders • Barbell</span>
+</div>
+</div>
+<button class="h-10 w-10 shrink-0 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="group flex items-center justify-between p-4 mx-2 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-black/5 dark:border-white/5 last:border-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-olive/10 dark:bg-olive/20 flex items-center justify-center text-olive">
+<span class="font-bold text-xs">DC</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-semibold text-base">Dumbbell Curl</span>
+<span class="text-slate-500 dark:text-gray-400 text-sm">Arms • Dumbbell</span>
+</div>
+</div>
+<button class="h-10 w-10 shrink-0 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="h-20"></div>
+</div>
+<div class="fixed bottom-0 z-[60] w-full max-w-md border-t border-black/5 dark:border-white/5 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-lg pb-safe">
+<nav class="flex h-16 items-center justify-around px-2">
+<button class="group flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium tracking-wide">Home</span>
+</button>
+<button class="group flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">calendar_month</span>
+<span class="text-[10px] font-medium tracking-wide">Calendar</span>
+</button>
+<button class="group flex flex-1 flex-col items-center justify-center gap-1 text-primary">
+<div class="relative">
+<span class="material-symbols-outlined text-[24px] font-semibold">monitoring</span>
+<span class="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-secondary"></span>
+</div>
+<span class="text-[10px] font-medium tracking-wide">Progress</span>
+</button>
+<button class="group flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">person</span>
+<span class="text-[10px] font-medium tracking-wide">Profile</span>
+</button>
+</nav>
+</div>
+</div>
+
+</body></html>

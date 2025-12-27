@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GymOS Calendar View</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "gymos-charcoal": "#233d4d",
+                        "gymos-pumpkin": "#fe7f2d",
+                        "gymos-pollen": "#fcca46",
+                        "gymos-olive": "#a1c181",
+                        "gymos-seagrass": "#619b8a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#1a2c38", // Slightly lighter than charcoal for base bg to create depth
+                        "surface-dark": "#233d4d", // Charcoal Blue as main surface
+                        "surface-dark-highlight": "#2c4b5e",
+                        "status-missed": "#fe7f2d", // Pumpkin Spice for missed/alert
+                        "status-rest": "#619b8a", // Seagrass for rest
+                        "indicator-upper": "#fcca46", // Golden Pollen
+                        "indicator-lower": "#a1c181", // Muted Olive
+                        "indicator-cardio": "#619b8a", // Seagrass
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<header class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-white/5 pt-safe-top">
+<div class="flex items-center justify-between p-4 pb-2">
+<button class="text-xs font-bold text-gymos-pollen tracking-wide uppercase px-2 py-1 rounded hover:bg-white/5 active:scale-95 transition-transform">
+                    Today
+                </button>
+<div class="flex items-center gap-4">
+<button class="p-1 rounded-full hover:bg-white/10 active:bg-white/20 transition-colors text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight text-center w-32">October 2023</h2>
+<button class="p-1 rounded-full hover:bg-white/10 active:bg-white/20 transition-colors text-white/70 hover:text-white">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<button class="relative flex items-center justify-center size-9 rounded-full bg-surface-dark text-white hover:bg-surface-dark-highlight transition-colors border border-white/10">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2.5 size-2 bg-gymos-pumpkin rounded-full border border-surface-dark"></span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col gap-6 p-4">
+<section class="grid grid-cols-2 gap-3">
+<div class="flex flex-col gap-1 rounded-2xl p-4 bg-surface-dark border border-white/5 shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<div class="size-6 rounded-full bg-gymos-olive/20 flex items-center justify-center text-gymos-olive">
+<span class="material-symbols-outlined text-[14px]">fitness_center</span>
+</div>
+<p class="text-white/60 text-xs font-medium uppercase tracking-wider">Volume</p>
+</div>
+<p class="text-white tracking-tight text-xl font-bold">12,450<span class="text-sm font-medium text-white/40 ml-1">kg</span></p>
+</div>
+<div class="flex flex-col gap-1 rounded-2xl p-4 bg-surface-dark border border-white/5 shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<div class="size-6 rounded-full bg-gymos-pumpkin/20 flex items-center justify-center text-gymos-pumpkin">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+</div>
+<p class="text-white/60 text-xs font-medium uppercase tracking-wider">Active</p>
+</div>
+<p class="text-white tracking-tight text-xl font-bold">18<span class="text-sm font-medium text-white/40 ml-1">days</span></p>
+</div>
+</section>
+<section class="flex flex-col">
+<div class="grid grid-cols-7 mb-2">
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">S</p>
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">M</p>
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">T</p>
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">W</p>
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">T</p>
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">F</p>
+<p class="text-white/40 text-[11px] font-bold uppercase tracking-widest text-center py-2">S</p>
+</div>
+<div class="grid grid-cols-7 gap-y-2 gap-x-1">
+<div class="h-12 w-full"></div>
+<div class="h-12 w-full"></div>
+<div class="h-12 w-full"></div>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark shadow-[0_0_15px_-3px_rgba(161,193,129,0.4)] transition-transform active:scale-90">
+<span class="text-sm font-bold text-surface-dark">1</span>
+</div>
+<div class="flex gap-0.5">
+<div class="size-1 rounded-full bg-gymos-olive"></div>
+<div class="size-1 rounded-full bg-gymos-pollen"></div>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark shadow-[0_0_15px_-3px_rgba(161,193,129,0.4)] transition-transform active:scale-90">
+<span class="text-sm font-bold text-surface-dark">2</span>
+</div>
+<div class="flex gap-0.5">
+<div class="size-1 rounded-full bg-gymos-seagrass"></div>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-surface-dark-highlight text-white/80 transition-transform active:scale-90">
+<span class="text-sm font-medium">3</span>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full border-2 border-gymos-pumpkin/40 text-gymos-pumpkin bg-gymos-pumpkin/10 transition-transform active:scale-90">
+<span class="text-sm font-bold">4</span>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark shadow-[0_0_15px_-3px_rgba(161,193,129,0.4)] transition-transform active:scale-90">
+<span class="text-sm font-bold text-surface-dark">5</span>
+</div>
+<div class="flex gap-0.5">
+<div class="size-1 rounded-full bg-gymos-olive"></div>
+<div class="size-1 rounded-full bg-gymos-olive"></div>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark shadow-[0_0_15px_-3px_rgba(161,193,129,0.4)] transition-transform active:scale-90">
+<span class="text-sm font-bold text-surface-dark">6</span>
+</div>
+<div class="flex gap-0.5">
+<div class="size-1 rounded-full bg-gymos-pollen"></div>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-surface-dark-highlight text-white/80 transition-transform active:scale-90">
+<span class="text-sm font-medium">7</span>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark shadow-[0_0_15px_-3px_rgba(161,193,129,0.4)] transition-transform active:scale-90">
+<span class="text-sm font-bold text-surface-dark">8</span>
+</div>
+<div class="flex gap-0.5">
+<div class="size-1 rounded-full bg-gymos-seagrass"></div>
+<div class="size-1 rounded-full bg-gymos-pollen"></div>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="flex size-9 items-center justify-center rounded-full border-2 border-gymos-pumpkin/40 text-gymos-pumpkin bg-gymos-pumpkin/10 transition-transform active:scale-90">
+<span class="text-sm font-bold">9</span>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark"><span class="text-sm font-bold text-surface-dark">10</span></div><div class="flex gap-0.5"><div class="size-1 rounded-full bg-gymos-olive"></div></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark"><span class="text-sm font-bold text-surface-dark">11</span></div><div class="flex gap-0.5"><div class="size-1 rounded-full bg-gymos-pollen"></div></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-surface-dark-highlight text-white/80"><span class="text-sm font-medium">12</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark"><span class="text-sm font-bold text-surface-dark">13</span></div><div class="flex gap-0.5"><div class="size-1 rounded-full bg-gymos-seagrass"></div></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark"><span class="text-sm font-bold text-surface-dark">14</span></div><div class="flex gap-0.5"><div class="size-1 rounded-full bg-gymos-olive"></div></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark"><span class="text-sm font-bold text-surface-dark">15</span></div><div class="flex gap-0.5"><div class="size-1 rounded-full bg-gymos-pollen"></div></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-surface-dark-highlight text-white/80"><span class="text-sm font-medium">16</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1"><div class="flex size-9 items-center justify-center rounded-full bg-gymos-olive text-background-dark"><span class="text-sm font-bold text-surface-dark">17</span></div><div class="flex gap-0.5"><div class="size-1 rounded-full bg-gymos-olive"></div></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1">
+<div class="absolute inset-0 top-1 rounded-full border border-white/20"></div>
+<div class="flex size-9 items-center justify-center rounded-full bg-white text-background-dark relative z-10 transition-transform active:scale-90">
+<span class="text-sm font-bold text-surface-dark">18</span>
+</div>
+<div class="flex gap-0.5 relative z-10">
+<div class="size-1 rounded-full bg-gray-500"></div>
+</div>
+</button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">19</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">20</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">21</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">22</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">23</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">24</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">25</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">26</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">27</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">28</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">29</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">30</span></div></button>
+<button class="group relative flex h-12 w-full flex-col items-center justify-center gap-1 opacity-50"><div class="flex size-9 items-center justify-center rounded-full text-white"><span class="text-sm font-normal">31</span></div></button>
+</div>
+</section>
+<section class="mt-2 space-y-4">
+<div>
+<h3 class="text-white text-xs font-bold uppercase tracking-wider mb-3 pl-1 text-white/50">Status Key</h3>
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full border border-gymos-olive/20 bg-gymos-olive/10 pl-3 pr-4">
+<div class="size-2 rounded-full bg-gymos-olive shadow-[0_0_8px_rgba(161,193,129,0.6)]"></div>
+<p class="text-gymos-olive text-xs font-bold">Completed</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-dark pl-3 pr-4 border border-white/5">
+<div class="size-2 rounded-full bg-white/40"></div>
+<p class="text-white/80 text-xs font-bold">Rest</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-gymos-pumpkin/10 border border-gymos-pumpkin/20 pl-3 pr-4">
+<div class="size-2 rounded-full bg-gymos-pumpkin"></div>
+<p class="text-gymos-pumpkin text-xs font-bold">Missed</p>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-white text-xs font-bold uppercase tracking-wider mb-3 pl-1 text-white/50">Muscle Focus</h3>
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-2 rounded-lg bg-surface-dark px-3 py-2 border border-white/5 flex-1 min-w-[100px]">
+<div class="size-2.5 rounded-full bg-gymos-pollen"></div>
+<span class="text-white text-xs font-medium">Upper</span>
+</div>
+<div class="flex items-center gap-2 rounded-lg bg-surface-dark px-3 py-2 border border-white/5 flex-1 min-w-[100px]">
+<div class="size-2.5 rounded-full bg-gymos-olive"></div>
+<span class="text-white text-xs font-medium">Lower</span>
+</div>
+<div class="flex items-center gap-2 rounded-lg bg-surface-dark px-3 py-2 border border-white/5 flex-1 min-w-[100px]">
+<div class="size-2.5 rounded-full bg-gymos-seagrass"></div>
+<span class="text-white text-xs font-medium">Cardio</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-20 bg-background-dark border-t border-white/5 pb-safe-bottom">
+<div class="flex justify-between items-center px-6 h-16 max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium tracking-wide">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gymos-pollen group" href="#">
+<div class="bg-gymos-pollen/10 px-4 py-1 rounded-full">
+<span class="material-symbols-outlined text-[24px] font-variation-fill">calendar_month</span>
+</div>
+<span class="text-[10px] font-bold tracking-wide">Calendar</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">show_chart</span>
+<span class="text-[10px] font-medium tracking-wide">Progress</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">person</span>
+<span class="text-[10px] font-medium tracking-wide">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

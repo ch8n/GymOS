@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Progress &amp; Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fe7f2d","secondary": "#619b8a","tertiary": "#a1c181","quaternary": "#fcca46","background-light": "#f4f6f8",
+                        "background-dark": "#162631","surface-dark": "#233d4d","surface-dark-highlight": "#2e4e61",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display antialiased overflow-x-hidden selection:bg-primary selection:text-white pb-24">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-4 pb-2">
+<div class="flex items-center justify-between mb-4">
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Your Progress</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-surface-dark shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-slate-900 dark:text-white">calendar_month</span>
+</button>
+</div>
+<div class="flex p-1 bg-gray-200 dark:bg-surface-dark rounded-full">
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="time_range" type="radio" value="7D"/>
+<div class="py-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 rounded-full peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-slate-900 dark:peer-checked:text-white transition-all shadow-sm peer-checked:shadow-md">7D</div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input checked="" class="peer sr-only" name="time_range" type="radio" value="30D"/>
+<div class="py-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 rounded-full peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-slate-900 dark:peer-checked:text-white transition-all shadow-sm peer-checked:shadow-md">30D</div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="time_range" type="radio" value="3M"/>
+<div class="py-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 rounded-full peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-slate-900 dark:peer-checked:text-white transition-all shadow-sm peer-checked:shadow-md">3M</div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="time_range" type="radio" value="YTD"/>
+<div class="py-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 rounded-full peer-checked:bg-white dark:peer-checked:bg-primary peer-checked:text-slate-900 dark:peer-checked:text-white transition-all shadow-sm peer-checked:shadow-md">YTD</div>
+</label>
+</div>
+</header>
+<main class="flex-1 px-4 space-y-6 pt-4">
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] bg-primary/10 w-20 h-20 rounded-full blur-2xl group-hover:bg-primary/20 transition-all"></div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 z-10">Total Workouts</p>
+<div class="flex items-baseline gap-2 z-10">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">12</span>
+<span class="text-xs font-bold text-tertiary bg-tertiary/10 px-1.5 py-0.5 rounded-md">↑ 2</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] bg-secondary/10 w-20 h-20 rounded-full blur-2xl group-hover:bg-secondary/20 transition-all"></div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 z-10">Avg Duration</p>
+<div class="flex items-baseline gap-2 z-10">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">45<span class="text-lg font-medium text-gray-500 ml-0.5">m</span></span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-surface-dark p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-white/5">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Consistency</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Last 14 Days</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-2xl font-bold text-primary">85%</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Attendance</span>
+</div>
+</div>
+<div class="flex items-end justify-between h-24 gap-1 sm:gap-2">
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-primary/20 rounded-t-sm rounded-b-lg h-[40%] group-hover:bg-primary/40 transition-all relative"></div>
+<span class="text-[10px] text-gray-400 font-medium">M</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-gray-200 dark:bg-white/5 rounded-t-sm rounded-b-lg h-[5%] transition-all"></div>
+<span class="text-[10px] text-gray-400 font-medium">T</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-primary rounded-t-sm rounded-b-lg h-[80%] shadow-[0_0_10px_rgba(254,127,45,0.3)] group-hover:h-[85%] transition-all relative"></div>
+<span class="text-[10px] text-gray-400 font-medium">W</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-primary rounded-t-sm rounded-b-lg h-[60%] shadow-[0_0_10px_rgba(254,127,45,0.2)] group-hover:h-[65%] transition-all relative"></div>
+<span class="text-[10px] text-gray-400 font-medium">T</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-gray-200 dark:bg-white/5 rounded-t-sm rounded-b-lg h-[5%] transition-all"></div>
+<span class="text-[10px] text-gray-400 font-medium">F</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-primary rounded-t-sm rounded-b-lg h-[100%] shadow-[0_0_15px_rgba(254,127,45,0.4)] group-hover:h-[105%] transition-all relative"></div>
+<span class="text-[10px] text-gray-400 font-medium">S</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-primary/50 rounded-t-sm rounded-b-lg h-[40%] group-hover:bg-primary/70 transition-all relative"></div>
+<span class="text-[10px] text-gray-400 font-medium">S</span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-surface-dark p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-white/5">
+<div class="flex items-start justify-between mb-2">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Weight Trend</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">185 <span class="text-lg font-medium text-gray-500">lbs</span></span>
+<span class="text-sm font-medium text-tertiary bg-tertiary/10 px-2 py-0.5 rounded-full">-1.2%</span>
+</div>
+</div>
+</div>
+<div class="h-48 w-full relative mt-4">
+<svg class="w-full h-full overflow-visible" fill="none" preserveAspectRatio="none" viewBox="0 0 478 150">
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="gradientWeight" x1="239" x2="239" y1="0" y2="150">
+<stop stop-color="#619b8a" stop-opacity="0.3"></stop>
+<stop offset="1" stop-color="#619b8a" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0 109C18.15 109 18.15 51 36.3 51C54.46 51 54.46 71 72.6 71C90.7 71 90.7 113 108.9 113C127 113 127 63 145.2 63C163.3 63 163.3 121 181.5 121C199.6 121 199.6 81 217.8 81C236 81 236 65 254.1 65C272.3 65 272.3 131 290.4 131C308.6 131 308.6 149 326.7 149C344.9 149 344.9 21 363 21C381.2 21 381.2 101 399.3 101C417.5 101 417.5 129 435.6 129C453.8 129 453.8 45 472 45V150H0V109Z" fill="url(#gradientWeight)"></path>
+<path d="M0 109C18.15 109 18.15 51 36.3 51C54.46 51 54.46 71 72.6 71C90.7 71 90.7 113 108.9 113C127 113 127 63 145.2 63C163.3 63 163.3 121 181.5 121C199.6 121 199.6 81 217.8 81C236 81 236 65 254.1 65C272.3 65 272.3 131 290.4 131C308.6 131 308.6 149 326.7 149C344.9 149 344.9 21 363 21C381.2 21 381.2 101 399.3 101C417.5 101 417.5 129 435.6 129C453.8 129 453.8 45 472 45" stroke="#619b8a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<circle class="animate-pulse shadow-[0_0_10px_#619b8a]" cx="472" cy="45" fill="#619b8a" r="5"></circle>
+</svg>
+<div class="flex justify-between mt-2 text-xs text-gray-500 font-medium px-1">
+<span>Oct 1</span>
+<span>Oct 8</span>
+<span>Oct 15</span>
+<span>Oct 22</span>
+<span>Today</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<section class="bg-white dark:bg-surface-dark p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-white/5">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Volume by Muscle</h3>
+<div class="flex items-center gap-6">
+<div class="relative w-28 h-28 flex-shrink-0">
+<svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+<path class="text-gray-200 dark:text-white/5" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="40, 100" stroke-linecap="round" stroke-width="3.5"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="30, 100" stroke-dashoffset="-45" stroke-linecap="round" stroke-width="3.5"></path>
+<path class="text-quaternary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="20, 100" stroke-dashoffset="-80" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-xs text-gray-400">Total</span>
+<span class="text-sm font-bold dark:text-white">12.5k</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 flex-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_rgba(254,127,45,0.5)]"></span>
+<span class="text-sm text-slate-700 dark:text-gray-300">Legs</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">40%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-sm text-slate-700 dark:text-gray-300">Push</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">30%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-quaternary"></span>
+<span class="text-sm text-slate-700 dark:text-gray-300">Pull</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">20%</span>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-surface-dark p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Energy Levels</h3>
+<div class="bg-quaternary/10 text-quaternary px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">bolt</span> High
+                    </div>
+</div>
+<div class="relative h-32 w-full">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-b border-gray-100 dark:border-white/5 w-full h-0"></div>
+<div class="border-b border-gray-100 dark:border-white/5 w-full h-0"></div>
+<div class="border-b border-gray-100 dark:border-white/5 w-full h-0"></div>
+</div>
+<svg class="w-full h-full z-10 relative" fill="none" preserveAspectRatio="none" viewBox="0 0 300 100">
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="gradientEnergy" x1="0" x2="0" y1="0" y2="100">
+<stop stop-color="#fcca46" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#fcca46" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0 80 C 40 80, 50 40, 80 40 C 110 40, 140 60, 170 50 C 200 40, 230 10, 260 15 C 280 18, 290 20, 300 10 V 100 H 0 Z" fill="url(#gradientEnergy)"></path>
+<path d="M0 80 C 40 80, 50 40, 80 40 C 110 40, 140 60, 170 50 C 200 40, 230 10, 260 15 C 280 18, 290 20, 300 10" fill="none" stroke="#fcca46" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="flex justify-between text-xs text-gray-500 mt-2">
+<span>Low</span>
+<span>Moderate</span>
+<span>Peak</span>
+</div>
+</section>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full bg-background-light/90 dark:bg-background-dark/95 backdrop-blur-lg border-t border-gray-200 dark:border-white/5 pb-6 pt-2 z-50">
+<div class="grid grid-cols-4 items-center">
+<button class="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Calendar</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-primary transition-colors">
+<span class="material-symbols-outlined fill-current">bar_chart</span>
+<span class="text-[10px] font-medium">Progress</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,391 @@
+{
+    "meta": {
+        "designPhilosophy": "Energetic, modern, and high-performance fitness experience. Focused on clarity, momentum, and premium dark-mode aesthetics.",
+        "visualPersonality": "Bold, industrial yet refined, utilizing vibrant earth-tone accents against deep charcoal foundations.",
+        "density": "Comfortable to High (optimized for glanceable stats and active tracking)",
+        "accessibilityLevel": "AA (high contrast text, large touch targets, semantic clear color coding)",
+        "platformIntent": "Mobile-first web application (PWA)"
+    },
+    "foundations": {
+        "color": {
+            "palette": {
+                "brand": {
+                    "primary": {
+                        "value": "#fe7f2d",
+                        "name": "Pumpkin Spice",
+                        "usage": "Primary actions, missed/alert states, high-energy highlights"
+                    },
+                    "secondary": {
+                        "value": "#fcca46",
+                        "name": "Golden Pollen",
+                        "usage": "Active focus, progress highlights, upper body indicators"
+                    },
+                    "tertiary": {
+                        "value": "#a1c181",
+                        "name": "Muted Olive",
+                        "usage": "Completion states, stability, lower body indicators"
+                    },
+                    "quaternary": {
+                        "value": "#619b8a",
+                        "name": "Seagrass",
+                        "usage": "Recovery, cardio indicators, rest states"
+                    }
+                },
+                "neutral": {
+                    "background": "#121f29",
+                    "surface": "#233d4d",
+                    "surface-highlight": "#2c4b5e",
+                    "text-primary": "#ffffff",
+                    "text-secondary": "rgba(255, 255, 255, 0.6)",
+                    "text-muted": "rgba(255, 255, 255, 0.4)",
+                    "border": "rgba(255, 255, 255, 0.05)"
+                },
+                "semantic": {
+                    "success": "#a1c181",
+                    "warning": "#fe7f2d",
+                    "info": "#fcca46",
+                    "active": "#fe7f2d"
+                }
+            },
+            "usageGuidelines": {
+                "contrast": "Always use text-primary (#ffffff) on brand backgrounds. Use brand colors for functional icons and status indicators.",
+                "layering": "Standard background for base, surface for cards, surface-highlight for interactive card states or nested items."
+            }
+        },
+        "typography": {
+            "fontFamilies": {
+                "display": "Lexend, sans-serif",
+                "body": "Noto Sans, sans-serif",
+                "icons": "Material Symbols Outlined"
+            },
+            "scales": {
+                "display": [
+                    {
+                        "name": "display-lg",
+                        "size": "36px",
+                        "weight": "800",
+                        "tracking": "tight"
+                    },
+                    {
+                        "name": "display-md",
+                        "size": "30px",
+                        "weight": "700",
+                        "tracking": "tight"
+                    }
+                ],
+                "heading": [
+                    {
+                        "name": "h1",
+                        "size": "24px",
+                        "weight": "700",
+                        "tracking": "tight"
+                    },
+                    {
+                        "name": "h2",
+                        "size": "20px",
+                        "weight": "700",
+                        "tracking": "tight"
+                    },
+                    {
+                        "name": "h3",
+                        "size": "18px",
+                        "weight": "600",
+                        "tracking": "normal"
+                    }
+                ],
+                "body": [
+                    {
+                        "name": "body-lg",
+                        "size": "16px",
+                        "weight": "500",
+                        "tracking": "normal"
+                    },
+                    {
+                        "name": "body-md",
+                        "size": "14px",
+                        "weight": "400",
+                        "tracking": "normal"
+                    }
+                ],
+                "caption": [
+                    {
+                        "name": "caption-bold",
+                        "size": "12px",
+                        "weight": "700",
+                        "tracking": "wider",
+                        "transform": "uppercase"
+                    },
+                    {
+                        "name": "tiny",
+                        "size": "10px",
+                        "weight": "500",
+                        "tracking": "wide"
+                    }
+                ]
+            },
+            "lineHeights": {
+                "tight": "1.2",
+                "normal": "1.5"
+            },
+            "fontWeights": {
+                "normal": "400",
+                "medium": "500",
+                "semibold": "600",
+                "bold": "700",
+                "extrabold": "800"
+            },
+            "usageGuidelines": {
+                "heading-intent": "Use Lexend for all headers and numeric stats to convey a high-energy, modern look. Use Noto Sans for long-form text and instructional content."
+            }
+        },
+        "spacing": {
+            "scale": [
+                0,
+                4,
+                8,
+                12,
+                16,
+                20,
+                24,
+                32,
+                48,
+                64
+            ],
+            "layoutSpacing": {
+                "pagePadding": "16px",
+                "sectionGap": "24px",
+                "itemGap": "12px"
+            },
+            "componentSpacing": {
+                "cardPadding": "16px",
+                "buttonPaddingVertical": "16px",
+                "navHeight": "64px"
+            },
+            "usageGuidelines": {
+                "rhythm": "Follow a 4px grid. Use 24px (gap-6) for major vertical sections and 16px (gap-4) for internal components."
+            }
+        },
+        "radii": {
+            "scale": [
+                {
+                    "name": "none",
+                    "value": "0"
+                },
+                {
+                    "name": "sm",
+                    "value": "8px"
+                },
+                {
+                    "name": "md",
+                    "value": "12px"
+                },
+                {
+                    "name": "default",
+                    "value": "16px"
+                },
+                {
+                    "name": "lg",
+                    "value": "32px"
+                },
+                {
+                    "name": "xl",
+                    "value": "48px"
+                },
+                {
+                    "name": "full",
+                    "value": "9999px"
+                }
+            ],
+            "usageGuidelines": {
+                "intent": "Use 16px (2xl) for standard cards and buttons. Use 32px (rounded-[2rem]) for large feature cards and bottom sheets."
+            }
+        },
+        "elevation": {
+            "levels": {
+                "sm": "0 1px 2px rgba(0, 0, 0, 0.1)",
+                "md": "0 4px 6px rgba(0, 0, 0, 0.15)",
+                "lg": "0 10px 15px rgba(0, 0, 0, 0.2)",
+                "action": "0 0 20px rgba(254, 127, 45, 0.3)"
+            },
+            "shadowTokens": {
+                "brand": "shadow-[0_0_20px_rgba(254,127,45,0.3)]",
+                "glass": "backdrop-blur-md"
+            },
+            "usageGuidelines": {
+                "glassmorphism": "Apply backdrop-blur-md and border-white/5 to headers and navigation bars for a premium layered feel."
+            }
+        },
+        "motion": {
+            "durations": {
+                "fast": "150ms",
+                "standard": "300ms",
+                "slow": "700ms"
+            },
+            "easings": {
+                "in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
+                "out": "cubic-bezier(0, 0, 0.2, 1)"
+            },
+            "usageGuidelines": {
+                "interaction": "Use 150ms for scale-down (95-98%) on active states. Use slow 700ms for background image expansions."
+            }
+        }
+    },
+    "components": {
+        "button": {
+            "variants": {
+                "primary": {
+                    "bg": "palette.brand.primary",
+                    "text": "palette.neutral.text-primary",
+                    "radius": "full",
+                    "shadow": "elevation.levels.action"
+                },
+                "secondary": {
+                    "bg": "palette.neutral.surface",
+                    "text": "palette.neutral.text-primary",
+                    "border": "1px solid palette.neutral.border",
+                    "radius": "full"
+                },
+                "ghost": {
+                    "bg": "transparent",
+                    "text": "palette.neutral.text-secondary",
+                    "hover": "bg-white/5"
+                }
+            },
+            "sizes": {
+                "xl": "h-14 py-4 px-8 text-lg font-bold",
+                "md": "h-12 py-3 px-6 text-sm font-bold",
+                "sm": "h-9 py-2 px-4 text-xs font-bold"
+            },
+            "states": {
+                "active": "scale-[0.97]",
+                "hover": "brightness-110 shadow-lg"
+            },
+            "anatomy": {
+                "contentAlignment": "center",
+                "gap": "8px"
+            },
+            "designRules": {
+                "icon-usage": "Always use Material Symbols Outlined icons. Primary buttons typically feature a trailing arrow or leading action icon."
+            }
+        },
+        "input": {
+            "styling": {
+                "bg": "palette.neutral.background-dark",
+                "border": "1px solid palette.neutral.border",
+                "radius": "md",
+                "focus": "border-brand-primary ring-1 ring-brand-primary"
+            },
+            "typography": "body-lg font-bold text-center",
+            "anatomy": "Relative container with label above and measurement units (e.g., 'KG') inside trailing edge."
+        },
+        "select": {
+            "variants": {
+                "segmented": {
+                    "container": "bg-background-dark p-1 rounded-xl flex",
+                    "item": "flex-1 py-2 rounded-lg text-xs font-bold",
+                    "active": "bg-brand-secondary text-surface-dark shadow-sm"
+                }
+            }
+        },
+        "checkbox": {
+            "intent": "Handled via custom list items with 'check_circle' or 'radio_button_unchecked' icons from Material Symbols."
+        },
+        "radio": {
+            "intent": "Implemented as segmented controls or custom icon-based toggles."
+        },
+        "card": {
+            "styling": {
+                "bg": "palette.neutral.surface",
+                "border": "1px solid palette.neutral.border",
+                "radius": "default",
+                "shadow": "elevation.levels.sm"
+            },
+            "variants": {
+                "feature": {
+                    "radius": "lg",
+                    "bg-image": "Cover with dark gradient overlay",
+                    "interaction": "Scale hover (1.01)"
+                },
+                "stat": {
+                    "layout": "Flex-col justify-between",
+                    "padding": "p-4"
+                }
+            }
+        },
+        "modal": {
+            "intent": "Bottom-up drawers for mobile",
+            "styling": {
+                "radius": "lg top-only",
+                "bg": "palette.neutral.surface",
+                "handle": "W-10 h-1 bg-white/20 rounded-full mx-auto"
+            }
+        },
+        "badge": {
+            "styling": {
+                "padding": "px-3 py-1",
+                "radius": "full",
+                "typography": "caption-bold",
+                "variants": {
+                    "info": "bg-secondary/10 text-secondary border border-secondary/20",
+                    "success": "bg-olive/10 text-olive border border-olive/20"
+                }
+            }
+        },
+        "navigation": {
+            "bottomNav": {
+                "height": "64px",
+                "bg": "palette.neutral.background-dark (95% opac with blur)",
+                "border": "border-t border-white/5",
+                "item": {
+                    "active": "text-brand-primary",
+                    "inactive": "text-neutral.text-muted",
+                    "indicator": "Small brand dot above active icon or background tint fallback"
+                }
+            }
+        },
+        "list": {
+            "styling": {
+                "item": "flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors",
+                "divider": "Optional border-b border-white/5"
+            }
+        }
+    },
+    "layout": {
+        "gridSystem": "Tailwind-based utility (grid-cols-1, 2, 4, 7 for calendars).",
+        "breakpoints": {
+            "mobile": "0px",
+            "tablet": "768px",
+            "desktop": "1024px"
+        },
+        "containerRules": {
+            "maxWidth": "448px (max-w-md)",
+            "alignment": "mx-auto",
+            "shadow": "shadow-2xl"
+        },
+        "zIndexScale": {
+            "header": "50",
+            "nav": "50",
+            "modal": "60"
+        }
+    },
+    "designPrinciples": [
+        "High Energy: Use vibrant brand colors to drive action and represent progress.",
+        "Glanceability: Crucial stats (weight, reps, time) must be oversized and high-contrast.",
+        "Tactile Feedback: Every interactive element should respond with subtle scaling or color shifts.",
+        "Contextual Depth: Use transparency and blurs to maintain context while focusing on active tasks (e.g., set logging)."
+    ],
+    "doAndDonts": {
+        "do": [
+            "Use Lexend for all numeric values and key headings.",
+            "Apply rounded corners consistently (16px default).",
+            "Use status colors (Olive for success, Pumpkin for effort/energy) semantically.",
+            "Ensure all buttons have an active scale-down state."
+        ],
+        "dont": [
+            "Don't use pure black (#000000); use the deep charcoal blues for richness.",
+            "Don't use generic system fonts for display elements.",
+            "Don't use sharp 90-degree corners.",
+            "Don't hide critical workout stats inside deep menus."
+        ]
+    }
+}

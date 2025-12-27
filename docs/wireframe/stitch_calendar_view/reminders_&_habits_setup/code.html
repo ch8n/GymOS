@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reminders &amp; Habits Setup - GymOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fe7f2d", // Pumpkin Spice
+                        "primary-dark": "#d9661f",
+                        "secondary": "#fcca46", // Golden Pollen
+                        "accent": "#a1c181", // Muted Olive
+                        "accent-dark": "#8aa86e",
+                        "highlight": "#619b8a", // Seagrass
+                        "background-light": "#f0f4f8",
+                        "background-dark": "#233d4d", // Charcoal Blue
+                        "surface-dark": "#2c4a5c", // Slightly lighter charcoal for cards
+                        "surface-darker": "#1a2e3b",
+                        "gray-dark": "#365569",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden">
+<header class="sticky top-0 z-10 flex items-center bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 py-3 justify-between border-b border-gray-200 dark:border-white/10">
+<button aria-label="Go back" class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Reminders &amp; Habits</h1>
+<button class="flex h-10 px-4 items-center justify-center rounded-full bg-primary/10 hover:bg-primary/20 transition-colors">
+<span class="text-primary-dark dark:text-primary text-sm font-bold tracking-wide uppercase">Save</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col gap-6 p-4 pb-28">
+<section class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider pl-2">Gym Routine</h3>
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-white/5">
+<div class="flex items-center gap-4 p-4 border-b border-gray-100 dark:border-white/5 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors group">
+<div class="flex items-center justify-center rounded-full bg-highlight/20 text-highlight dark:text-highlight shrink-0 size-10">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div class="flex flex-col flex-1">
+<span class="text-base font-medium">Workout Time</span>
+<span class="text-xs text-slate-500 dark:text-gray-400">Scheduled for mornings</span>
+</div>
+<div class="shrink-0 bg-gray-100 dark:bg-background-dark px-3 py-1.5 rounded-lg group-hover:bg-primary/20 group-hover:text-primary-dark dark:group-hover:text-primary transition-colors">
+<span class="text-lg font-semibold tracking-wide">06:30 AM</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-secondary/20 text-yellow-600 dark:text-secondary shrink-0 size-10">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<span class="text-base font-medium">Push Notifications</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between pl-2">
+<h3 class="text-sm font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">Gear Checklist</h3>
+<button class="text-xs font-medium text-highlight hover:underline uppercase tracking-wide">+ Manage Presets</button>
+</div>
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-white/5 divide-y divide-gray-100 dark:divide-white/5">
+<label class="flex items-center gap-4 p-4 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<div class="relative flex items-center">
+<input checked="" class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border-2 border-slate-300 dark:border-gray-500 checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-sm left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">check</span>
+</div>
+<span class="text-base font-medium flex-1 decoration-slate-400 dark:decoration-gray-500 peer-has-[:checked]:line-through peer-has-[:checked]:text-slate-400 dark:peer-has-[:checked]:text-gray-500">Water Bottle</span>
+<span class="material-symbols-outlined text-slate-300 dark:text-gray-600">water_drop</span>
+</label>
+<label class="flex items-center gap-4 p-4 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<div class="relative flex items-center">
+<input class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border-2 border-slate-300 dark:border-gray-500 checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-sm left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">check</span>
+</div>
+<span class="text-base font-medium flex-1">Gym Towel</span>
+<span class="material-symbols-outlined text-slate-300 dark:text-gray-600">checkroom</span>
+</label>
+<label class="flex items-center gap-4 p-4 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<div class="relative flex items-center">
+<input checked="" class="peer h-6 w-6 cursor-pointer appearance-none rounded-full border-2 border-slate-300 dark:border-gray-500 checked:border-primary checked:bg-primary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-sm left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">check</span>
+</div>
+<span class="text-base font-medium flex-1 decoration-slate-400 dark:decoration-gray-500 peer-has-[:checked]:line-through peer-has-[:checked]:text-slate-400 dark:peer-has-[:checked]:text-gray-500">Weightlifting Gloves</span>
+<span class="material-symbols-outlined text-slate-300 dark:text-gray-600">fitness_center</span>
+</label>
+<div class="flex items-center gap-4 p-3 bg-gray-50 dark:bg-black/20">
+<button class="flex items-center justify-center rounded-full bg-accent/20 text-accent-dark dark:text-accent shrink-0 size-8 hover:bg-accent hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+<input class="bg-transparent border-none text-sm w-full focus:ring-0 placeholder-slate-400 dark:placeholder-gray-500 dark:text-white" placeholder="Add item..." type="text"/>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider pl-2">Body Metrics</h3>
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-white/5">
+<div class="flex items-center gap-4 p-4 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-full bg-primary/20 text-primary-dark dark:text-primary shrink-0 size-10">
+<span class="material-symbols-outlined">monitor_weight</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-medium">Daily Weigh-in</span>
+<span class="text-xs text-primary font-medium">Remind me at 08:00 AM</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider pl-2">Meal Timers</h3>
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-white/5 divide-y divide-gray-100 dark:divide-white/5">
+<div class="flex items-center gap-4 p-4 justify-between">
+<div class="flex items-center gap-3 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-accent/20 text-accent-dark dark:text-accent shrink-0 size-8">
+<span class="material-symbols-outlined text-lg">bakery_dining</span>
+</div>
+<span class="text-base font-medium">Breakfast</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-sm font-semibold bg-gray-100 dark:bg-background-dark px-2 py-1 rounded text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">07:00 AM</button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 justify-between">
+<div class="flex items-center gap-3 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-accent/20 text-accent-dark dark:text-accent shrink-0 size-8">
+<span class="material-symbols-outlined text-lg">lunch_dining</span>
+</div>
+<span class="text-base font-medium">Lunch</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-sm font-semibold bg-gray-100 dark:bg-background-dark px-2 py-1 rounded text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">01:00 PM</button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 justify-between opacity-50">
+<div class="flex items-center gap-3 flex-1">
+<div class="flex items-center justify-center rounded-lg bg-accent/20 text-accent-dark dark:text-accent shrink-0 size-8">
+<span class="material-symbols-outlined text-lg">dinner_dining</span>
+</div>
+<span class="text-base font-medium">Dinner</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-sm font-semibold bg-gray-100 dark:bg-background-dark px-2 py-1 rounded text-slate-600 dark:text-gray-300" disabled="">08:00 PM</button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-2">
+<h3 class="text-sm font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider pl-2">Recovery</h3>
+<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-white/5">
+<div class="flex items-center gap-4 p-4 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<div class="flex items-center justify-center rounded-full bg-highlight/20 text-highlight shrink-0 size-10">
+<span class="material-symbols-outlined">bedtime</span>
+</div>
+<div class="flex flex-col flex-1">
+<span class="text-base font-medium">Bedtime Goal</span>
+<span class="text-xs text-slate-500 dark:text-gray-400">Sleep duration tracking</span>
+</div>
+<div class="shrink-0 bg-gray-100 dark:bg-background-dark px-3 py-1.5 rounded-lg text-slate-900 dark:text-white border border-transparent hover:border-primary transition-all">
+<span class="text-lg font-semibold tracking-wide">10:45 PM</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-background-dark/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 max-w-md mx-auto">
+<div class="flex items-center justify-around h-20 px-2 pb-2">
+<button class="group flex flex-col items-center gap-1.5 px-3 py-2 text-slate-400 hover:text-primary dark:text-gray-500 dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-semibold tracking-wide uppercase">Home</span>
+</button>
+<button class="group flex flex-col items-center gap-1.5 px-3 py-2 text-slate-400 hover:text-primary dark:text-gray-500 dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">calendar_month</span>
+<span class="text-[10px] font-semibold tracking-wide uppercase">Calendar</span>
+</button>
+<button class="group flex flex-col items-center gap-1.5 px-3 py-2 text-slate-400 hover:text-primary dark:text-gray-500 dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">monitoring</span>
+<span class="text-[10px] font-semibold tracking-wide uppercase">Progress</span>
+</button>
+<button class="group flex flex-col items-center gap-1.5 px-3 py-2 text-primary">
+<span class="material-symbols-outlined text-2xl fill-1 group-hover:scale-110 transition-transform">person</span>
+<span class="text-[10px] font-semibold tracking-wide uppercase">Profile</span>
+</button>
+</div>
+</nav>
+</div>
+</body></html>

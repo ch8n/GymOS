@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GymOS - Missed Workout Recovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#fe7f2d", // Pumpkin Spice
+              "secondary": "#fcca46", // Golden Pollen
+              "accent": "#619b8a", // Seagrass
+              "muted-olive": "#a1c181", // Muted Olive
+              "background-light": "#f6f8f7",
+              "background-dark": "#233d4d", // Charcoal Blue
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-hidden selection:bg-primary selection:text-black">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-y-auto overflow-x-hidden max-w-md mx-auto border-x border-white/5 shadow-2xl bg-background-dark">
+<div class="flex items-center p-6 justify-between z-10 sticky top-0 bg-background-dark/80 backdrop-blur-md">
+<button class="text-white/70 hover:text-white transition-colors flex size-12 shrink-0 items-center justify-center rounded-full active:bg-white/10">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-medium tracking-wide text-white/80 uppercase">Recovery Check-in</span>
+</div>
+<div class="size-12 shrink-0"></div>
+</div>
+<div class="flex-1 flex flex-col px-6 pt-2 pb-8">
+<div class="flex flex-col items-center gap-6 mt-4">
+<div class="relative w-full max-w-[320px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent z-10"></div>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay z-10"></div>
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transform scale-105" data-alt="Abstract dark gym interior with dramatic lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRhMc0Rmu-VmbYswOa283WDnI6Ut96WtP6SeZ9ubZS6sJyYWTPTUwYjLNQ4EbG1Xe8_Z6e3iQiFw2-bDg_nI0FsWqEGyKAg-1fpmT09ypSx3CBYSTRNzHmRsJPEqW3vg2ZRNz0hChY3HmT6px0bApj7q6rt2pJbPntIMnla3b80jfzLZqp5J1k4exfih6mmBFG8va6TD4CEn3-35_oVQ7VkIqBcV0LqajyrLRtCaM4xDqPKc-XVWH4FNolgP4FAz7QBT5OJr8bQWWK");'>
+</div>
+<div class="absolute top-4 right-4 z-20 bg-black/40 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg flex flex-col items-center min-w-[60px]">
+<span class="text-[10px] font-bold text-white/60 uppercase tracking-wider">MON</span>
+<span class="text-xl font-bold text-white leading-none">12</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-3 text-center max-w-[340px] mx-auto z-20 -mt-16">
+<div class="size-16 rounded-full bg-background-dark border-4 border-background-dark flex items-center justify-center shadow-lg relative group">
+<div class="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-20"></div>
+<div class="size-full rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">history_toggle_off</span>
+</div>
+</div>
+<div class="space-y-1 mt-2">
+<h1 class="text-3xl font-bold tracking-tight text-white">Missed a session?</h1>
+<p class="text-white/60 text-sm leading-relaxed px-4">
+                            Life happens. You didn't log <span class="text-primary font-medium">Upper Body Power</span> on Monday.
+                        </p>
+</div>
+</div>
+</div>
+<div class="mt-8 mb-6">
+<div class="bg-white/5 border border-white/5 rounded-xl p-4 flex items-center justify-between gap-4 backdrop-blur-sm">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-white/10 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-semibold text-base">Upper Body Power</span>
+<span class="text-white/40 text-xs">45 min • High Intensity</span>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-white/10"></div>
+<div class="flex flex-col items-end shrink-0">
+<span class="text-xs text-white/40 font-medium uppercase tracking-wider">Planned</span>
+<span class="text-sm text-white font-medium">Monday</span>
+</div>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-4">
+<h3 class="text-white/90 text-lg font-bold px-1">Choose an action</h3>
+<button class="group relative flex items-center justify-between p-4 rounded-xl bg-gradient-to-br from-[#2f4f61] to-[#1e3442] border border-primary/20 hover:border-primary/50 transition-all duration-300 active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-background-dark shrink-0 shadow-[0_0_12px_rgba(254,127,45,0.4)]">
+<span class="material-symbols-outlined filled">calendar_clock</span>
+</div>
+<div class="flex flex-col items-start">
+<span class="text-white font-bold text-base group-hover:text-primary transition-colors">Reschedule Workout</span>
+<span class="text-white/50 text-xs text-left">Move this session to another day</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/30 group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-xl bg-transparent border border-white/10 hover:bg-white/5 transition-all duration-300 active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 shrink-0">
+<span class="material-symbols-outlined">skip_next</span>
+</div>
+<div class="flex flex-col items-start">
+<span class="text-white/80 font-medium text-base group-hover:text-white transition-colors">Skip and Move On</span>
+<span class="text-white/40 text-xs text-left">Accept the miss. Consistency &gt; Perfection.</span>
+</div>
+</div>
+</button>
+</div>
+<p class="text-center text-white/30 text-xs mt-6 font-medium mb-4">
+                Adjusting your plan is part of the process.
+            </p>
+</div>
+<div class="sticky bottom-0 w-full bg-background-dark/95 backdrop-blur-xl border-t border-white/5 pb-6 pt-2 px-6 z-40">
+<nav class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1.5 group p-2 rounded-xl hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined filled text-primary transition-colors">home</span>
+<span class="text-[10px] font-medium text-primary tracking-wide">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 group p-2 rounded-xl hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-white/40 group-hover:text-white transition-colors">calendar_month</span>
+<span class="text-[10px] font-medium text-white/40 group-hover:text-white transition-colors tracking-wide">Calendar</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 group p-2 rounded-xl hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-white/40 group-hover:text-white transition-colors">bar_chart</span>
+<span class="text-[10px] font-medium text-white/40 group-hover:text-white transition-colors tracking-wide">Progress</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 group p-2 rounded-xl hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-white/40 group-hover:text-white transition-colors">person</span>
+<span class="text-[10px] font-medium text-white/40 group-hover:text-white transition-colors tracking-wide">Profile</span>
+</a>
+</nav>
+</div>
+</div>
+
+</body></html>
