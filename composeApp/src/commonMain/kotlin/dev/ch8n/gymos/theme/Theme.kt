@@ -13,6 +13,7 @@ fun GymTheme(
         LocalGymTypography provides gymTypography(),
         LocalGymShapes provides DefaultGymShapes,
         LocalGymSpacing provides GymSpacing(),
+        LocalGymSizes provides GymSizes(),
         content = content
     )
 }
@@ -37,4 +38,9 @@ object GymTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalGymSpacing.current
+
+    val sizes: GymSizes
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalGymSizes.current
 }
