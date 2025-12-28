@@ -25,6 +25,7 @@ data class GymTypography(
     val bodyMedium: TextStyle,
     val bodySmall: TextStyle,
     val captionBold: TextStyle,
+    val caption: TextStyle,
     val tiny: TextStyle
 )
 
@@ -99,6 +100,12 @@ fun gymTypography(): GymTypography {
             fontWeight = FontWeight.Bold,
             fontSize = 12.sp,
             letterSpacing = 0.1.sp
+        ),
+        caption = TextStyle(
+            fontFamily = notoSans,
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            letterSpacing = 0.sp
         ),
         tiny = TextStyle(
             fontFamily = notoSans,

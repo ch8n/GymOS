@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.BakeryDining
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
@@ -28,9 +29,12 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.LunchDining
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
@@ -52,6 +56,7 @@ import androidx.compose.ui.layout.ContentScale
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
 import dev.ch8n.gymos.ui.foundation.GymActionCard
+import dev.ch8n.gymos.ui.foundation.GymAddInput
 import dev.ch8n.gymos.ui.foundation.GymAvatar
 import dev.ch8n.gymos.ui.foundation.GymBadge
 import dev.ch8n.gymos.ui.foundation.GymBadgeIconButton
@@ -70,6 +75,9 @@ import dev.ch8n.gymos.ui.foundation.GymExerciseSelectionItem
 import dev.ch8n.gymos.ui.foundation.GymFeelingSlider
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
+import dev.ch8n.gymos.ui.foundation.GymIconCircle
+import dev.ch8n.gymos.ui.foundation.GymIconSquare
+import dev.ch8n.gymos.ui.foundation.GymListItem
 import dev.ch8n.gymos.ui.foundation.GymNumberInput
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
 import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
@@ -79,8 +87,10 @@ import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymStatGridCard
 import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
 import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
+import dev.ch8n.gymos.ui.foundation.GymSwitch
 import dev.ch8n.gymos.ui.foundation.GymTextAvatar
 import dev.ch8n.gymos.ui.foundation.GymTextField
+import dev.ch8n.gymos.ui.foundation.GymTimePickerButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
 import gymos.composeapp.generated.resources.Res
@@ -153,7 +163,11 @@ fun ShowcaseList(
         "GymSegmentedProgressBar",
         "GymTextField",
         "GymActionCard",
-        "GymExerciseSelectionItem"
+        "GymExerciseSelectionItem",
+        "GymSwitch",
+        "GymListItem",
+        "GymTimePickerButton",
+        "GymAddInput"
     )
 
     Scaffold(
@@ -261,6 +275,10 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymTextField" -> GymTextFieldShowcase()
                 "GymActionCard" -> GymActionCardShowcase()
                 "GymExerciseSelectionItem" -> GymExerciseSelectionItemShowcase()
+                "GymSwitch" -> GymSwitchShowcase()
+                "GymListItem" -> GymListItemShowcase()
+                "GymTimePickerButton" -> GymTimePickerButtonShowcase()
+                "GymAddInput" -> GymAddInputShowcase()
             }
         }
     }
@@ -961,6 +979,119 @@ fun GymExerciseSelectionItemShowcase() {
                     isAlreadyAdded = true
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun GymSwitchShowcase() {
+    var checked1 by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(true) }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Switches") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymSwitch(checked = checked1, onCheckedChange = { checked1 = it })
+                GymSwitch(checked = checked2, onCheckedChange = { checked2 = it })
+            }
+        }
+    }
+}
+
+@Composable
+fun GymListItemShowcase() {
+    var checked by remember { mutableStateOf(true) }
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Reminder List Items") {
+            Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymListItem(
+                    title = "Workout Time",
+                    subtitle = "Scheduled for mornings",
+                    leadingContent = {
+                        GymIconCircle(
+                            icon = Icons.Default.Schedule,
+                            backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
+                            iconColor = GymTheme.colors.quaternary
+                        )
+                    },
+                    trailingContent = {
+                        GymTimePickerButton(time = "06:30 AM", onClick = {})
+                    }
+                )
+
+                GymListItem(
+                    title = "Push Notifications",
+                    leadingContent = {
+                        GymIconCircle(
+                            icon = Icons.Default.NotificationsActive,
+                            backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
+                            iconColor = GymTheme.colors.secondary
+                        )
+                    },
+                    trailingContent = {
+                        GymSwitch(checked = checked, onCheckedChange = { checked = it })
+                    }
+                )
+            }
+        }
+
+        ShowcaseSection("Meal Timer List Items") {
+            Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymListItem(
+                    title = "Breakfast",
+                    leadingContent = {
+                        GymIconSquare(
+                            icon = Icons.Default.BakeryDining,
+                            backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                            iconColor = GymTheme.colors.tertiary
+                        )
+                    },
+                    trailingContent = {
+                        GymTimePickerButton(time = "07:00 AM", onClick = {})
+                        GymSwitch(checked = true, onCheckedChange = {})
+                    }
+                )
+                GymListItem(
+                    title = "Lunch",
+                    leadingContent = {
+                        GymIconSquare(
+                            icon = Icons.Default.LunchDining,
+                            backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                            iconColor = GymTheme.colors.tertiary
+                        )
+                    },
+                    trailingContent = {
+                        GymTimePickerButton(time = "01:00 PM", onClick = {})
+                        GymSwitch(checked = true, onCheckedChange = {})
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymTimePickerButtonShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Time Picker Buttons") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymTimePickerButton(time = "06:30 AM", onClick = {})
+                GymTimePickerButton(time = "10:45 PM", onClick = {})
+            }
+        }
+    }
+}
+
+@Composable
+fun GymAddInputShowcase() {
+    var value by remember { mutableStateOf("") }
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Add Input Field") {
+            GymAddInput(
+                value = value,
+                onValueChange = { value = it },
+                onAddClick = { value = "" }
+            )
         }
     }
 }

@@ -74,6 +74,8 @@ Component-specific dimensions for height and icons.
 - `iconLarge`: 32.dp
 - `indicatorSmall`: 8.dp
 - `checkbox`: 28.dp
+- `avatarSmall`: 40.dp
+- `avatarMedium`: 48.dp
 
 ---
 
@@ -242,3 +244,30 @@ A list item for selecting exercises from a library.
 
 - **Props**: `name`, `category`, `equipment`, `initials`, `onAddClick`, `onItemClick`,
   `avatarColor`, `isAlreadyAdded`.
+
+### GymSwitch
+
+A custom animated switch component for toggling settings.
+
+- **Props**: `checked`, `onCheckedChange`, `enabled`.
+- **Note**: Follows the primary brand color for the active state.
+
+### GymListItem
+
+A versatile row component for reminders, habits, and checklist items.
+
+- **Props**: `title`, `subtitle`, `leadingContent`, `trailingContent`, `onClick`, `enabled`.
+- **Helpers**: Includes `GymIconCircle` (circular background) and `GymIconSquare` (rounded square
+  background) for leading icons.
+
+### GymTimePickerButton
+
+A stylized button for displaying and triggering time selection.
+
+- **Props**: `time`, `onClick`, `enabled`, `backgroundColor`, `textColor`.
+
+### GymAddInput
+
+A specialized input field with an inline "+" action for adding items to a list.
+
+- **Props**: `value`, `onValueChange`, `placeholder`, `onAddClick`.
