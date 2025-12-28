@@ -62,7 +62,8 @@ data class DayData(
 
 @Composable
 fun DayViewPagerScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onExerciseClick: () -> Unit
 ) {
     val days = remember {
         listOf(
@@ -248,13 +249,13 @@ fun DayViewPagerScreen(
             verticalAlignment = Alignment.Top
         ) { pageIndex ->
             val day = days[pageIndex]
-            DayContent(day)
+            DayContent(day, onExerciseClick)
         }
     }
 }
 
 @Composable
-fun DayContent(day: DayData) {
+fun DayContent(day: DayData, onExerciseClick: () -> Unit) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(horizontal = GymTheme.spacing.pagePadding),
         verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium),
@@ -280,7 +281,7 @@ fun DayContent(day: DayData) {
                     onCompletedChange = { /* TODO */ },
                     icon = exercise.icon,
                     iconColor = exercise.iconColor,
-                    onClick = { /* TODO */ }
+                    onClick = onExerciseClick
                 )
             }
 

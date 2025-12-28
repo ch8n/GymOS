@@ -2,6 +2,7 @@ package dev.ch8n.gymos.ui.foundation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,8 @@ fun GymSessionLogItem(
     statusText: String?,
     isCompleted: Boolean,
     modifier: Modifier = Modifier,
-    isCurrent: Boolean = false
+    isCurrent: Boolean = false,
+    onClick: (() -> Unit)? = null
 ) {
     val alpha = if (isCompleted || isCurrent) 1f else 0.3f
     val backgroundColor =
@@ -45,6 +47,7 @@ fun GymSessionLogItem(
             .clip(GymTheme.shapes.default)
             .background(backgroundColor)
             .border(1.dp, GymTheme.colors.border, GymTheme.shapes.default)
+            .then(if (onClick != null) Modifier.clickable { onClick() } else Modifier)
             .padding(GymTheme.spacing.medium)
             .alpha(alpha),
         verticalAlignment = Alignment.CenterVertically,

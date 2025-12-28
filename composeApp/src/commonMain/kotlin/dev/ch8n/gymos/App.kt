@@ -7,6 +7,7 @@ import androidx.navigation3.ui.NavDisplay
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.calendar.CalendarScreen
 import dev.ch8n.gymos.ui.dayview.DayViewPagerScreen
+import dev.ch8n.gymos.ui.exercise.ExerciseDetailScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
 import dev.ch8n.gymos.ui.navigation.GymRoute
 import dev.ch8n.gymos.ui.navigation.gymNavConfig
@@ -38,6 +39,12 @@ fun App() {
                 }
                 entry<GymRoute.DayViewPagerScreen> {
                     DayViewPagerScreen(
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onExerciseClick = { backStack.add(GymRoute.ExerciseDetailScreen) }
+                    )
+                }
+                entry<GymRoute.ExerciseDetailScreen> {
+                    ExerciseDetailScreen(
                         onBackClick = { backStack.removeLastOrNull() }
                     )
                 }

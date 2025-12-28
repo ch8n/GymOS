@@ -35,6 +35,10 @@ fun GymExecutionBottomCard(
     reps: String,
     onRepsChange: (String) -> Unit,
     onCompleteSet: () -> Unit,
+    energyIndex: Int = 1,
+    onEnergyIndexChange: (Int) -> Unit = {},
+    effortIndex: Int = 1,
+    onEffortIndexChange: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -50,7 +54,7 @@ fun GymExecutionBottomCard(
         Box(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .width(40.dp) // Specific handle width
+                .width(40.dp)
                 .height(GymTheme.spacing.xSmall)
                 .clip(GymTheme.shapes.full)
                 .background(GymTheme.colors.textMuted.copy(alpha = 0.2f))
@@ -66,7 +70,6 @@ fun GymExecutionBottomCard(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
             ) {
-                // Pulse indicator placeholder
                 Box(
                     modifier = Modifier
                         .size(GymTheme.spacing.mediumSmall)
@@ -98,7 +101,7 @@ fun GymExecutionBottomCard(
                     style = GymTheme.typography.bodyLarge.copy(
                         color = GymTheme.colors.primary,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = GymTheme.typography.displaySmall.fontFamily // Use Lexend for timer
+                        fontFamily = GymTheme.typography.displaySmall.fontFamily
                     )
                 )
             }
@@ -124,8 +127,34 @@ fun GymExecutionBottomCard(
             )
         }
 
-        // Energy/Effort Placeholders or controls could be added here
-        // For now, focusing on the main complete button
+        // Selection Controls
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+        ) {
+            GymSegmentedControl(
+                items = listOf("1", "2", "3"),
+                selectedIndex = energyIndex,
+                onItemSelected = onEnergyIndexChange,
+                label = "Energy (1-3)",
+                statusText = when (energyIndex) {
+                    0 -> "Low"; 1 -> "Mod"; else -> "High"
+                },
+                modifier = Modifier.weight(1f)
+            )
+            GymSegmentedControl(
+                items = listOf("1", "2", "3"),
+                selectedIndex = effortIndex,
+                onItemSelected = onEffortIndexChange,
+                label = "Effort (1-3)",
+                activeColor = GymTheme.colors.quaternary,
+                statusText = when (effortIndex) {
+                    0 -> "Easy"; 1 -> "Mod"; else -> "Hard"
+                },
+                statusColor = GymTheme.colors.quaternary,
+                modifier = Modifier.weight(1f)
+            )
+        }
 
         GymButton(
             text = "Complete Set",

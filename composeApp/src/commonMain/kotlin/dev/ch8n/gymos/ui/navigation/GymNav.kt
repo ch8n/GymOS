@@ -19,6 +19,9 @@ sealed interface GymRoute : NavKey {
 
     @Serializable
     data object DayViewPagerScreen : GymRoute
+
+    @Serializable
+    data object ExerciseDetailScreen : GymRoute
 }
 
 val gymNavConfig = SavedStateConfiguration {
@@ -28,6 +31,10 @@ val gymNavConfig = SavedStateConfiguration {
             subclass(GymRoute.ShowcaseScreen::class, GymRoute.ShowcaseScreen.serializer())
             subclass(GymRoute.CalendarScreen::class, GymRoute.CalendarScreen.serializer())
             subclass(GymRoute.DayViewPagerScreen::class, GymRoute.DayViewPagerScreen.serializer())
+            subclass(
+                GymRoute.ExerciseDetailScreen::class,
+                GymRoute.ExerciseDetailScreen.serializer()
+            )
         }
     }
 }
