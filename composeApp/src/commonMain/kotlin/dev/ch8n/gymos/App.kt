@@ -13,6 +13,7 @@ import dev.ch8n.gymos.ui.exercise.ExerciseSummaryScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
 import dev.ch8n.gymos.ui.navigation.GymRoute
 import dev.ch8n.gymos.ui.navigation.gymNavConfig
+import dev.ch8n.gymos.ui.reminder.ReminderAndHabitScreen
 import dev.ch8n.gymos.ui.showcase.ComponentShowcaseScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -29,7 +30,8 @@ fun App() {
                 entry<GymRoute.HomeScreen> {
                     HomeScreen(
                         onOpenShowcase = { backStack.add(GymRoute.ShowcaseScreen) },
-                        onOpenCalendar = { backStack.add(GymRoute.CalendarScreen) }
+                        onOpenCalendar = { backStack.add(GymRoute.CalendarScreen) },
+                        onOpenReminder = { backStack.add(GymRoute.ReminderAndHabitScreen) }
                     )
                 }
                 entry<GymRoute.CalendarScreen> {
@@ -86,6 +88,12 @@ fun App() {
                 entry<GymRoute.ShowcaseScreen> {
                     ComponentShowcaseScreen(
                         onBack = { backStack.removeLastOrNull() }
+                    )
+                }
+                entry<GymRoute.ReminderAndHabitScreen> {
+                    ReminderAndHabitScreen(
+                        onBack = { backStack.removeLastOrNull() },
+                        onSave = { backStack.removeLastOrNull() }
                     )
                 }
             }
