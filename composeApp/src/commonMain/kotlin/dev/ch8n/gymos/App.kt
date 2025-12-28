@@ -5,6 +5,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import dev.ch8n.gymos.theme.GymTheme
+import dev.ch8n.gymos.ui.calendar.CalendarScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
 import dev.ch8n.gymos.ui.navigation.GymRoute
 import dev.ch8n.gymos.ui.navigation.gymNavConfig
@@ -23,7 +24,14 @@ fun App() {
             entryProvider = entryProvider {
                 entry<GymRoute.HomeScreen> {
                     HomeScreen(
-                        onOpenShowcase = { backStack.add(GymRoute.ShowcaseScreen) }
+                        onOpenShowcase = { backStack.add(GymRoute.ShowcaseScreen) },
+                        onOpenCalendar = { backStack.add(GymRoute.CalendarScreen) }
+                    )
+                }
+                entry<GymRoute.CalendarScreen> {
+                    CalendarScreen(
+                        onHomeClick = { backStack.removeLastOrNull() },
+                        onShowcaseClick = { backStack.add(GymRoute.ShowcaseScreen) }
                     )
                 }
                 entry<GymRoute.ShowcaseScreen> {
