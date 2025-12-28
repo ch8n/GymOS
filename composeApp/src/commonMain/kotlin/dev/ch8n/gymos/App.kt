@@ -14,6 +14,7 @@ import dev.ch8n.gymos.ui.home.HomeScreen
 import dev.ch8n.gymos.ui.navigation.GymRoute
 import dev.ch8n.gymos.ui.navigation.gymNavConfig
 import dev.ch8n.gymos.ui.profile.ProfileScreen
+import dev.ch8n.gymos.ui.progressAnalytics.ProgressAnalyticsScreen
 import dev.ch8n.gymos.ui.reminder.ReminderAndHabitScreen
 import dev.ch8n.gymos.ui.showcase.ComponentShowcaseScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -115,6 +116,13 @@ fun App() {
                                 backStack.add(GymRoute.CalendarScreen)
                             }
                         }
+                    )
+                }
+                entry<GymRoute.ProgressAnalyticsScreen> {
+                    ProgressAnalyticsScreen(
+                        onHomeClick = { backStack.clear(); backStack.add(GymRoute.HomeScreen) },
+                        onCalendarClick = { backStack.clear(); backStack.add(GymRoute.CalendarScreen) },
+                        onProfileClick = { backStack.clear(); backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
             }
