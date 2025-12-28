@@ -43,7 +43,8 @@ import dev.ch8n.gymos.ui.foundation.GymTopBar
 @Composable
 fun CalendarScreen(
     onHomeClick: () -> Unit,
-    onShowcaseClick: () -> Unit
+    onShowcaseClick: () -> Unit,
+    onDateClick: (Int) -> Unit
 ) {
     Scaffold(
         containerColor = GymTheme.colors.background,
@@ -70,7 +71,7 @@ fun CalendarScreen(
 
             SummaryStatsSection()
 
-            CalendarGridSection()
+            CalendarGridSection(onDateClick)
 
             StatusKeySection()
 
@@ -199,13 +200,14 @@ fun SummaryStatsSection() {
 }
 
 @Composable
-fun CalendarGridSection() {
+fun CalendarGridSection(onDateClick: (Int) -> Unit) {
     Column {
         GymCalendarWeekHeader()
         GymCalendarGrid(items = (1..31).toList()) { date ->
             GymCalendarDate(
                 date = date.toString(),
                 isSelected = date == 18,
+                onClick = { onDateClick(date) },
                 status = when (date) {
                     in listOf(1, 2, 5, 6, 8, 10, 11, 13, 14, 15, 17) -> CalendarDateStatus.Completed
                     in listOf(4, 9) -> CalendarDateStatus.Missed
