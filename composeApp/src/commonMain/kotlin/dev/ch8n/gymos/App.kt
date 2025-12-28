@@ -176,7 +176,7 @@ fun App() {
                             if (backStack.lastOrNull() != GymRoute.ProfileScreen) {
                                 backStack.add(GymRoute.ProfileScreen)
                             }
-                        }
+                        },
                     )
                 }
             }

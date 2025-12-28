@@ -193,9 +193,9 @@ fun ProgressAnalyticsScreen(
             }
 
             // Muscle Volume & Energy Row
-            Row(
+            Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+                verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
             ) {
                 // Volume by Muscle
                 GymCard(
