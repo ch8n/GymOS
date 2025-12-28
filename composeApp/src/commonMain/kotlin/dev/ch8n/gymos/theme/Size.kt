@@ -29,7 +29,23 @@ data class GymSizes(
     val avatarSmall: Dp = 40.dp,
     val avatarMedium: Dp = 48.dp,
     val avatarLarge: Dp = 80.dp,
-    val avatarXLarge: Dp = 120.dp
+    val avatarXLarge: Dp = 120.dp,
+
+    // Chart & Graph sizes
+    val chartHeightMedium: Dp = 100.dp,
+    val chartHeightLarge: Dp = 150.dp,
+    val barWidthMedium: Dp = 12.dp,
+    val donutSizeMedium: Dp = 120.dp,
+    val donutThickness: Dp = 8.dp,
+
+    // Card sizes
+    val cardHeightLarge: Dp = 150.dp,
+    val cardHeightMedium: Dp = 120.dp,
+
+    // Effect sizes
+    val glowSizeSmall: Dp = 80.dp,
+    val glowSizeMedium: Dp = 120.dp,
+    val glowSizeLarge: Dp = 128.dp
 )
 
 val LocalGymSizes = staticCompositionLocalOf { GymSizes() }

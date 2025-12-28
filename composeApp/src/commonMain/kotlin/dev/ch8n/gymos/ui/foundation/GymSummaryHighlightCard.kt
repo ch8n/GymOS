@@ -46,9 +46,9 @@ fun GymSummaryHighlightCard(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .offset(x = GymTheme.spacing.xxLarge, y = -GymTheme.spacing.xxLarge)
-                    .size(GymTheme.spacing.xxxLarge * 2)
+                    .size(GymTheme.sizes.glowSizeLarge)
                     .background(GymTheme.colors.primary.copy(alpha = 0.2f), CircleShape)
-                    .blur(GymTheme.spacing.xxxLarge)
+                    .blur(GymTheme.spacing.xxLarge)
             )
 
             Column(

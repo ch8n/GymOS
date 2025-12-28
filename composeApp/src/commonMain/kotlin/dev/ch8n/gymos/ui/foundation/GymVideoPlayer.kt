@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -67,7 +66,7 @@ fun GymVideoPlayer(
                     .padding(GymTheme.spacing.small)
                     .clip(GymTheme.shapes.small)
                     .background(Color.Black.copy(alpha = 0.6f))
-                    .padding(horizontal = GymTheme.spacing.small, vertical = 2.dp)
+                    .padding(horizontal = GymTheme.spacing.small, vertical = GymTheme.spacing.tiny)
             ) {
                 Text(
                     text = duration,

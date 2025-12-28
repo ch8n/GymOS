@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -42,7 +41,7 @@ fun GymCheckbox(
             .size(GymTheme.sizes.checkbox)
             .clip(CircleShape)
             .background(backgroundColor)
-            .border(2.dp, borderColor, CircleShape)
+            .border(GymTheme.sizes.borderWidth * 2, borderColor, CircleShape)
             .clickable { onCheckedChange(!checked) }
             .scale(scale),
         contentAlignment = Alignment.Center

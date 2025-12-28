@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowForward
@@ -54,14 +55,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
+import dev.ch8n.gymos.ui.foundation.BarData
 import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
+import dev.ch8n.gymos.ui.foundation.DonutData
 import dev.ch8n.gymos.ui.foundation.GymActionCard
 import dev.ch8n.gymos.ui.foundation.GymAddInput
+import dev.ch8n.gymos.ui.foundation.GymAnalyticsStatCard
+import dev.ch8n.gymos.ui.foundation.GymAreaChart
 import dev.ch8n.gymos.ui.foundation.GymAvatar
 import dev.ch8n.gymos.ui.foundation.GymBMICard
 import dev.ch8n.gymos.ui.foundation.GymBadge
 import dev.ch8n.gymos.ui.foundation.GymBadgeIconButton
+import dev.ch8n.gymos.ui.foundation.GymBarChart
 import dev.ch8n.gymos.ui.foundation.GymButton
 import dev.ch8n.gymos.ui.foundation.GymCalendarDate
 import dev.ch8n.gymos.ui.foundation.GymCalendarGrid
@@ -71,6 +78,7 @@ import dev.ch8n.gymos.ui.foundation.GymCategoryHeader
 import dev.ch8n.gymos.ui.foundation.GymCheckbox
 import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
+import dev.ch8n.gymos.ui.foundation.GymDonutChart
 import dev.ch8n.gymos.ui.foundation.GymExecutionBottomCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseSelectionItem
@@ -176,7 +184,11 @@ fun ShowcaseList(
         "GymAddInput",
         "GymMetricInputCard",
         "GymBMICard",
-        "GymStatusBadge"
+        "GymStatusBadge",
+        "GymAnalyticsStatCard",
+        "GymBarChart",
+        "GymAreaChart",
+        "GymDonutChart"
     )
 
     Scaffold(
@@ -291,6 +303,10 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymMetricInputCard" -> GymMetricInputCardShowcase()
                 "GymBMICard" -> GymBMICardShowcase()
                 "GymStatusBadge" -> GymStatusBadgeShowcase()
+                "GymAnalyticsStatCard" -> GymAnalyticsStatCardShowcase()
+                "GymBarChart" -> GymBarChartShowcase()
+                "GymAreaChart" -> GymAreaChartShowcase()
+                "GymDonutChart" -> GymDonutChartShowcase()
             }
         }
     }
@@ -1183,6 +1199,181 @@ fun GymStatusBadgeShowcase() {
                     backgroundColor = GymTheme.colors.primary.copy(alpha = 0.2f),
                     contentColor = GymTheme.colors.primary
                 )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymAnalyticsStatCardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Analytics Stats") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymAnalyticsStatCard(
+                    label = "Total Workouts",
+                    value = "12",
+                    trend = "↑ 2",
+                    modifier = Modifier.weight(1f)
+                )
+                GymAnalyticsStatCard(
+                    label = "Avg Duration",
+                    value = "45",
+                    unit = "m",
+                    accentColor = GymTheme.colors.secondary,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymBarChartShowcase() {
+    val mockData = listOf(
+        BarData("M", 0.4f),
+        BarData("T", 0.1f, color = GymTheme.colors.surfaceHighlight),
+        BarData("W", 0.8f, color = GymTheme.colors.primary),
+        BarData("T", 0.6f),
+        BarData("F", 0.1f, color = GymTheme.colors.surfaceHighlight),
+        BarData("S", 1.0f),
+        BarData("S", 0.4f, color = GymTheme.colors.primary.copy(alpha = 0.5f))
+    )
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Consistency Bar Chart") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(GymTheme.spacing.medium)) {
+                    GymSectionHeader(title = "Consistency", label = "Last 14 Days")
+                    GymBarChart(
+                        data = mockData,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = GymTheme.spacing.medium)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun GymAreaChartShowcase() {
+    val weightData = listOf(0.4f, 0.6f, 0.5f, 0.7f, 0.55f, 0.8f, 0.65f, 0.9f)
+    val energyData = listOf(0.2f, 0.4f, 0.3f, 0.6f, 0.5f, 0.8f, 0.7f, 0.9f)
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Weight Trend (Area Chart)") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(GymTheme.spacing.medium)) {
+                    GymAnalyticsStatCard(
+                        label = "Weight Trend",
+                        value = "185",
+                        unit = "lbs",
+                        trend = "-1.2%",
+                        accentColor = GymTheme.colors.quaternary
+                    )
+                    GymAreaChart(
+                        data = weightData,
+                        lineColor = GymTheme.colors.quaternary,
+                        fillColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
+                        modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
+                    )
+                }
+            }
+        }
+
+        ShowcaseSection("Energy Levels (Area Chart)") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.padding(GymTheme.spacing.medium)) {
+                    GymSectionHeader(
+                        title = "Energy Levels",
+                        trailingContent = {
+                            GymBadge(
+                                text = "High",
+                                backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.1f),
+                                contentColor = GymTheme.colors.secondary
+                            )
+                        }
+                    )
+                    GymAreaChart(
+                        data = energyData,
+                        lineColor = GymTheme.colors.secondary,
+                        fillColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
+                        modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun GymDonutChartShowcase() {
+    val muscleData = listOf(
+        DonutData(0.4f, GymTheme.colors.primary),
+        DonutData(0.3f, GymTheme.colors.secondary),
+        DonutData(0.2f, GymTheme.colors.quaternary)
+    )
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Volume by Muscle (Donut Chart)") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.padding(GymTheme.spacing.medium),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.large)
+                ) {
+                    GymDonutChart(data = muscleData) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "Total",
+                                style = GymTheme.typography.tiny,
+                                color = GymTheme.colors.textMuted
+                            )
+                            Text(
+                                text = "12.5k",
+                                style = GymTheme.typography.bodyLarge,
+                                color = GymTheme.colors.textPrimary,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        muscleData.zip(listOf("Legs", "Push", "Pull")).forEach { (data, label) ->
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.xSmall)
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .size(GymTheme.spacing.small)
+                                            .background(data.color, CircleShape)
+                                    )
+                                    Text(
+                                        text = label,
+                                        style = GymTheme.typography.bodySmall,
+                                        color = GymTheme.colors.textSecondary
+                                    )
+                                }
+                                Text(
+                                    text = "${(data.percentage * 100).toInt()}%",
+                                    style = GymTheme.typography.bodySmall,
+                                    color = GymTheme.colors.textPrimary,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }

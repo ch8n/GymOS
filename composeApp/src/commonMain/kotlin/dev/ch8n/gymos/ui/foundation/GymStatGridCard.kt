@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -85,7 +84,7 @@ fun GymStatGridCard(
                         progress = progress,
                         maxProgress = maxProgress,
                         activeColor = accentColor,
-                        modifier = Modifier.padding(top = 4.dp)
+                        modifier = Modifier.padding(top = GymTheme.spacing.xSmall)
                     )
                 }
             }
