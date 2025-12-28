@@ -1274,6 +1274,16 @@ fun GymAreaChartShowcase() {
                     )
                     GymAreaChart(
                         data = weightData,
+                        xAxisLabels = listOf(
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr",
+                            "May",
+                            "Jun",
+                            "Jul",
+                            "Aug"
+                        ),
                         lineColor = GymTheme.colors.quaternary,
                         fillColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
                         modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
@@ -1297,6 +1307,7 @@ fun GymAreaChartShowcase() {
                     )
                     GymAreaChart(
                         data = energyData,
+                        xAxisLabels = listOf("M", "T", "W", "T", "F", "S", "S", "M"),
                         lineColor = GymTheme.colors.secondary,
                         fillColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
                         modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
