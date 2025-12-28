@@ -90,3 +90,35 @@ fun GymBadge(
             .padding(horizontal = GymTheme.spacing.small, vertical = GymTheme.spacing.tiny)
     )
 }
+
+@Composable
+fun GymStatusBadge(
+    text: String,
+    icon: ImageVector,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.1f),
+    contentColor: Color = GymTheme.colors.primary
+) {
+    Row(
+        modifier = modifier
+            .clip(GymTheme.shapes.medium)
+            .background(backgroundColor)
+            .padding(horizontal = GymTheme.spacing.small, vertical = GymTheme.spacing.xSmall),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.xSmall)
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            modifier = Modifier.size(GymTheme.sizes.iconSmall),
+            tint = contentColor
+        )
+        Text(
+            text = text,
+            style = GymTheme.typography.bodySmall.copy(
+                color = contentColor,
+                fontWeight = FontWeight.Bold
+            )
+        )
+    }
+}

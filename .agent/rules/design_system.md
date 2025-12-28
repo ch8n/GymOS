@@ -76,6 +76,8 @@ Component-specific dimensions for height and icons.
 - `checkbox`: 28.dp
 - `avatarSmall`: 40.dp
 - `avatarMedium`: 48.dp
+- `avatarLarge`: 80.dp
+- `avatarXLarge`: 120.dp
 
 ---
 
@@ -87,8 +89,9 @@ Located in `composeApp/src/commonMain/kotlin/dev/ch8n/gymos/ui/foundation/`.
 
 A primary call-to-action button with a pill shape and brand-matched shadow.
 
-- **Props**: `text`, `onClick`, `icon`, `backgroundColor`, `contentColor`.
-- **States**: Default, With Icon.
+- **Props**: `text`, `onClick`, `icon`, `trailingIcon`, `backgroundColor`, `contentColor`.
+- **States**: Default, With Icon (Start/End).
+- **GymTextButton**: A subtle variant for secondary actions.
 
 ### GymIconButton & GymBadgeIconButton
 
@@ -112,6 +115,8 @@ Small labels for categorization or status.
 - **GymBadge Props**: `text`, `backgroundColor`, `contentColor`.
 - **Note**: `GymBadge` is a smaller, more compact version of a chip used for status tags like "
   TODAY".
+- **GymStatusBadge**: A pill-shaped badge with an icon and label, used for status like "Normal",
+  "High", etc.
 
 ### GymCheckbox
 
@@ -152,9 +157,11 @@ A placeholder component with dashed borders for indicating where content can be 
 
 Circular containers for user profiles or exercise initials.
 
-- **GymAvatar Props**: `size`, `backgroundColor`, `contentColor`, `borderColor`, `content`.
-- **GymImageAvatar Props**: `painter`, `size`, `borderColor`.
-- **GymTextAvatar Props**: `text`, `size`, `backgroundColor`, `contentColor`, `borderColor`.
+- **GymAvatar Props**: `size`, `backgroundColor`, `borderColor`, `onEditClick`, `content`.
+- **GymImageAvatar Props**: `painter`, `size`, `borderColor`, `onEditClick`.
+- **GymTextAvatar Props**: `text`, `size`, `backgroundColor`, `contentColor`, `borderColor`,
+  `onEditClick`.
+- **Note**: Supports an optional `onEditClick` to show an edit icon overlay.
 
 ### GymCalendar Components
 
@@ -271,3 +278,15 @@ A stylized button for displaying and triggering time selection.
 A specialized input field with an inline "+" action for adding items to a list.
 
 - **Props**: `value`, `onValueChange`, `placeholder`, `onAddClick`.
+
+### GymMetricInputCard
+
+A card for profile metrics like Height and Weight with inline numeric input and unit labels.
+
+- **Props**: `label`, `value`, `unit`, `onValueChange`, `accentColor`, `placeholder`.
+
+### GymBMICard
+
+A comprehensive card for BMI display, featuring a continuous progress range and status badge.
+
+- **Props**: `bmiValue`, `statusText`, `statusIcon`, `statusColor`, `progress`, `description`.

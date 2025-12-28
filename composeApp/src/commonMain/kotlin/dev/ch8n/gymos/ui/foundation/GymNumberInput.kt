@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -53,7 +52,7 @@ fun GymNumberInput(
                 .fillMaxWidth()
                 .clip(GymTheme.shapes.medium)
                 .background(GymTheme.colors.background)
-                .border(1.dp, GymTheme.colors.border, GymTheme.shapes.medium)
+                .border(GymTheme.sizes.borderWidth, GymTheme.colors.border, GymTheme.shapes.medium)
                 .padding(vertical = GymTheme.spacing.medium),
             contentAlignment = Alignment.Center
         ) {

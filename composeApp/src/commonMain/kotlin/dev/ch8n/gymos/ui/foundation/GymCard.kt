@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -35,7 +34,7 @@ fun GymCard(
         modifier = modifier
             .clip(shape)
             .background(backgroundColor)
-            .border(1.dp, borderColor, shape)
+            .border(GymTheme.sizes.borderWidth, borderColor, shape)
             .then(clickableModifier)
             .padding(contentPadding)
     ) {

@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.BakeryDining
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ChevronLeft
@@ -58,6 +59,7 @@ import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
 import dev.ch8n.gymos.ui.foundation.GymActionCard
 import dev.ch8n.gymos.ui.foundation.GymAddInput
 import dev.ch8n.gymos.ui.foundation.GymAvatar
+import dev.ch8n.gymos.ui.foundation.GymBMICard
 import dev.ch8n.gymos.ui.foundation.GymBadge
 import dev.ch8n.gymos.ui.foundation.GymBadgeIconButton
 import dev.ch8n.gymos.ui.foundation.GymButton
@@ -77,7 +79,9 @@ import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymIconCircle
 import dev.ch8n.gymos.ui.foundation.GymIconSquare
+import dev.ch8n.gymos.ui.foundation.GymImageAvatar
 import dev.ch8n.gymos.ui.foundation.GymListItem
+import dev.ch8n.gymos.ui.foundation.GymMetricInputCard
 import dev.ch8n.gymos.ui.foundation.GymNumberInput
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
 import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
@@ -85,10 +89,12 @@ import dev.ch8n.gymos.ui.foundation.GymSegmentedProgressBar
 import dev.ch8n.gymos.ui.foundation.GymSessionLogItem
 import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymStatGridCard
+import dev.ch8n.gymos.ui.foundation.GymStatusBadge
 import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
 import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
 import dev.ch8n.gymos.ui.foundation.GymSwitch
 import dev.ch8n.gymos.ui.foundation.GymTextAvatar
+import dev.ch8n.gymos.ui.foundation.GymTextButton
 import dev.ch8n.gymos.ui.foundation.GymTextField
 import dev.ch8n.gymos.ui.foundation.GymTimePickerButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
@@ -167,7 +173,10 @@ fun ShowcaseList(
         "GymSwitch",
         "GymListItem",
         "GymTimePickerButton",
-        "GymAddInput"
+        "GymAddInput",
+        "GymMetricInputCard",
+        "GymBMICard",
+        "GymStatusBadge"
     )
 
     Scaffold(
@@ -279,6 +288,9 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymListItem" -> GymListItemShowcase()
                 "GymTimePickerButton" -> GymTimePickerButtonShowcase()
                 "GymAddInput" -> GymAddInputShowcase()
+                "GymMetricInputCard" -> GymMetricInputCardShowcase()
+                "GymBMICard" -> GymBMICardShowcase()
+                "GymStatusBadge" -> GymStatusBadgeShowcase()
             }
         }
     }
@@ -316,6 +328,19 @@ fun GymButtonShowcase() {
                     backgroundColor = Color.Red.copy(alpha = 0.2f),
                     contentColor = Color.Red
                 )
+            }
+        }
+        ShowcaseSection("Large Button with Trailing Icon") {
+            GymButton(
+                text = "Update Weight",
+                trailingIcon = Icons.Default.ArrowForward,
+                onClick = {}
+            )
+        }
+        ShowcaseSection("Text Buttons") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymTextButton(text = "View History", icon = Icons.Default.History, onClick = {})
+                GymTextButton(text = "Cancel", onClick = {})
             }
         }
         ShowcaseSection("Badge Icon Button") {
@@ -598,16 +623,20 @@ fun GymAvatarShowcase() {
                     contentColor = GymTheme.colors.quaternary
                 )
                 GymTextAvatar(
-                    text = "SQ",
+                    text = "JD",
+                    size = GymTheme.sizes.avatarXLarge,
                     backgroundColor = GymTheme.colors.primary.copy(alpha = 0.1f),
-                    contentColor = GymTheme.colors.primary
-                )
-                GymTextAvatar(
-                    text = "DL",
-                    backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.1f),
-                    contentColor = GymTheme.colors.secondary
+                    contentColor = GymTheme.colors.primary,
+                    onEditClick = {}
                 )
             }
+        }
+        ShowcaseSection("Editable Avatar (Large)") {
+            GymImageAvatar(
+                painter = painterResource(Res.drawable.img_avatar),
+                size = GymTheme.sizes.avatarLarge,
+                onEditClick = {}
+            )
         }
     }
 }
@@ -1092,6 +1121,69 @@ fun GymAddInputShowcase() {
                 onValueChange = { value = it },
                 onAddClick = { value = "" }
             )
+        }
+    }
+}
+
+@Composable
+fun GymMetricInputCardShowcase() {
+    var height by remember { mutableStateOf("180") }
+    var weight by remember { mutableStateOf("75.5") }
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Standard Metric Card") {
+            GymMetricInputCard(
+                label = "Height",
+                value = height,
+                onValueChange = { height = it },
+                unit = "cm"
+            )
+        }
+        ShowcaseSection("Accented Metric Card") {
+            GymMetricInputCard(
+                label = "Weight",
+                value = weight,
+                onValueChange = { weight = it },
+                unit = "KG",
+                accentColor = GymTheme.colors.primary
+            )
+        }
+    }
+}
+
+@Composable
+fun GymBMICardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("BMI Summary Card") {
+            GymBMICard(
+                bmiValue = "23.3",
+                statusText = "Healthy",
+                statusIcon = Icons.Default.CheckCircle,
+                statusColor = GymTheme.colors.tertiary,
+                progress = 0.46f,
+                description = "Your BMI is in the Healthy Weight range. Keep up the good work maintaining your balance."
+            )
+        }
+    }
+}
+
+@Composable
+fun GymStatusBadgeShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Status Badges") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymStatusBadge(
+                    text = "Normal",
+                    icon = Icons.Default.CheckCircle,
+                    backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                    contentColor = GymTheme.colors.tertiary
+                )
+                GymStatusBadge(
+                    text = "High",
+                    icon = Icons.Default.Whatshot,
+                    backgroundColor = GymTheme.colors.primary.copy(alpha = 0.2f),
+                    contentColor = GymTheme.colors.primary
+                )
+            }
         }
     }
 }

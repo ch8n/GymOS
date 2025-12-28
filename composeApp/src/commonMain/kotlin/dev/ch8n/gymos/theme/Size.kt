@@ -27,7 +27,9 @@ data class GymSizes(
     val checkbox: Dp = 28.dp,
     val borderWidth: Dp = 1.dp,
     val avatarSmall: Dp = 40.dp,
-    val avatarMedium: Dp = 48.dp
+    val avatarMedium: Dp = 48.dp,
+    val avatarLarge: Dp = 80.dp,
+    val avatarXLarge: Dp = 120.dp
 )
 
 val LocalGymSizes = staticCompositionLocalOf { GymSizes() }

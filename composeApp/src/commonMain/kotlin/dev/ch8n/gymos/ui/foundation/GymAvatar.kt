@@ -6,6 +6,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,19 +25,42 @@ fun GymAvatar(
     modifier: Modifier = Modifier,
     size: Dp = GymTheme.sizes.medium,
     backgroundColor: Color = GymTheme.colors.surface,
-    contentColor: Color = GymTheme.colors.textPrimary,
     borderColor: Color = Color.Transparent,
+    onEditClick: (() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
     Box(
-        modifier = modifier
-            .size(size)
-            .clip(CircleShape)
-            .background(backgroundColor)
-            .border(GymTheme.sizes.borderWidth, borderColor, CircleShape),
+        modifier = modifier.size(size),
         contentAlignment = Alignment.Center
     ) {
-        content()
+        Box(
+            modifier = Modifier
+                .size(size)
+                .clip(CircleShape)
+                .background(backgroundColor)
+                .border(GymTheme.sizes.borderWidth, borderColor, CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            content()
+        }
+
+        if (onEditClick != null) {
+            GymIconButton(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .border(
+                        width = GymTheme.sizes.borderWidth * 2,
+                        color = GymTheme.colors.background,
+                        shape = CircleShape
+                    ),
+                icon = Icons.Default.Edit,
+                onClick = onEditClick,
+                backgroundColor = GymTheme.colors.primary,
+                contentColor = Color.White,
+                size = size * 0.3f,
+                iconSize = (size * 0.3f) * 0.6f
+            )
+        }
     }
 }
 
@@ -44,13 +69,15 @@ fun GymImageAvatar(
     painter: Painter,
     modifier: Modifier = Modifier,
     size: Dp = GymTheme.sizes.medium,
-    borderColor: Color = GymTheme.colors.border
+    borderColor: Color = GymTheme.colors.border,
+    onEditClick: (() -> Unit)? = null,
 ) {
     GymAvatar(
         modifier = modifier,
         size = size,
         borderColor = borderColor,
-        backgroundColor = GymTheme.colors.surface
+        backgroundColor = GymTheme.colors.surface,
+        onEditClick = onEditClick
     ) {
         Image(
             painter = painter,
@@ -68,14 +95,15 @@ fun GymTextAvatar(
     size: Dp = GymTheme.sizes.medium,
     backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.1f),
     contentColor: Color = GymTheme.colors.primary,
-    borderColor: Color = Color.Transparent
+    borderColor: Color = Color.Transparent,
+    onEditClick: (() -> Unit)? = null,
 ) {
     GymAvatar(
         modifier = modifier,
         size = size,
         backgroundColor = backgroundColor,
-        contentColor = contentColor,
-        borderColor = borderColor
+        borderColor = borderColor,
+        onEditClick = onEditClick
     ) {
         Text(
             text = text.uppercase(),

@@ -22,7 +22,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -31,6 +30,7 @@ fun GymButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
+    trailingIcon: ImageVector? = null,
     backgroundColor: Color = GymTheme.colors.primary,
     contentColor: Color = Color.White
 ) {
@@ -38,7 +38,7 @@ fun GymButton(
         modifier = modifier
             .height(GymTheme.sizes.buttonHeightMedium) // Use token for height
             .shadow(
-                elevation = 8.dp,
+                elevation = GymTheme.spacing.small,
                 shape = CircleShape,
                 spotColor = backgroundColor.copy(alpha = 0.5f)
             )
@@ -69,7 +69,51 @@ fun GymButton(
                     color = contentColor
                 )
             )
+            if (trailingIcon != null) {
+                Spacer(modifier = Modifier.width(GymTheme.spacing.small))
+                Icon(
+                    imageVector = trailingIcon,
+                    contentDescription = null,
+                    modifier = Modifier.size(GymTheme.sizes.iconMedium),
+                    tint = contentColor
+                )
+            }
         }
+    }
+}
+
+@Composable
+fun GymTextButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
+    contentColor: Color = GymTheme.colors.textSecondary
+) {
+    Row(
+        modifier = modifier
+            .clip(GymTheme.shapes.medium)
+            .clickable(onClick = onClick)
+            .padding(horizontal = GymTheme.spacing.medium, vertical = GymTheme.spacing.small),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                tint = contentColor
+            )
+            Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))
+        }
+        Text(
+            text = text,
+            style = GymTheme.typography.bodySmall.copy(
+                fontWeight = FontWeight.Bold,
+                color = contentColor
+            )
+        )
     }
 }
 
@@ -127,11 +171,11 @@ fun GymBadgeIconButton(
         Box(
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .padding(top = 10.dp, end = 10.dp)
+                .padding(top = GymTheme.spacing.mediumSmall, end = GymTheme.spacing.mediumSmall)
                 .size(GymTheme.sizes.indicatorSmall)
                 .clip(CircleShape)
                 .background(badgeColor)
-                .border(1.5.dp, backgroundColor, CircleShape)
+                .border(GymTheme.sizes.borderWidth * 1.5f, backgroundColor, CircleShape)
         )
     }
 }
