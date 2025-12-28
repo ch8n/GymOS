@@ -45,7 +45,11 @@ import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
 @Composable
 fun ExerciseDetailScreen(
     onBackClick: () -> Unit,
-    onSummaryClick: () -> Unit
+    onSummaryClick: () -> Unit,
+    onHomeClick: () -> Unit = {},
+    onCalendarClick: () -> Unit = {},
+    onProgressClick: () -> Unit = {},
+    onProfileClick: () -> Unit = {}
 ) {
     var weight by remember { mutableStateOf("100") }
     var reps by remember { mutableStateOf("") }
@@ -80,7 +84,10 @@ fun ExerciseDetailScreen(
         bottomBar = {
             GymBottomNavigation(
                 selectedRoute = "Calendar",
-                onHomeClick = onBackClick
+                onHomeClick = onBackClick,
+                onCalendarClick = onCalendarClick,
+                onProgressClick = onProgressClick,
+                onProfileClick = onProfileClick
             )
         }
     ) { padding ->

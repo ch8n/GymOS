@@ -63,7 +63,11 @@ data class DayData(
 fun DayViewPagerScreen(
     onBackClick: () -> Unit,
     onExerciseClick: () -> Unit,
-    onAddExerciseClick: () -> Unit
+    onAddExerciseClick: () -> Unit,
+    onHomeClick: () -> Unit = {},
+    onCalendarClick: () -> Unit = {},
+    onProgressClick: () -> Unit = {},
+    onProfileClick: () -> Unit = {}
 ) {
     val days = remember {
         listOf(
@@ -239,7 +243,10 @@ fun DayViewPagerScreen(
         bottomBar = {
             GymBottomNavigation(
                 selectedRoute = "Calendar",
-                onHomeClick = onBackClick // Navigate back to home or calendar
+                onHomeClick = onBackClick, // Navigate back to home or calendar
+                onCalendarClick = onCalendarClick,
+                onProgressClick = onProgressClick,
+                onProfileClick = onProfileClick
             )
         }
     ) { padding ->

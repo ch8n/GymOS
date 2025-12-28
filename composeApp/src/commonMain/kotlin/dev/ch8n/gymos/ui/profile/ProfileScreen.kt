@@ -42,7 +42,8 @@ import org.jetbrains.compose.resources.painterResource
 fun ProfileScreen(
     onBack: () -> Unit,
     onOpenHome: () -> Unit,
-    onOpenCalendar: () -> Unit
+    onOpenCalendar: () -> Unit,
+    onOpenProgress: () -> Unit
 ) {
     var height by remember { mutableStateOf("180") }
     var weight by remember { mutableStateOf("75.5") }
@@ -66,7 +67,8 @@ fun ProfileScreen(
                 selectedRoute = "Profile",
                 onHomeClick = onOpenHome,
                 onCalendarClick = onOpenCalendar,
-                onProfileClick = { /* Already here */ }
+                onProfileClick = { /* Already here */ },
+                onProgressClick = onOpenProgress
             )
         }
     ) { padding ->

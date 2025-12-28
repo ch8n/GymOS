@@ -34,7 +34,8 @@ fun App() {
                         onOpenShowcase = { backStack.add(GymRoute.ShowcaseScreen) },
                         onOpenCalendar = { backStack.add(GymRoute.CalendarScreen) },
                         onOpenReminder = { backStack.add(GymRoute.ReminderAndHabitScreen) },
-                        onOpenProfile = { backStack.add(GymRoute.ProfileScreen) }
+                        onOpenProfile = { backStack.add(GymRoute.ProfileScreen) },
+                        onOpenProgress = { backStack.add(GymRoute.ProgressAnalyticsScreen) }
                     )
                 }
                 entry<GymRoute.CalendarScreen> {
@@ -42,20 +43,37 @@ fun App() {
                         onHomeClick = { backStack.removeLastOrNull() },
                         onShowcaseClick = { backStack.add(GymRoute.ShowcaseScreen) },
                         onDateClick = { backStack.add(GymRoute.DayViewPagerScreen) },
-                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) }
+                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) },
+                        onProgressClick = { backStack.add(GymRoute.ProgressAnalyticsScreen) }
                     )
                 }
                 entry<GymRoute.DayViewPagerScreen> {
                     DayViewPagerScreen(
                         onBackClick = { backStack.removeLastOrNull() },
                         onExerciseClick = { backStack.add(GymRoute.ExerciseDetailScreen) },
-                        onAddExerciseClick = { backStack.add(GymRoute.AddExerciseScreen) }
+                        onAddExerciseClick = { backStack.add(GymRoute.AddExerciseScreen) },
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onCalendarClick = { backStack.removeLastOrNull() },
+                        onProgressClick = { backStack.add(GymRoute.ProgressAnalyticsScreen) },
+                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
                 entry<GymRoute.ExerciseDetailScreen> {
                     ExerciseDetailScreen(
                         onBackClick = { backStack.removeLastOrNull() },
-                        onSummaryClick = { backStack.add(GymRoute.ExerciseSummaryScreen) }
+                        onSummaryClick = { backStack.add(GymRoute.ExerciseSummaryScreen) },
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onCalendarClick = { backStack.removeLastOrNull() },
+                        onProgressClick = { backStack.add(GymRoute.ProgressAnalyticsScreen) },
+                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
                 entry<GymRoute.ExerciseSummaryScreen> {
@@ -70,7 +88,14 @@ fun App() {
                             while (backStack.lastOrNull() != GymRoute.HomeScreen) {
                                 backStack.removeLastOrNull()
                             }
-                        }
+                        },
+                        onCalendarClick = {
+                            while (backStack.lastOrNull() != GymRoute.CalendarScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onProgressClick = { backStack.add(GymRoute.ProgressAnalyticsScreen) },
+                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
                 entry<GymRoute.AddExerciseScreen> {
@@ -86,7 +111,9 @@ fun App() {
                             while (backStack.lastOrNull() != GymRoute.CalendarScreen && backStack.size > 1) {
                                 backStack.removeLastOrNull()
                             }
-                        }
+                        },
+                        onProgressClick = { backStack.add(GymRoute.ProgressAnalyticsScreen) },
+                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
                 entry<GymRoute.ShowcaseScreen> {
@@ -97,7 +124,15 @@ fun App() {
                 entry<GymRoute.ReminderAndHabitScreen> {
                     ReminderAndHabitScreen(
                         onBack = { backStack.removeLastOrNull() },
-                        onSave = { backStack.removeLastOrNull() }
+                        onSave = { backStack.removeLastOrNull() },
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onCalendarClick = { backStack.add(GymRoute.CalendarScreen) },
+                        onProgressClick = { backStack.add(GymRoute.ProgressAnalyticsScreen) },
+                        onProfileClick = { backStack.removeLastOrNull() }
                     )
                 }
                 entry<GymRoute.ProfileScreen> {
@@ -115,14 +150,33 @@ fun App() {
                             if (backStack.lastOrNull() != GymRoute.CalendarScreen) {
                                 backStack.add(GymRoute.CalendarScreen)
                             }
-                        }
+                        },
+                        onOpenProgress = { backStack.add(GymRoute.ProgressAnalyticsScreen) }
                     )
                 }
                 entry<GymRoute.ProgressAnalyticsScreen> {
                     ProgressAnalyticsScreen(
-                        onHomeClick = { backStack.clear(); backStack.add(GymRoute.HomeScreen) },
-                        onCalendarClick = { backStack.clear(); backStack.add(GymRoute.CalendarScreen) },
-                        onProfileClick = { backStack.clear(); backStack.add(GymRoute.ProfileScreen) }
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onCalendarClick = {
+                            while (backStack.lastOrNull() != GymRoute.CalendarScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                            if (backStack.lastOrNull() != GymRoute.CalendarScreen) {
+                                backStack.add(GymRoute.CalendarScreen)
+                            }
+                        },
+                        onProfileClick = {
+                            while (backStack.lastOrNull() != GymRoute.ProfileScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                            if (backStack.lastOrNull() != GymRoute.ProfileScreen) {
+                                backStack.add(GymRoute.ProfileScreen)
+                            }
+                        }
                     )
                 }
             }

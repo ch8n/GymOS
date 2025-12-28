@@ -45,7 +45,8 @@ fun CalendarScreen(
     onHomeClick: () -> Unit,
     onShowcaseClick: () -> Unit,
     onDateClick: (Int) -> Unit,
-    onProfileClick: () -> Unit
+    onProfileClick: () -> Unit,
+    onProgressClick: () -> Unit
 ) {
     Scaffold(
         containerColor = GymTheme.colors.background,
@@ -56,7 +57,8 @@ fun CalendarScreen(
             GymBottomNavigation(
                 selectedRoute = "Calendar",
                 onHomeClick = onHomeClick,
-                onProfileClick = onProfileClick
+                onProfileClick = onProfileClick,
+                onProgressClick = onProgressClick
             )
         }
     ) { padding ->

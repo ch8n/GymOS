@@ -41,7 +41,10 @@ import dev.ch8n.gymos.ui.foundation.GymTopBar
 fun ExerciseSummaryScreen(
     onCloseClick: () -> Unit,
     onHomeClick: () -> Unit,
-    onFinishClick: () -> Unit
+    onFinishClick: () -> Unit,
+    onCalendarClick: () -> Unit = {},
+    onProgressClick: () -> Unit = {},
+    onProfileClick: () -> Unit = {}
 ) {
     var feelingValue by remember { mutableStateOf(7f) }
 
@@ -84,7 +87,10 @@ fun ExerciseSummaryScreen(
                 )
                 GymBottomNavigation(
                     selectedRoute = "Home", // Adjust based on active tab
-                    onHomeClick = onHomeClick
+                    onHomeClick = onHomeClick,
+                    onCalendarClick = onCalendarClick,
+                    onProgressClick = onProgressClick,
+                    onProfileClick = onProfileClick
                 )
             }
         }

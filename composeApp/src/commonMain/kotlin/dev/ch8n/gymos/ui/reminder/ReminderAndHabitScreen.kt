@@ -54,7 +54,11 @@ import dev.ch8n.gymos.ui.foundation.GymTopBar
 @Composable
 fun ReminderAndHabitScreen(
     onBack: () -> Unit,
-    onSave: () -> Unit
+    onSave: () -> Unit,
+    onHomeClick: () -> Unit = {},
+    onCalendarClick: () -> Unit = {},
+    onProgressClick: () -> Unit = {},
+    onProfileClick: () -> Unit = {}
 ) {
     var notificationsEnabled by remember { mutableStateOf(true) }
     var dailyWeighInEnabled by remember { mutableStateOf(true) }
@@ -99,7 +103,13 @@ fun ReminderAndHabitScreen(
             )
         },
         bottomBar = {
-            GymBottomNavigation(selectedRoute = "Profile")
+            GymBottomNavigation(
+                selectedRoute = "Profile",
+                onHomeClick = onHomeClick,
+                onCalendarClick = onCalendarClick,
+                onProgressClick = onProgressClick,
+                onProfileClick = onProfileClick
+            )
         }
     ) { padding ->
         Column(

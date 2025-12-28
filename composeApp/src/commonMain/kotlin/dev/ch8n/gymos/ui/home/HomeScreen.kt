@@ -60,7 +60,8 @@ fun HomeScreen(
     onOpenShowcase: () -> Unit,
     onOpenCalendar: () -> Unit,
     onOpenReminder: () -> Unit,
-    onOpenProfile: () -> Unit
+    onOpenProfile: () -> Unit,
+    onOpenProgress: () -> Unit
 ) {
     Scaffold(
         containerColor = GymTheme.colors.background,
@@ -69,7 +70,8 @@ fun HomeScreen(
             GymBottomNavigation(
                 selectedRoute = "Home",
                 onCalendarClick = onOpenCalendar,
-                onProfileClick = onOpenProfile
+                onProfileClick = onOpenProfile,
+                onProgressClick = onOpenProgress
             )
         }
     ) { padding ->

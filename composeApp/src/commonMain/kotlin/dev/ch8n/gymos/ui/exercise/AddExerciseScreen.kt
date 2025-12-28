@@ -41,7 +41,9 @@ fun AddExerciseScreen(
     onBackClick: () -> Unit,
     onCustomExerciseClick: () -> Unit,
     onHomeClick: () -> Unit,
-    onCalendarClick: () -> Unit
+    onCalendarClick: () -> Unit,
+    onProgressClick: () -> Unit = {},
+    onProfileClick: () -> Unit = {}
 ) {
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("All") }
@@ -63,7 +65,9 @@ fun AddExerciseScreen(
             GymBottomNavigation(
                 selectedRoute = "Calendar",
                 onHomeClick = onHomeClick,
-                onCalendarClick = onCalendarClick
+                onCalendarClick = onCalendarClick,
+                onProgressClick = onProgressClick,
+                onProfileClick = onProfileClick
             )
         }
     ) { padding ->
