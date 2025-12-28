@@ -12,12 +12,14 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material.icons.filled.ArrowForwardIos
+import androidx.compose.material.icons.filled.ChevronLeft
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ExpandCircleDown
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -181,25 +183,40 @@ fun DayViewPagerScreen(
                 subtitle = if (currentDay.isToday) "Today" else null,
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ArrowBackIosNew,
-                        onClick = {
-                            if (pagerState.currentPage > 0) {
-                                scope.launch { pagerState.animateScrollToPage(pagerState.currentPage - 1) }
-                            } else {
-                                onBackClick()
-                            }
-                        }
+                        icon = Icons.Default.Close,
+                        onClick = onBackClick,
+                        size = GymTheme.sizes.small,
+                        iconSize = GymTheme.sizes.iconSmall
                     )
                 },
                 actions = {
-                    GymIconButton(
-                        icon = Icons.Default.ArrowForwardIos,
+                    IconButton(
+                        onClick = {
+                            if (pagerState.currentPage > 0) {
+                                scope.launch { pagerState.animateScrollToPage(pagerState.currentPage - 1) }
+                            }
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ChevronLeft,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
+
+                    IconButton(
                         onClick = {
                             if (pagerState.currentPage < days.size - 1) {
                                 scope.launch { pagerState.animateScrollToPage(pagerState.currentPage + 1) }
                             }
                         }
-                    )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
                 }
             )
         },

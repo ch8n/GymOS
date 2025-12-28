@@ -79,11 +79,13 @@ fun GymIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     backgroundColor: Color = GymTheme.colors.surface,
-    contentColor: Color = GymTheme.colors.textPrimary
+    contentColor: Color = GymTheme.colors.textPrimary,
+    size: androidx.compose.ui.unit.Dp = GymTheme.sizes.medium,
+    iconSize: androidx.compose.ui.unit.Dp = GymTheme.sizes.iconMedium
 ) {
     Box(
         modifier = modifier
-            .size(GymTheme.sizes.medium)
+            .size(size)
             .clip(CircleShape)
             .background(backgroundColor)
             .clickable(onClick = onClick),
@@ -92,7 +94,7 @@ fun GymIconButton(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            modifier = Modifier.size(GymTheme.sizes.iconMedium),
+            modifier = Modifier.size(iconSize),
             tint = contentColor
         )
     }
