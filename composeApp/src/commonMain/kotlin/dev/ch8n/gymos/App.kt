@@ -13,6 +13,7 @@ import dev.ch8n.gymos.ui.exercise.ExerciseSummaryScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
 import dev.ch8n.gymos.ui.navigation.GymRoute
 import dev.ch8n.gymos.ui.navigation.gymNavConfig
+import dev.ch8n.gymos.ui.profile.ProfileScreen
 import dev.ch8n.gymos.ui.reminder.ReminderAndHabitScreen
 import dev.ch8n.gymos.ui.showcase.ComponentShowcaseScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -31,14 +32,16 @@ fun App() {
                     HomeScreen(
                         onOpenShowcase = { backStack.add(GymRoute.ShowcaseScreen) },
                         onOpenCalendar = { backStack.add(GymRoute.CalendarScreen) },
-                        onOpenReminder = { backStack.add(GymRoute.ReminderAndHabitScreen) }
+                        onOpenReminder = { backStack.add(GymRoute.ReminderAndHabitScreen) },
+                        onOpenProfile = { backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
                 entry<GymRoute.CalendarScreen> {
                     CalendarScreen(
                         onHomeClick = { backStack.removeLastOrNull() },
                         onShowcaseClick = { backStack.add(GymRoute.ShowcaseScreen) },
-                        onDateClick = { backStack.add(GymRoute.DayViewPagerScreen) }
+                        onDateClick = { backStack.add(GymRoute.DayViewPagerScreen) },
+                        onProfileClick = { backStack.add(GymRoute.ProfileScreen) }
                     )
                 }
                 entry<GymRoute.DayViewPagerScreen> {
@@ -94,6 +97,24 @@ fun App() {
                     ReminderAndHabitScreen(
                         onBack = { backStack.removeLastOrNull() },
                         onSave = { backStack.removeLastOrNull() }
+                    )
+                }
+                entry<GymRoute.ProfileScreen> {
+                    ProfileScreen(
+                        onBack = { backStack.removeLastOrNull() },
+                        onOpenHome = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onOpenCalendar = {
+                            while (backStack.lastOrNull() != GymRoute.CalendarScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                            if (backStack.lastOrNull() != GymRoute.CalendarScreen) {
+                                backStack.add(GymRoute.CalendarScreen)
+                            }
+                        }
                     )
                 }
             }

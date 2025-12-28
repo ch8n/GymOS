@@ -12,7 +12,6 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -26,7 +25,7 @@ fun GymBottomNavigation(
     NavigationBar(
         containerColor = GymTheme.colors.surface.copy(alpha = 0.95f),
         contentColor = GymTheme.colors.textSecondary,
-        tonalElevation = 8.dp
+        tonalElevation = GymTheme.spacing.small
     ) {
         NavigationBarItem(
             selected = selectedRoute == "Home",

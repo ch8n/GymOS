@@ -44,7 +44,8 @@ import dev.ch8n.gymos.ui.foundation.GymTopBar
 fun CalendarScreen(
     onHomeClick: () -> Unit,
     onShowcaseClick: () -> Unit,
-    onDateClick: (Int) -> Unit
+    onDateClick: (Int) -> Unit,
+    onProfileClick: () -> Unit
 ) {
     Scaffold(
         containerColor = GymTheme.colors.background,
@@ -54,7 +55,8 @@ fun CalendarScreen(
         bottomBar = {
             GymBottomNavigation(
                 selectedRoute = "Calendar",
-                onHomeClick = onHomeClick
+                onHomeClick = onHomeClick,
+                onProfileClick = onProfileClick
             )
         }
     ) { padding ->

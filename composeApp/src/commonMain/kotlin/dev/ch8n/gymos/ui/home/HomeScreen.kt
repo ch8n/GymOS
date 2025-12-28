@@ -59,15 +59,17 @@ import org.jetbrains.compose.resources.painterResource
 fun HomeScreen(
     onOpenShowcase: () -> Unit,
     onOpenCalendar: () -> Unit,
-    onOpenReminder: () -> Unit
+    onOpenReminder: () -> Unit,
+    onOpenProfile: () -> Unit
 ) {
     Scaffold(
         containerColor = GymTheme.colors.background,
-        topBar = { HomeHeader(onOpenShowcase, onOpenReminder) },
+        topBar = { HomeHeader(onOpenShowcase, onOpenReminder, onOpenProfile) },
         bottomBar = {
             GymBottomNavigation(
                 selectedRoute = "Home",
-                onCalendarClick = onOpenCalendar
+                onCalendarClick = onOpenCalendar,
+                onProfileClick = onOpenProfile
             )
         }
     ) { padding ->
@@ -106,7 +108,8 @@ fun HomeScreen(
 @Composable
 fun HomeHeader(
     onOpenShowcase: () -> Unit,
-    onOpenReminder: () -> Unit
+    onOpenReminder: () -> Unit,
+    onOpenProfile: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -138,7 +141,7 @@ fun HomeHeader(
         GymImageAvatar(
             painter = painterResource(Res.drawable.img_avatar),
             size = GymTheme.sizes.avatarMedium,
-            modifier = Modifier.clickable { onOpenReminder() }
+            modifier = Modifier.clickable { onOpenProfile() }
         )
     }
 }
