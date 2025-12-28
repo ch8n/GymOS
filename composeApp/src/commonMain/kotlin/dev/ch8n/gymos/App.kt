@@ -7,6 +7,7 @@ import androidx.navigation3.ui.NavDisplay
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.calendar.CalendarScreen
 import dev.ch8n.gymos.ui.dayview.DayViewPagerScreen
+import dev.ch8n.gymos.ui.exercise.AddExerciseScreen
 import dev.ch8n.gymos.ui.exercise.ExerciseDetailScreen
 import dev.ch8n.gymos.ui.exercise.ExerciseSummaryScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
@@ -41,7 +42,8 @@ fun App() {
                 entry<GymRoute.DayViewPagerScreen> {
                     DayViewPagerScreen(
                         onBackClick = { backStack.removeLastOrNull() },
-                        onExerciseClick = { backStack.add(GymRoute.ExerciseDetailScreen) }
+                        onExerciseClick = { backStack.add(GymRoute.ExerciseDetailScreen) },
+                        onAddExerciseClick = { backStack.add(GymRoute.AddExerciseScreen) }
                     )
                 }
                 entry<GymRoute.ExerciseDetailScreen> {
@@ -60,6 +62,22 @@ fun App() {
                         },
                         onFinishClick = {
                             while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        }
+                    )
+                }
+                entry<GymRoute.AddExerciseScreen> {
+                    AddExerciseScreen(
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onCustomExerciseClick = { /* Handle custom */ },
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onCalendarClick = {
+                            while (backStack.lastOrNull() != GymRoute.CalendarScreen && backStack.size > 1) {
                                 backStack.removeLastOrNull()
                             }
                         }

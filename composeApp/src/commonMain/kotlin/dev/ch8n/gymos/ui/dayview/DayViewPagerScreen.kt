@@ -30,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.GymBottomNavigation
 import dev.ch8n.gymos.ui.foundation.GymCategoryHeader
@@ -63,7 +62,8 @@ data class DayData(
 @Composable
 fun DayViewPagerScreen(
     onBackClick: () -> Unit,
-    onExerciseClick: () -> Unit
+    onExerciseClick: () -> Unit,
+    onAddExerciseClick: () -> Unit
 ) {
     val days = remember {
         listOf(
@@ -223,7 +223,7 @@ fun DayViewPagerScreen(
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = { /* TODO */ },
+                onClick = onAddExerciseClick,
                 containerColor = GymTheme.colors.primary,
                 contentColor = Color.White,
                 icon = { Icon(Icons.Default.Add, contentDescription = null) },
@@ -249,17 +249,21 @@ fun DayViewPagerScreen(
             verticalAlignment = Alignment.Top
         ) { pageIndex ->
             val day = days[pageIndex]
-            DayContent(day, onExerciseClick)
+            DayContent(day, onExerciseClick, onAddExerciseClick)
         }
     }
 }
 
 @Composable
-fun DayContent(day: DayData, onExerciseClick: () -> Unit) {
+fun DayContent(
+    day: DayData,
+    onExerciseClick: () -> Unit,
+    onAddExerciseClick: () -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(horizontal = GymTheme.spacing.pagePadding),
         verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium),
-        contentPadding = PaddingValues(bottom = 100.dp) // Space for FAB
+        contentPadding = PaddingValues(bottom = GymTheme.spacing.xxxLarge * 2) // Space for FAB
     ) {
         item { Spacer(modifier = Modifier.height(GymTheme.spacing.small)) }
 
@@ -291,7 +295,7 @@ fun DayContent(day: DayData, onExerciseClick: () -> Unit) {
         item {
             GymDashedPlaceholder(
                 text = "Tap + to add exercises",
-                onClick = { /* TODO */ }
+                onClick = onAddExerciseClick
             )
         }
     }
