@@ -1,11 +1,15 @@
----
-trigger: always_on
----
-
 # Design System Documentation
 
 GymOS follows a customized design system built on top of Material 3 principles but with a unique
 visual identity ("Charcoal Blue" and "Pumpkin Spice").
+
+## Design Token Implementation Rules
+
+- **Token-First Approach**: Always use design tokens for Colors, Typography, Spacing, and Sizes.
+- **No Hardcoded Dimensions**: Avoid using hardcoded `dp` or `sp` values in components. Instead, map
+  them to the closest token in `GymSpacing` or `GymSizes`.
+- **Consistency**: Maintain visual consistency across all platforms by strictly adhering to the
+  defined tokens.
 
 ## Design Tokens
 
@@ -31,6 +35,7 @@ The color palette is optimized for a dark, high-contrast fitness experience.
 
 We use two main font families: **Lexend** for display/headers and **Noto Sans** for body/UI text.
 
+- **DisplayExtraLarge**: Lexend (ExtraBold) 48sp - Used for major stats values (e.g. Total Volume).
 - **Display**: Lexend (Bold/ExtraBold) - Used for major headlines and streaks.
 - **DisplaySmall**: Lexend (Bold) 20sp - Used for standard top bars and sub-headers.
 - **H1-H3**: Lexend (Bold/SemiBold) - Used for section titles.
@@ -44,12 +49,16 @@ We use two main font families: **Lexend** for display/headers and **Noto Sans** 
 Standardized gaps and paddings to ensure consistent layout density.
 
 - `none`: 0.dp
+- `tiny`: 2.dp
 - `xSmall`: 4.dp
 - `small`: 8.dp
 - `mediumSmall`: 12.dp
 - `medium`: 16.dp
 - `mediumLarge`: 20.dp
 - `large`: 24.dp
+- `xLarge`: 32.dp
+- `xxLarge`: 48.dp
+- `xxxLarge`: 64.dp
 - `pagePadding`: 16.dp
 - `sectionGap`: 24.dp
 
@@ -155,6 +164,30 @@ Set of components to build calendar views.
 A small card for displaying a value and a label (e.g., 1RM, Target, Sets).
 
 - **Props**: `value`, `label`, `valueColor`.
+
+### GymStatGridCard
+
+A flexible card for the 2x2 stats grid.
+
+- **Props**: `label`, `value`, `icon`, `subValue`, `accentColor`, `progress`, `maxProgress`.
+
+### GymSummaryHighlightCard
+
+A large card for highlighting key metrics.
+
+- **Props**: `label`, `value`, `unit`, `icon`, `accentColor`.
+
+### GymSummaryHeader
+
+A header component for the exercise summary.
+
+- **Props**: `exerciseName`, `categoryName`, `completionTime`.
+
+### GymFeelingSlider
+
+A customized slider for tracking how an exercise felt.
+
+- **Props**: `value`, `onValueChange`, `title`, `labels`, `steps`.
 
 ### GymSessionLogItem
 

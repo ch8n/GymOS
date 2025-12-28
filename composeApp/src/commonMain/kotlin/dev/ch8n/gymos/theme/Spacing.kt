@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 @Immutable
 data class GymSpacing(
     val none: Dp = 0.dp,
+    val tiny: Dp = 2.dp,
     val xSmall: Dp = 4.dp,
     val small: Dp = 8.dp,
     val mediumSmall: Dp = 12.dp,

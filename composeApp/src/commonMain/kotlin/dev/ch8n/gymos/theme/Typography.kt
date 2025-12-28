@@ -14,6 +14,7 @@ import org.jetbrains.compose.resources.Font
 
 @Immutable
 data class GymTypography(
+    val displayExtraLarge: TextStyle,
     val displayLarge: TextStyle,
     val displayMedium: TextStyle,
     val h1: TextStyle,
@@ -33,6 +34,12 @@ fun gymTypography(): GymTypography {
     val notoSans = FontFamily(Font(Res.font.notosans))
 
     return GymTypography(
+        displayExtraLarge = TextStyle(
+            fontFamily = lexend,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 48.sp,
+            letterSpacing = (-1).sp
+        ),
         displayLarge = TextStyle(
             fontFamily = lexend,
             fontWeight = FontWeight.ExtraBold,

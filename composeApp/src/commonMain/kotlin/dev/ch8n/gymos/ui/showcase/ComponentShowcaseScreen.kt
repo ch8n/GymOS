@@ -62,13 +62,18 @@ import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
 import dev.ch8n.gymos.ui.foundation.GymExecutionBottomCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseCard
+import dev.ch8n.gymos.ui.foundation.GymFeelingSlider
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymNumberInput
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
 import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
+import dev.ch8n.gymos.ui.foundation.GymSegmentedProgressBar
 import dev.ch8n.gymos.ui.foundation.GymSessionLogItem
 import dev.ch8n.gymos.ui.foundation.GymStatCard
+import dev.ch8n.gymos.ui.foundation.GymStatGridCard
+import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
+import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
 import gymos.composeapp.generated.resources.Res
@@ -130,7 +135,12 @@ fun ShowcaseList(
         "GymVideoPlayer",
         "GymNumberInput",
         "GymSegmentedControl",
-        "GymExecutionBottomCard"
+        "GymExecutionBottomCard",
+        "GymSummaryHeader",
+        "GymSummaryHighlightCard",
+        "GymStatGridCard",
+        "GymFeelingSlider",
+        "GymSegmentedProgressBar"
     )
 
     Scaffold(
@@ -229,6 +239,11 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymNumberInput" -> GymNumberInputShowcase()
                 "GymSegmentedControl" -> GymSegmentedControlShowcase()
                 "GymExecutionBottomCard" -> GymExecutionBottomCardShowcase()
+                "GymSummaryHeader" -> GymSummaryHeaderShowcase()
+                "GymSummaryHighlightCard" -> GymSummaryHighlightCardShowcase()
+                "GymStatGridCard" -> GymStatGridCardShowcase()
+                "GymFeelingSlider" -> GymFeelingSliderShowcase()
+                "GymSegmentedProgressBar" -> GymSegmentedProgressBarShowcase()
             }
         }
     }
@@ -770,6 +785,95 @@ fun GymExecutionBottomCardShowcase() {
                 onRepsChange = { reps = it },
                 onCompleteSet = {}
             )
+        }
+    }
+}
+
+@Composable
+fun GymSummaryHeaderShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Exercise Summary Header") {
+            GymSummaryHeader(
+                exerciseName = "Barbell Squat",
+                categoryName = "Leg Day",
+                completionTime = "Completed at 6:42 PM"
+            )
+        }
+    }
+}
+
+@Composable
+fun GymSummaryHighlightCardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Total Volume Highlight") {
+            GymSummaryHighlightCard(
+                label = "Total Volume",
+                value = "1,100",
+                unit = "kg",
+                accentColor = GymTheme.colors.quaternary
+            )
+        }
+    }
+}
+
+@Composable
+fun GymStatGridCardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Stats Grid Items") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymStatGridCard(
+                    label = "Sets Done",
+                    value = "5",
+                    subValue = "/ 5",
+                    icon = Icons.Default.CheckCircle,
+                    accentColor = GymTheme.colors.tertiary,
+                    modifier = Modifier.weight(1f)
+                )
+                GymStatGridCard(
+                    label = "Avg Energy",
+                    value = "2",
+                    subValue = "/ 3",
+                    icon = Icons.Default.Timer, // Replace with appropriate icon if needed
+                    accentColor = GymTheme.colors.secondary,
+                    progress = 2,
+                    maxProgress = 3,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymFeelingSliderShowcase() {
+    var value by remember { mutableStateOf(7f) }
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Exercise Feedback") {
+            GymFeelingSlider(
+                value = value,
+                onValueChange = { value = it }
+            )
+        }
+    }
+}
+
+@Composable
+fun GymSegmentedProgressBarShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Discrete Progress Levels") {
+            Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymSegmentedProgressBar(progress = 1, maxProgress = 3)
+                GymSegmentedProgressBar(
+                    progress = 2,
+                    maxProgress = 3,
+                    activeColor = GymTheme.colors.secondary
+                )
+                GymSegmentedProgressBar(
+                    progress = 3,
+                    maxProgress = 3,
+                    activeColor = GymTheme.colors.tertiary
+                )
+            }
         }
     }
 }
