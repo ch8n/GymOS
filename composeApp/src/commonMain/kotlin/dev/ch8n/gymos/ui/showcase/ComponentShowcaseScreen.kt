@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
@@ -94,6 +96,7 @@ sealed class ShowcaseScreen {
 @Composable
 fun ComponentShowcaseScreen(onBack: () -> Unit) {
     var currentScreen by remember { mutableStateOf<ShowcaseScreen>(ShowcaseScreen.List) }
+    val listState = rememberLazyListState()
 
     GymTheme {
         Box(
@@ -104,6 +107,7 @@ fun ComponentShowcaseScreen(onBack: () -> Unit) {
             when (val screen = currentScreen) {
                 is ShowcaseScreen.List -> ShowcaseList(
                     onBack = onBack,
+                    state = listState,
                     onComponentClick = { currentScreen = ShowcaseScreen.Detail(it) }
                 )
                 is ShowcaseScreen.Detail -> ShowcaseDetail(
@@ -119,6 +123,7 @@ fun ComponentShowcaseScreen(onBack: () -> Unit) {
 @Composable
 fun ShowcaseList(
     onBack: () -> Unit,
+    state: LazyListState,
     onComponentClick: (String) -> Unit
 ) {
     val components = listOf(
@@ -168,6 +173,7 @@ fun ShowcaseList(
         containerColor = GymTheme.colors.background
     ) { padding ->
         LazyColumn(
+            state = state,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding),
