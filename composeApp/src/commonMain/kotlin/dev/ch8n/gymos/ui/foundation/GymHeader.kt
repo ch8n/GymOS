@@ -23,24 +23,35 @@ import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
 fun GymSectionHeader(
-    label: String,
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    trailingContent: (@Composable () -> Unit)? = null
 ) {
-    Column(modifier = modifier) {
-        Text(
-            text = label.uppercase(),
-            style = GymTheme.typography.captionBold.copy(
-                color = GymTheme.colors.primary,
-                letterSpacing = 1.sp
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            if (label != null) {
+                Text(
+                    text = label.uppercase(),
+                    style = GymTheme.typography.captionBold.copy(
+                        color = GymTheme.colors.primary,
+                        letterSpacing = 1.sp
+                    )
+                )
+            }
+            Text(
+                text = title,
+                style = GymTheme.typography.h3.copy(
+                    color = GymTheme.colors.textPrimary,
+                    fontWeight = FontWeight.Bold
+                )
             )
-        )
-        Text(
-            text = title,
-            style = GymTheme.typography.displayMedium.copy(
-                color = GymTheme.colors.textPrimary
-            )
-        )
+        }
+        trailingContent?.invoke()
     }
 }
 

@@ -12,11 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
@@ -29,13 +29,12 @@ import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,6 +44,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
@@ -60,11 +60,17 @@ import dev.ch8n.gymos.ui.foundation.GymCategoryHeader
 import dev.ch8n.gymos.ui.foundation.GymCheckbox
 import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
+import dev.ch8n.gymos.ui.foundation.GymExecutionBottomCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseCard
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
+import dev.ch8n.gymos.ui.foundation.GymNumberInput
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
+import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
+import dev.ch8n.gymos.ui.foundation.GymSessionLogItem
+import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
 import gymos.composeapp.generated.resources.Res
 import gymos.composeapp.generated.resources.img_avatar
 import gymos.composeapp.generated.resources.img_workout_upper_body
@@ -76,7 +82,7 @@ sealed class ShowcaseScreen {
 }
 
 @Composable
-fun ComponentShowcaseScreen() {
+fun ComponentShowcaseScreen(onBack: () -> Unit) {
     var currentScreen by remember { mutableStateOf<ShowcaseScreen>(ShowcaseScreen.List) }
 
     GymTheme {
@@ -86,7 +92,10 @@ fun ComponentShowcaseScreen() {
                 .background(GymTheme.colors.background)
         ) {
             when (val screen = currentScreen) {
-                is ShowcaseScreen.List -> ShowcaseList(onComponentClick = { currentScreen = ShowcaseScreen.Detail(it) })
+                is ShowcaseScreen.List -> ShowcaseList(
+                    onBack = onBack,
+                    onComponentClick = { currentScreen = ShowcaseScreen.Detail(it) }
+                )
                 is ShowcaseScreen.Detail -> ShowcaseDetail(
                     componentName = screen.componentName,
                     onBack = { currentScreen = ShowcaseScreen.List }
@@ -98,7 +107,10 @@ fun ComponentShowcaseScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ShowcaseList(onComponentClick: (String) -> Unit) {
+fun ShowcaseList(
+    onBack: () -> Unit,
+    onComponentClick: (String) -> Unit
+) {
     val components = listOf(
         "GymButton",
         "GymCard",
@@ -112,17 +124,27 @@ fun ShowcaseList(onComponentClick: (String) -> Unit) {
         "GymDashedPlaceholder",
         "GymAvatar",
         "WorkoutImage",
-        "GymCalendar"
+        "GymCalendar",
+        "GymStatCard",
+        "GymSessionLogItem",
+        "GymVideoPlayer",
+        "GymNumberInput",
+        "GymSegmentedControl",
+        "GymExecutionBottomCard"
     )
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Component Showcase", style = GymTheme.typography.h1) },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = GymTheme.colors.background,
-                    titleContentColor = GymTheme.colors.textPrimary
-                )
+            GymTopBar(
+                title = "Showcase",
+                navigationIcon = {
+                    GymIconButton(
+                        icon = Icons.Default.ChevronLeft,
+                        onClick = onBack,
+                        size = GymTheme.sizes.small,
+                        iconSize = GymTheme.sizes.iconSmall
+                    )
+                }
             )
         },
         containerColor = GymTheme.colors.background
@@ -166,17 +188,16 @@ fun ShowcaseList(onComponentClick: (String) -> Unit) {
 fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(componentName, style = GymTheme.typography.h1) },
+            GymTopBar(
+                title = componentName,
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = GymTheme.colors.textPrimary)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = GymTheme.colors.background,
-                    titleContentColor = GymTheme.colors.textPrimary
-                )
+                    GymIconButton(
+                        icon = Icons.Default.ChevronLeft,
+                        onClick = onBack,
+                        size = GymTheme.sizes.small,
+                        iconSize = GymTheme.sizes.iconSmall
+                    )
+                }
             )
         },
         containerColor = GymTheme.colors.background
@@ -202,6 +223,12 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymAvatar" -> GymAvatarShowcase()
                 "WorkoutImage" -> WorkoutImageShowcase()
                 "GymCalendar" -> GymCalendarShowcase()
+                "GymStatCard" -> GymStatCardShowcase()
+                "GymSessionLogItem" -> GymSessionLogItemShowcase()
+                "GymVideoPlayer" -> GymVideoPlayerShowcase()
+                "GymNumberInput" -> GymNumberInputShowcase()
+                "GymSegmentedControl" -> GymSegmentedControlShowcase()
+                "GymExecutionBottomCard" -> GymExecutionBottomCardShowcase()
             }
         }
     }
@@ -345,6 +372,36 @@ fun GymHeaderShowcase() {
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
         ShowcaseSection("Section Header") {
             GymSectionHeader(label = "Today's Plan", title = "Tue, Oct 24")
+        }
+        ShowcaseSection("Section Header with Trailing Content") {
+            GymSectionHeader(
+                title = "Session Log",
+                trailingContent = {
+                    Row(
+                        modifier = Modifier
+                            .background(
+                                GymTheme.colors.secondary.copy(alpha = 0.1f),
+                                GymTheme.shapes.full
+                            )
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Timer,
+                            contentDescription = null,
+                            tint = GymTheme.colors.secondary,
+                            modifier = androidx.compose.ui.Modifier.size(16.dp)
+                        )
+                        Text(
+                            text = "Rest Timer: 00:45",
+                            style = GymTheme.typography.tiny,
+                            color = GymTheme.colors.secondary,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            )
         }
     }
 }
@@ -564,6 +621,155 @@ fun GymCalendarShowcase() {
                     indicators = if (date % 3 == 0) mockIndicators else emptyList()
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun GymStatCardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Workout Stats") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymStatCard(
+                    value = "140kg",
+                    label = "1RM",
+                    modifier = Modifier.weight(1f),
+                    valueColor = GymTheme.colors.secondary
+                )
+                GymStatCard(value = "100kg", label = "Target", modifier = Modifier.weight(1f))
+                GymStatCard(value = "4", label = "Sets", modifier = Modifier.weight(1f))
+            }
+        }
+    }
+}
+
+@Composable
+fun GymSessionLogItemShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Session Log Items") {
+            Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymSessionLogItem(
+                    setNumber = 1,
+                    setType = "Warmup",
+                    details = "20kg x 12",
+                    statusText = "RPE 2",
+                    isCompleted = true
+                )
+                GymSessionLogItem(
+                    setNumber = 2,
+                    setType = "Working",
+                    details = "80kg x 8",
+                    statusText = "RPE 6",
+                    isCompleted = true
+                )
+                GymSessionLogItem(
+                    setNumber = 3,
+                    setType = "Working",
+                    details = "100kg x 6",
+                    statusText = "RPE 8",
+                    isCompleted = false,
+                    isCurrent = true
+                )
+                GymSessionLogItem(
+                    setNumber = 4,
+                    setType = "Working",
+                    details = "100kg x 5",
+                    statusText = null,
+                    isCompleted = false
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymVideoPlayerShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Exercise Demonstration") {
+            GymVideoPlayer(duration = "0:12 loop")
+        }
+    }
+}
+
+@Composable
+fun GymNumberInputShowcase() {
+    var weight by remember { mutableStateOf("100") }
+    var reps by remember { mutableStateOf("") }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Numeric Inputs") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymNumberInput(
+                    value = weight,
+                    onValueChange = { weight = it },
+                    label = "Weight",
+                    unit = "KG",
+                    modifier = Modifier.weight(1f)
+                )
+                GymNumberInput(
+                    value = reps,
+                    onValueChange = { reps = it },
+                    label = "Reps",
+                    placeholder = "-",
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymSegmentedControlShowcase() {
+    var energyIndex by remember { mutableStateOf(1) }
+    var effortIndex by remember { mutableStateOf(2) }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Selection Controls") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymSegmentedControl(
+                    items = listOf("1", "2", "3"),
+                    selectedIndex = energyIndex,
+                    onItemSelected = { energyIndex = it },
+                    label = "Energy (1-3)",
+                    statusText = when (energyIndex) {
+                        0 -> "Low"; 1 -> "Moderate"; else -> "High"
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+                GymSegmentedControl(
+                    items = listOf("1", "2", "3"),
+                    selectedIndex = effortIndex,
+                    onItemSelected = { effortIndex = it },
+                    label = "Effort (1-3)",
+                    activeColor = GymTheme.colors.quaternary,
+                    statusText = when (effortIndex) {
+                        0 -> "Easy"; 1 -> "Moderate"; else -> "Hard"
+                    },
+                    statusColor = GymTheme.colors.quaternary,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymExecutionBottomCardShowcase() {
+    var weight by remember { mutableStateOf("100") }
+    var reps by remember { mutableStateOf("") }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Active Execution Card") {
+            GymExecutionBottomCard(
+                setTitle = "Set 3",
+                setType = "Working",
+                timerText = "00:42",
+                weight = weight,
+                onWeightChange = { weight = it },
+                reps = reps,
+                onRepsChange = { reps = it },
+                onCompleteSet = {}
+            )
         }
     }
 }

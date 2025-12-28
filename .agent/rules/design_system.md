@@ -149,3 +149,40 @@ Set of components to build calendar views.
   dots.
 - **GymCalendarWeekHeader**: Row of day initials (S, M, T, W, T, F, S).
 - **GymCalendarGrid**: 7-column grid layout for dates.
+
+### GymStatCard
+
+A small card for displaying a value and a label (e.g., 1RM, Target, Sets).
+
+- **Props**: `value`, `label`, `valueColor`.
+
+### GymSessionLogItem
+
+A list item for session logs showing set details and completion status.
+
+- **Props**: `setNumber`, `setType`, `details`, `statusText`, `isCompleted`, `isCurrent`.
+
+### GymVideoPlayer
+
+A component for exercise demonstration videos with a play button overlay.
+
+- **Props**: `duration`, `onPlayClick`.
+
+### GymNumberInput
+
+A themed numeric input field with a unit suffix.
+
+- **Props**: `value`, `onValueChange`, `label`, `unit`, `placeholder`.
+
+### GymSegmentedControl
+
+A control for selecting between multiple options (e.g., Energy, Effort).
+
+- **Props**: `items`, `selectedIndex`, `onItemSelected`, `label`, `activeColor`, `statusText`.
+
+### GymExecutionBottomCard
+
+A bottom card for the active set execution UI.
+
+- **Props**: `setTitle`, `setType`, `timerText`, `weight`, `onWeightChange`, `reps`, `onRepsChange`,
+  `onCompleteSet`.

@@ -42,7 +42,9 @@ fun App() {
                     )
                 }
                 entry<GymRoute.ShowcaseScreen> {
-                    ComponentShowcaseScreen()
+                    ComponentShowcaseScreen(
+                        onBack = { backStack.removeLastOrNull() }
+                    )
                 }
             }
         )
