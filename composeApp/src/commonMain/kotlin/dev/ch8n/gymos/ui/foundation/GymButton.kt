@@ -1,8 +1,16 @@
 package dev.ch8n.gymos.ui.foundation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -75,7 +83,7 @@ fun GymIconButton(
 ) {
     Box(
         modifier = modifier
-            .size(GymTheme.sizes.medium) // 48dp as per design.json md size
+            .size(GymTheme.sizes.medium)
             .clip(CircleShape)
             .background(backgroundColor)
             .clickable(onClick = onClick),
@@ -86,6 +94,42 @@ fun GymIconButton(
             contentDescription = null,
             modifier = Modifier.size(GymTheme.sizes.iconMedium),
             tint = contentColor
+        )
+    }
+}
+
+@Composable
+fun GymBadgeIconButton(
+    icon: ImageVector,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    badgeColor: Color = GymTheme.colors.primary,
+    backgroundColor: Color = GymTheme.colors.surface,
+    contentColor: Color = GymTheme.colors.textPrimary
+) {
+    Box(
+        modifier = modifier
+            .size(GymTheme.sizes.medium)
+            .clip(CircleShape)
+            .background(backgroundColor)
+            .clickable(onClick = onClick)
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.Center)
+                .size(GymTheme.sizes.iconMedium),
+            tint = contentColor
+        )
+        Box(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(top = 10.dp, end = 10.dp)
+                .size(GymTheme.sizes.indicatorSmall)
+                .clip(CircleShape)
+                .background(badgeColor)
+                .border(1.5.dp, backgroundColor, CircleShape)
         )
     }
 }

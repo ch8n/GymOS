@@ -22,7 +22,8 @@ data class GymSizes(
     val iconSmall: Dp = 18.dp,
     val iconMedium: Dp = 24.dp,
     val iconLarge: Dp = 32.dp,
-    val badgeHeight: Dp = 24.dp
+    val badgeHeight: Dp = 24.dp,
+    val indicatorSmall: Dp = 8.dp
 )
 
 val LocalGymSizes = staticCompositionLocalOf { GymSizes() }

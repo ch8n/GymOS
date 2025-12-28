@@ -1,23 +1,68 @@
 package dev.ch8n.gymos.ui.showcase
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.ChevronLeft
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Mail
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.Image
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
-import dev.ch8n.gymos.ui.foundation.*
-import gymos.composeapp.generated.resources.*
+import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
+import dev.ch8n.gymos.ui.foundation.GymAvatar
+import dev.ch8n.gymos.ui.foundation.GymBadgeIconButton
+import dev.ch8n.gymos.ui.foundation.GymButton
+import dev.ch8n.gymos.ui.foundation.GymCalendarDate
+import dev.ch8n.gymos.ui.foundation.GymCalendarGrid
+import dev.ch8n.gymos.ui.foundation.GymCalendarWeekHeader
+import dev.ch8n.gymos.ui.foundation.GymCard
+import dev.ch8n.gymos.ui.foundation.GymChip
+import dev.ch8n.gymos.ui.foundation.GymIcon
+import dev.ch8n.gymos.ui.foundation.GymIconButton
+import dev.ch8n.gymos.ui.foundation.GymSectionHeader
+import dev.ch8n.gymos.ui.foundation.GymTopBar
+import gymos.composeapp.generated.resources.Res
+import gymos.composeapp.generated.resources.img_avatar
+import gymos.composeapp.generated.resources.img_workout_upper_body
 import org.jetbrains.compose.resources.painterResource
 
 sealed class ShowcaseScreen {
@@ -55,8 +100,10 @@ fun ShowcaseList(onComponentClick: (String) -> Unit) {
         "GymChip",
         "GymIcon",
         "GymSectionHeader",
+        "GymTopBar",
         "GymAvatar",
-        "WorkoutImage"
+        "WorkoutImage",
+        "GymCalendar"
     )
 
     Scaffold(
@@ -138,8 +185,10 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymChip" -> GymChipShowcase()
                 "GymIcon" -> GymIconShowcase()
                 "GymSectionHeader" -> GymHeaderShowcase()
+                "GymTopBar" -> GymTopBarShowcase()
                 "GymAvatar" -> GymAvatarShowcase()
                 "WorkoutImage" -> WorkoutImageShowcase()
+                "GymCalendar" -> GymCalendarShowcase()
             }
         }
     }
@@ -176,6 +225,16 @@ fun GymButtonShowcase() {
                     onClick = {},
                     backgroundColor = Color.Red.copy(alpha = 0.2f),
                     contentColor = Color.Red
+                )
+            }
+        }
+        ShowcaseSection("Badge Icon Button") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymBadgeIconButton(icon = Icons.Default.Notifications, onClick = {})
+                GymBadgeIconButton(
+                    icon = Icons.Default.Mail,
+                    onClick = {},
+                    badgeColor = GymTheme.colors.secondary
                 )
             }
         }
@@ -230,6 +289,13 @@ fun GymChipShowcase() {
                 GymChip(text = "Strength", icon = Icons.Default.Settings)
             }
         }
+        ShowcaseSection("Chips with Status Dots") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymChip(text = "Completed", dotColor = GymTheme.colors.tertiary)
+                GymChip(text = "Missed", dotColor = GymTheme.colors.warning)
+                GymChip(text = "Rest", dotColor = GymTheme.colors.textMuted)
+            }
+        }
     }
 }
 
@@ -254,11 +320,45 @@ fun GymIconShowcase() {
 @Composable
 fun GymHeaderShowcase() {
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-        ShowcaseSection("Standard Header") {
+        ShowcaseSection("Section Header") {
             GymSectionHeader(label = "Today's Plan", title = "Tue, Oct 24")
         }
-        ShowcaseSection("Another Context") {
-            GymSectionHeader(label = "Progress", title = "Monthly Stats")
+    }
+}
+
+@Composable
+fun GymTopBarShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Standard Top Bar") {
+            GymTopBar(
+                title = "October 2023",
+                navigationIcon = {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            Icons.Default.ChevronLeft,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
+                }
+            )
+        }
+        ShowcaseSection("Top Bar with Badge Action") {
+            GymTopBar(
+                title = "GymOS Dashboard",
+                actions = {
+                    GymBadgeIconButton(icon = Icons.Default.Notifications, onClick = {})
+                }
+            )
         }
     }
 }
@@ -291,6 +391,57 @@ fun WorkoutImageShowcase() {
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
+        }
+    }
+}
+
+@Composable
+fun GymCalendarShowcase() {
+    val mockIndicators = listOf(GymTheme.colors.primary, GymTheme.colors.secondary)
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Calendar Week Header") {
+            GymCalendarWeekHeader()
+        }
+
+        ShowcaseSection("Calendar Dates") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymCalendarDate(date = "1", isToday = true)
+                GymCalendarDate(date = "2", isSelected = true)
+                GymCalendarDate(date = "3", status = CalendarDateStatus.Completed)
+                GymCalendarDate(date = "4", status = CalendarDateStatus.Missed)
+                GymCalendarDate(date = "5", status = CalendarDateStatus.Rest)
+                GymCalendarDate(date = "6", indicators = mockIndicators)
+            }
+        }
+
+        ShowcaseSection("Calendar Grid Sample") {
+            GymCalendarGrid(items = (1..31).toList()) { date ->
+                GymCalendarDate(
+                    date = date.toString(),
+                    isSelected = date == 18,
+                    status = when (date) {
+                        in listOf(
+                            1,
+                            2,
+                            5,
+                            6,
+                            8,
+                            10,
+                            11,
+                            13,
+                            14,
+                            15,
+                            17
+                        ) -> CalendarDateStatus.Completed
+
+                        in listOf(4, 9) -> CalendarDateStatus.Missed
+                        in listOf(3, 7, 12, 16) -> CalendarDateStatus.Rest
+                        else -> CalendarDateStatus.None
+                    },
+                    indicators = if (date % 3 == 0) mockIndicators else emptyList()
+                )
+            }
         }
     }
 }
