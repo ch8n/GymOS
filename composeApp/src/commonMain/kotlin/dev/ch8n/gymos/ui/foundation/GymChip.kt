@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -68,4 +69,25 @@ fun GymChip(
             )
         )
     }
+}
+
+@Composable
+fun GymBadge(
+    text: String,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.1f),
+    contentColor: Color = GymTheme.colors.primary
+) {
+    Text(
+        text = text.uppercase(),
+        style = GymTheme.typography.tiny.copy(
+            color = contentColor,
+            fontWeight = FontWeight.Black,
+            letterSpacing = 1.sp
+        ),
+        modifier = modifier
+            .clip(CircleShape)
+            .background(backgroundColor)
+            .padding(horizontal = 8.dp, vertical = 2.dp)
+    )
 }

@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Design System Documentation
 
 GymOS follows a customized design system built on top of Material 3 principles but with a unique
@@ -16,6 +20,8 @@ The color palette is optimized for a dark, high-contrast fitness experience.
 |-----------------|--------------|------------------------------------------|
 | `primary`       | `#FE7F2D`    | Main actions, highlights (Pumpkin Spice) |
 | `secondary`     | `#FCCA46`    | Secondary highlights (Golden Pollen)     |
+| `tertiary`      | `#A1C181`    | Success / Completed (Gym Olive)          |
+| `quaternary`    | `#619B8A`    | Secondary accent (Gym Seagrass)          |
 | `background`    | `#121F29`    | Deep dark blue-black background          |
 | `surface`       | `#233D4D`    | Charcoal Blue cards and containers       |
 | `textPrimary`   | `#FFFFFF`    | Main headings and labels                 |
@@ -28,7 +34,9 @@ We use two main font families: **Lexend** for display/headers and **Noto Sans** 
 - **Display**: Lexend (Bold/ExtraBold) - Used for major headlines and streaks.
 - **DisplaySmall**: Lexend (Bold) 20sp - Used for standard top bars and sub-headers.
 - **H1-H3**: Lexend (Bold/SemiBold) - Used for section titles.
-- **Body**: Noto Sans (Medium/Normal) - Used for instructional text, exercise details, and inputs.
+- **BodyLarge**: Noto Sans (Medium) 16sp - Main body text.
+- **BodyMedium**: Noto Sans (Normal) 14sp - Secondary body text.
+- **BodySmall**: Noto Sans (Normal) 12sp - Fine print and dense UI info.
 - **Caption/Tiny**: Noto Sans (Bold/Medium) - Used for small labels and navigation.
 
 ### Spacing (`GymSpacing`)
@@ -56,6 +64,7 @@ Component-specific dimensions for height and icons.
 - `iconMedium`: 24.dp
 - `iconLarge`: 32.dp
 - `indicatorSmall`: 8.dp
+- `checkbox`: 28.dp
 
 ---
 
@@ -84,12 +93,20 @@ The fundamental container for grouping related content.
 - **Props**: `shape`, `backgroundColor`, `borderColor`, `contentPadding`, `onClick`.
 - **Note**: Uses a subtle border by default for separation in dark mode.
 
-### GymChip
+### GymChip & GymBadge
 
-A small, pill-shaped label for categorization.
+Small labels for categorization or status.
 
-- **Props**: `text`, `icon`, `dotColor`, `backgroundColor`, `contentColor`.
-- **Feature**: Supports `dotColor` for status indication (e.g., Completed, Missed).
+- **GymChip Props**: `text`, `icon`, `dotColor`, `backgroundColor`, `contentColor`.
+- **GymBadge Props**: `text`, `backgroundColor`, `contentColor`.
+- **Note**: `GymBadge` is a smaller, more compact version of a chip used for status tags like "
+  TODAY".
+
+### GymCheckbox
+
+A custom animated circular checkbox.
+
+- **Props**: `checked`, `onCheckedChange`, `activeColor`, `checkColor`.
 
 ### GymIcon
 
@@ -97,12 +114,26 @@ A themed icon wrapper with a circular tinted background.
 
 - **Props**: `imageVector`, `tint`, `backgroundColor`, `size`, `iconSize`.
 
-### GymSectionHeader & GymTopBar
+### GymCategoryHeader & GymTopBar
 
-Composite components for headers. `GymTopBar` is used for screen navigations.
+Composite components for headers.
 
-- **GymSectionHeader Props**: `label`, `title`.
-- **GymTopBar Props**: `title`, `navigationIcon`, `actions`.
+- **GymCategoryHeader Props**: `title`, `count`, `titleColor`. (Displays title with a divider line
+  and count).
+- **GymTopBar Props**: `title`, `subtitle`, `navigationIcon`, `actions`.
+
+### GymExerciseCard
+
+A specialized card for displaying exercise details.
+
+- **Props**: `name`, `sets`, `reps`, `isCompleted`, `onCompletedChange`, `icon`, `iconColor`,
+  `onClick`.
+
+### GymDashedPlaceholder
+
+A placeholder component with dashed borders for indicating where content can be added.
+
+- **Props**: `text`, `onClick`.
 
 ### GymAvatar
 
@@ -118,12 +149,3 @@ Set of components to build calendar views.
   dots.
 - **GymCalendarWeekHeader**: Row of day initials (S, M, T, W, T, F, S).
 - **GymCalendarGrid**: 7-column grid layout for dates.
-
----
-
-## Testing & Preview
-
-You can verify and interact with these components in the **Component Showcase Screen**.
-
-- Path: `composeApp/src/commonMain/kotlin/dev/ch8n/gymos/ui/showcase/`
-- Accessibility: Via the "Open Component Showcase" button on the main app screen.

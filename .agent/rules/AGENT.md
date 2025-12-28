@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # AGENT.md
 
 ## 1. Project Overview
@@ -69,8 +73,9 @@ GymOS is a personal gym operating system designed for workout planning, executio
 - **UI Implementation:** Create Compose components in `composeApp/commonMain`, connecting them to business logic.
 - **Verification:** Always run existing tests and add new ones for added logic.
 - **Refactoring:** Ensure single responsibility and adhere to the line count limits (80/200).
-- **Design System Sync:** Whenever there is change in design tokens or foundation components, update
-  `.agent/rules/design_system.md` accordingly.
+- **Design System Sync:** Whenever there is change in design tokens or foundation components, its
+  mandatory to update `design_system.md` file located in `.agent/rules/design_system.md`
+  accordingly.
 
 ## 11. Non-Goals
 - **AI Integration:** Not planned for MVP.

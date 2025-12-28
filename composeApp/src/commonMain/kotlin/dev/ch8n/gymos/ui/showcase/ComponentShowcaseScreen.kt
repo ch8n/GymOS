@@ -49,13 +49,18 @@ import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
 import dev.ch8n.gymos.ui.foundation.GymAvatar
+import dev.ch8n.gymos.ui.foundation.GymBadge
 import dev.ch8n.gymos.ui.foundation.GymBadgeIconButton
 import dev.ch8n.gymos.ui.foundation.GymButton
 import dev.ch8n.gymos.ui.foundation.GymCalendarDate
 import dev.ch8n.gymos.ui.foundation.GymCalendarGrid
 import dev.ch8n.gymos.ui.foundation.GymCalendarWeekHeader
 import dev.ch8n.gymos.ui.foundation.GymCard
+import dev.ch8n.gymos.ui.foundation.GymCategoryHeader
+import dev.ch8n.gymos.ui.foundation.GymCheckbox
 import dev.ch8n.gymos.ui.foundation.GymChip
+import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
+import dev.ch8n.gymos.ui.foundation.GymExerciseCard
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
@@ -100,7 +105,11 @@ fun ShowcaseList(onComponentClick: (String) -> Unit) {
         "GymChip",
         "GymIcon",
         "GymSectionHeader",
+        "GymCategoryHeader",
         "GymTopBar",
+        "GymCheckbox",
+        "GymExerciseCard",
+        "GymDashedPlaceholder",
         "GymAvatar",
         "WorkoutImage",
         "GymCalendar"
@@ -185,7 +194,11 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymChip" -> GymChipShowcase()
                 "GymIcon" -> GymIconShowcase()
                 "GymSectionHeader" -> GymHeaderShowcase()
+                "GymCategoryHeader" -> GymCategoryHeaderShowcase()
                 "GymTopBar" -> GymTopBarShowcase()
+                "GymCheckbox" -> GymCheckboxShowcase()
+                "GymExerciseCard" -> GymExerciseCardShowcase()
+                "GymDashedPlaceholder" -> GymDashedPlaceholderShowcase()
                 "GymAvatar" -> GymAvatarShowcase()
                 "WorkoutImage" -> WorkoutImageShowcase()
                 "GymCalendar" -> GymCalendarShowcase()
@@ -296,6 +309,16 @@ fun GymChipShowcase() {
                 GymChip(text = "Rest", dotColor = GymTheme.colors.textMuted)
             }
         }
+        ShowcaseSection("GymBadge (Compact Status)") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymBadge(text = "Today")
+                GymBadge(
+                    text = "New",
+                    backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.1f),
+                    contentColor = GymTheme.colors.secondary
+                )
+            }
+        }
     }
 }
 
@@ -352,12 +375,111 @@ fun GymTopBarShowcase() {
                 }
             )
         }
-        ShowcaseSection("Top Bar with Badge Action") {
+        ShowcaseSection("Top Bar with Subtitle (Badge)") {
             GymTopBar(
-                title = "GymOS Dashboard",
+                title = "Wednesday, Oct 24",
+                subtitle = "Today",
+                navigationIcon = {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            Icons.Default.ChevronLeft,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
+                },
                 actions = {
-                    GymBadgeIconButton(icon = Icons.Default.Notifications, onClick = {})
+                    IconButton(onClick = {}) {
+                        Icon(
+                            Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                    }
                 }
+            )
+        }
+    }
+}
+
+@Composable
+fun GymCategoryHeaderShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Category Header with Count") {
+            GymCategoryHeader(title = "Chest", count = "2 Exercises")
+        }
+        ShowcaseSection("Category Header Variations") {
+            GymCategoryHeader(
+                title = "Triceps",
+                count = "3 Exercises",
+                titleColor = GymTheme.colors.primary
+            )
+        }
+    }
+}
+
+@Composable
+fun GymCheckboxShowcase() {
+    var checked1 by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(true) }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Animated Checkbox") {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+            ) {
+                GymCheckbox(checked = checked1, onCheckedChange = { checked1 = it })
+                Text("Unchecked state", color = GymTheme.colors.textPrimary)
+            }
+
+            Row(
+                modifier = Modifier.padding(top = GymTheme.spacing.small),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+            ) {
+                GymCheckbox(checked = checked2, onCheckedChange = { checked2 = it })
+                Text("Checked state", color = GymTheme.colors.textPrimary)
+            }
+        }
+    }
+}
+
+@Composable
+fun GymExerciseCardShowcase() {
+    var completed1 by remember { mutableStateOf(false) }
+    var completed2 by remember { mutableStateOf(true) }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Exercise Card - Uncompleted") {
+            GymExerciseCard(
+                name = "Barbell Bench Press",
+                sets = 3,
+                reps = 10,
+                isCompleted = completed1,
+                onCompletedChange = { completed1 = it }
+            )
+        }
+        ShowcaseSection("Exercise Card - Completed") {
+            GymExerciseCard(
+                name = "Incline Dumbbell Press",
+                sets = 3,
+                reps = 12,
+                isCompleted = completed2,
+                onCompletedChange = { completed2 = it },
+                iconColor = GymTheme.colors.quaternary
+            )
+        }
+    }
+}
+
+@Composable
+fun GymDashedPlaceholderShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Dashed Placeholder (Add Action)") {
+            GymDashedPlaceholder(
+                text = "Tap + to add exercises",
+                onClick = {}
             )
         }
     }
