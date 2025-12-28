@@ -44,9 +44,9 @@ fun GymExecutionBottomCard(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(GymTheme.shapes.lg)
+            .clip(GymTheme.shapes.large)
             .background(GymTheme.colors.surface)
-            .border(1.dp, GymTheme.colors.border, GymTheme.shapes.lg)
+            .border(1.dp, GymTheme.colors.border, GymTheme.shapes.large)
             .padding(GymTheme.spacing.mediumLarge),
         verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.mediumLarge)
     ) {

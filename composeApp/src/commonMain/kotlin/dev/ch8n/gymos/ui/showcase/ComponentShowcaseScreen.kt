@@ -23,13 +23,16 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.filled.Whatshot
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -44,10 +47,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.CalendarDateStatus
+import dev.ch8n.gymos.ui.foundation.GymActionCard
 import dev.ch8n.gymos.ui.foundation.GymAvatar
 import dev.ch8n.gymos.ui.foundation.GymBadge
 import dev.ch8n.gymos.ui.foundation.GymBadgeIconButton
@@ -62,6 +64,7 @@ import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
 import dev.ch8n.gymos.ui.foundation.GymExecutionBottomCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseCard
+import dev.ch8n.gymos.ui.foundation.GymExerciseSelectionItem
 import dev.ch8n.gymos.ui.foundation.GymFeelingSlider
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
@@ -74,6 +77,8 @@ import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymStatGridCard
 import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
 import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
+import dev.ch8n.gymos.ui.foundation.GymTextAvatar
+import dev.ch8n.gymos.ui.foundation.GymTextField
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
 import gymos.composeapp.generated.resources.Res
@@ -140,7 +145,10 @@ fun ShowcaseList(
         "GymSummaryHighlightCard",
         "GymStatGridCard",
         "GymFeelingSlider",
-        "GymSegmentedProgressBar"
+        "GymSegmentedProgressBar",
+        "GymTextField",
+        "GymActionCard",
+        "GymExerciseSelectionItem"
     )
 
     Scaffold(
@@ -244,6 +252,9 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymStatGridCard" -> GymStatGridCardShowcase()
                 "GymFeelingSlider" -> GymFeelingSliderShowcase()
                 "GymSegmentedProgressBar" -> GymSegmentedProgressBarShowcase()
+                "GymTextField" -> GymTextFieldShowcase()
+                "GymActionCard" -> GymActionCardShowcase()
+                "GymExerciseSelectionItem" -> GymExerciseSelectionItemShowcase()
             }
         }
     }
@@ -318,7 +329,7 @@ fun GymCardShowcase() {
             }
         }
         ShowcaseSection("Custom Shape (Large)") {
-            GymCard(modifier = Modifier.fillMaxWidth(), shape = GymTheme.shapes.lg) {
+            GymCard(modifier = Modifier.fillMaxWidth(), shape = GymTheme.shapes.large) {
                 Text(
                     "Large Rounded Card",
                     modifier = Modifier.padding(GymTheme.spacing.medium),
@@ -376,7 +387,11 @@ fun GymIconShowcase() {
         }
         ShowcaseSection("Large Icons") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-                GymIcon(imageVector = Icons.Default.List, size = 64.dp, iconSize = 32.dp)
+                GymIcon(
+                    imageVector = Icons.Default.List,
+                    size = GymTheme.spacing.xxxLarge,
+                    iconSize = GymTheme.sizes.iconLarge
+                )
             }
         }
     }
@@ -385,37 +400,18 @@ fun GymIconShowcase() {
 @Composable
 fun GymHeaderShowcase() {
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-        ShowcaseSection("Section Header") {
-            GymSectionHeader(label = "Today's Plan", title = "Tue, Oct 24")
-        }
-        ShowcaseSection("Section Header with Trailing Content") {
+        ShowcaseSection("Section Header with Icon") {
             GymSectionHeader(
-                title = "Session Log",
-                trailingContent = {
-                    Row(
-                        modifier = Modifier
-                            .background(
-                                GymTheme.colors.secondary.copy(alpha = 0.1f),
-                                GymTheme.shapes.full
-                            )
-                            .padding(horizontal = 12.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Timer,
-                            contentDescription = null,
-                            tint = GymTheme.colors.secondary,
-                            modifier = androidx.compose.ui.Modifier.size(16.dp)
-                        )
-                        Text(
-                            text = "Rest Timer: 00:45",
-                            style = GymTheme.typography.tiny,
-                            color = GymTheme.colors.secondary,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
+                title = "Recent",
+                icon = Icons.Default.History,
+                iconColor = GymTheme.colors.primary
+            )
+        }
+        ShowcaseSection("Section Header with Secondary Icon") {
+            GymSectionHeader(
+                title = "Popular Exercises",
+                icon = Icons.Default.Whatshot,
+                iconColor = GymTheme.colors.secondary
             )
         }
     }
@@ -560,14 +556,34 @@ fun GymDashedPlaceholderShowcase() {
 @Composable
 fun GymAvatarShowcase() {
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-        ShowcaseSection("User Avatar") {
-            GymAvatar(painter = painterResource(Res.drawable.img_avatar))
+        ShowcaseSection("Image Avatar") {
+            GymAvatar {
+                Image(
+                    painter = painterResource(Res.drawable.img_avatar),
+                    contentDescription = null,
+                    modifier = Modifier.size(GymTheme.sizes.medium),
+                    contentScale = ContentScale.Crop
+                )
+            }
         }
-        ShowcaseSection("Large Avatar") {
-            GymAvatar(
-                painter = painterResource(Res.drawable.img_avatar),
-                size = 80.dp
-            )
+        ShowcaseSection("Text Avatar (Initials)") {
+            Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymTextAvatar(
+                    text = "BP",
+                    backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.1f),
+                    contentColor = GymTheme.colors.quaternary
+                )
+                GymTextAvatar(
+                    text = "SQ",
+                    backgroundColor = GymTheme.colors.primary.copy(alpha = 0.1f),
+                    contentColor = GymTheme.colors.primary
+                )
+                GymTextAvatar(
+                    text = "DL",
+                    backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.1f),
+                    contentColor = GymTheme.colors.secondary
+                )
+            }
         }
     }
 }
@@ -576,8 +592,8 @@ fun GymAvatarShowcase() {
 fun WorkoutImageShowcase() {
     ShowcaseSection("Workout Image") {
         GymCard(
-            modifier = Modifier.fillMaxWidth().height(200.dp),
-            contentPadding = PaddingValues(0.dp)
+            modifier = Modifier.fillMaxWidth().height(GymTheme.spacing.xxxLarge * 3),
+            contentPadding = PaddingValues(GymTheme.spacing.none)
         ) {
             Image(
                 painter = painterResource(Res.drawable.img_workout_upper_body),
@@ -872,6 +888,71 @@ fun GymSegmentedProgressBarShowcase() {
                     progress = 3,
                     maxProgress = 3,
                     activeColor = GymTheme.colors.tertiary
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymTextFieldShowcase() {
+    var search by remember { mutableStateOf("") }
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Search Field") {
+            GymTextField(
+                value = search,
+                onValueChange = { search = it },
+                placeholder = "Search bench press, squat...",
+                leadingIcon = Icons.Default.Search
+            )
+        }
+    }
+}
+
+@Composable
+fun GymActionCardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Dashed Action Card") {
+            GymActionCard(
+                text = "Create Custom Exercise",
+                icon = Icons.Default.Edit,
+                onClick = {}
+            )
+        }
+        ShowcaseSection("Solid Action Card") {
+            GymActionCard(
+                text = "Add Exercise",
+                icon = Icons.Default.Add,
+                isDashed = false,
+                onClick = {}
+            )
+        }
+    }
+}
+
+@Composable
+fun GymExerciseSelectionItemShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Exercise Selection Item") {
+            Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
+                GymExerciseSelectionItem(
+                    name = "Barbell Bench Press",
+                    category = "Chest",
+                    equipment = "Barbell",
+                    initials = "BP",
+                    onAddClick = {},
+                    onItemClick = {},
+                    avatarColor = GymTheme.colors.quaternary
+                )
+                GymExerciseSelectionItem(
+                    name = "Barbell Squat",
+                    category = "Legs",
+                    equipment = "Barbell",
+                    initials = "SQ",
+                    onAddClick = {},
+                    onItemClick = {},
+                    avatarColor = GymTheme.colors.primary,
+                    isAlreadyAdded = true
                 )
             }
         }

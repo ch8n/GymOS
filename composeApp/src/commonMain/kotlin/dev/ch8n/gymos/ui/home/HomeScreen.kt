@@ -42,13 +42,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
-import dev.ch8n.gymos.ui.foundation.GymAvatar
 import dev.ch8n.gymos.ui.foundation.GymBottomNavigation
 import dev.ch8n.gymos.ui.foundation.GymButton
 import dev.ch8n.gymos.ui.foundation.GymCard
 import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
+import dev.ch8n.gymos.ui.foundation.GymImageAvatar
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
 import gymos.composeapp.generated.resources.Res
 import gymos.composeapp.generated.resources.img_avatar
@@ -131,9 +131,9 @@ fun HomeHeader(onOpenShowcase: () -> Unit) {
                     .clickable { onOpenShowcase() }
             )
         }
-        GymAvatar(
+        GymImageAvatar(
             painter = painterResource(Res.drawable.img_avatar),
-            size = 48.dp
+            size = GymTheme.sizes.avatarMedium
         )
     }
 }
@@ -194,7 +194,7 @@ fun ExerciseTagsSection() {
 fun FeaturedWorkoutCard() {
     GymCard(
         modifier = Modifier.fillMaxWidth().height(380.dp),
-        shape = GymTheme.shapes.lg,
+        shape = GymTheme.shapes.large,
         contentPadding = PaddingValues(0.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -227,7 +227,10 @@ fun FeaturedWorkoutCard() {
                     .padding(GymTheme.spacing.medium)
                     .clip(CircleShape)
                     .background(GymTheme.colors.background.copy(alpha = 0.6f))
-                    .padding(horizontal = 12.dp, vertical = 6.dp)
+                    .padding(
+                        horizontal = GymTheme.spacing.mediumSmall,
+                        vertical = GymTheme.spacing.xSmall
+                    )
             ) {
                 Text(
                     text = "HYPERTROPHY",
@@ -277,7 +280,7 @@ fun StatsGrid() {
     ) {
         GymCard(
             modifier = Modifier.weight(1f),
-            shape = GymTheme.shapes.md
+            shape = GymTheme.shapes.medium
         ) {
             Column(
                 modifier = Modifier.padding(GymTheme.spacing.medium),
@@ -295,7 +298,7 @@ fun StatsGrid() {
                             style = GymTheme.typography.h1,
                             color = GymTheme.colors.textPrimary
                         )
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))
                         Text(
                             text = "Days",
                             style = GymTheme.typography.bodyMedium,
@@ -313,7 +316,7 @@ fun StatsGrid() {
 
         GymCard(
             modifier = Modifier.weight(1f),
-            shape = GymTheme.shapes.md
+            shape = GymTheme.shapes.medium
         ) {
             Column(
                 modifier = Modifier.padding(GymTheme.spacing.medium),
@@ -331,7 +334,7 @@ fun StatsGrid() {
                             style = GymTheme.typography.h1,
                             color = GymTheme.colors.textPrimary
                         )
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))
                         Text(
                             text = "kg",
                             style = GymTheme.typography.bodyMedium,

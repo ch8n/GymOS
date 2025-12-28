@@ -121,7 +121,7 @@ fun SummaryStatsSection() {
     ) {
         GymCard(
             modifier = Modifier.weight(1f),
-            shape = GymTheme.shapes.md
+            shape = GymTheme.shapes.medium
         ) {
             Column(
                 modifier = Modifier.padding(GymTheme.spacing.medium),
@@ -160,7 +160,7 @@ fun SummaryStatsSection() {
 
         GymCard(
             modifier = Modifier.weight(1f),
-            shape = GymTheme.shapes.md
+            shape = GymTheme.shapes.medium
         ) {
             Column(
                 modifier = Modifier.padding(GymTheme.spacing.medium),

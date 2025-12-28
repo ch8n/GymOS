@@ -65,7 +65,7 @@ fun GymVideoPlayer(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(GymTheme.spacing.small)
-                    .clip(GymTheme.shapes.sm)
+                    .clip(GymTheme.shapes.small)
                     .background(Color.Black.copy(alpha = 0.6f))
                     .padding(horizontal = GymTheme.spacing.small, vertical = 2.dp)
             ) {

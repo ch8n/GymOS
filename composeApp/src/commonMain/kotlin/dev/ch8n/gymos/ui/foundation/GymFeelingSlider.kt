@@ -43,7 +43,7 @@ fun GymFeelingSlider(
 
         GymCard(
             modifier = Modifier.fillMaxWidth(),
-            shape = GymTheme.shapes.lg,
+            shape = GymTheme.shapes.large,
             backgroundColor = GymTheme.colors.surface.copy(alpha = 0.3f),
             borderColor = GymTheme.colors.border
         ) {

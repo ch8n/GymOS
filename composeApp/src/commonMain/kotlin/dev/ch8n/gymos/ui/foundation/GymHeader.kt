@@ -9,15 +9,17 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -26,6 +28,8 @@ fun GymSectionHeader(
     title: String,
     modifier: Modifier = Modifier,
     label: String? = null,
+    icon: ImageVector? = null,
+    iconColor: Color = GymTheme.colors.primary,
     trailingContent: (@Composable () -> Unit)? = null
 ) {
     Row(
@@ -33,23 +37,36 @@ fun GymSectionHeader(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Column {
-            if (label != null) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
+        ) {
+            if (icon != null) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                    tint = iconColor
+                )
+            }
+            Column {
+                if (label != null) {
+                    Text(
+                        text = label.uppercase(),
+                        style = GymTheme.typography.captionBold.copy(
+                            color = GymTheme.colors.primary,
+                            letterSpacing = 1.sp
+                        )
+                    )
+                }
                 Text(
-                    text = label.uppercase(),
-                    style = GymTheme.typography.captionBold.copy(
-                        color = GymTheme.colors.primary,
-                        letterSpacing = 1.sp
+                    text = title,
+                    style = GymTheme.typography.h3.copy(
+                        color = GymTheme.colors.textPrimary,
+                        fontWeight = FontWeight.Bold
                     )
                 )
             }
-            Text(
-                text = title,
-                style = GymTheme.typography.h3.copy(
-                    color = GymTheme.colors.textPrimary,
-                    fontWeight = FontWeight.Bold
-                )
-            )
         }
         trailingContent?.invoke()
     }
@@ -81,7 +98,7 @@ fun GymCategoryHeader(
         Box(
             modifier = Modifier
                 .weight(1f)
-                .height(1.dp)
+                .height(GymTheme.sizes.borderWidth)
                 .background(GymTheme.colors.textSecondary.copy(alpha = 0.1f))
         )
 
@@ -136,9 +153,12 @@ fun GymTopBar(
                         background = GymTheme.colors.primary.copy(alpha = 0.1f)
                     ),
                     modifier = Modifier
-                        .padding(top = 2.dp)
+                        .padding(top = GymTheme.spacing.tiny)
                         .clip(GymTheme.shapes.default)
-                        .padding(horizontal = 8.dp, vertical = 2.dp),
+                        .padding(
+                            horizontal = GymTheme.spacing.small,
+                            vertical = GymTheme.spacing.tiny
+                        ),
                     textAlign = TextAlign.Center
                 )
             }

@@ -36,7 +36,7 @@ fun GymSummaryHighlightCard(
 ) {
     GymCard(
         modifier = modifier.fillMaxWidth(),
-        shape = GymTheme.shapes.lg,
+        shape = GymTheme.shapes.large,
         backgroundColor = GymTheme.colors.surface,
         borderColor = GymTheme.colors.border
     ) {

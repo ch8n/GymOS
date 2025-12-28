@@ -48,9 +48,9 @@ fun GymSegmentedControl(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(GymTheme.shapes.md)
+                .clip(GymTheme.shapes.medium)
                 .background(GymTheme.colors.background)
-                .border(1.dp, GymTheme.colors.border, GymTheme.shapes.md)
+                .border(1.dp, GymTheme.colors.border, GymTheme.shapes.medium)
                 .padding(GymTheme.spacing.xSmall)
         ) {
             Row(
@@ -62,7 +62,7 @@ fun GymSegmentedControl(
                     Box(
                         modifier = Modifier
                             .weight(1f)
-                            .clip(GymTheme.shapes.sm)
+                            .clip(GymTheme.shapes.small)
                             .background(if (isSelected) activeColor else Color.Transparent)
                             .clickable { onItemSelected(index) }
                             .padding(vertical = GymTheme.spacing.small),

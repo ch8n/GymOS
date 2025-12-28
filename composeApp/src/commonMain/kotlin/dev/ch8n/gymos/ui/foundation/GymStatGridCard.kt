@@ -30,7 +30,7 @@ fun GymStatGridCard(
 ) {
     GymCard(
         modifier = modifier,
-        shape = GymTheme.shapes.lg,
+        shape = GymTheme.shapes.large,
         backgroundColor = GymTheme.colors.surface.copy(alpha = 0.5f),
         borderColor = GymTheme.colors.border
     ) {

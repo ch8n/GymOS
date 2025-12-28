@@ -123,13 +123,15 @@ A themed icon wrapper with a circular tinted background.
 
 - **Props**: `imageVector`, `tint`, `backgroundColor`, `size`, `iconSize`.
 
-### GymCategoryHeader & GymTopBar
+### GymCategoryHeader, GymTopBar & GymSectionHeader
 
 Composite components for headers.
 
 - **GymCategoryHeader Props**: `title`, `count`, `titleColor`. (Displays title with a divider line
   and count).
 - **GymTopBar Props**: `title`, `subtitle`, `navigationIcon`, `actions`.
+- **GymSectionHeader Props**: `title`, `label`, `icon`, `iconColor`, `trailingContent`. (Title
+  section with optional icon and status label).
 
 ### GymExerciseCard
 
@@ -144,11 +146,13 @@ A placeholder component with dashed borders for indicating where content can be 
 
 - **Props**: `text`, `onClick`.
 
-### GymAvatar
+### GymAvatar & GymTextAvatar
 
-A circular image container for user profiles.
+Circular containers for user profiles or exercise initials.
 
-- **Props**: `painter`, `size`, `borderColor`.
+- **GymAvatar Props**: `size`, `backgroundColor`, `contentColor`, `borderColor`, `content`.
+- **GymImageAvatar Props**: `painter`, `size`, `borderColor`.
+- **GymTextAvatar Props**: `text`, `size`, `backgroundColor`, `contentColor`, `borderColor`.
 
 ### GymCalendar Components
 
@@ -219,3 +223,22 @@ A bottom card for the active set execution UI.
 
 - **Props**: `setTitle`, `setType`, `timerText`, `weight`, `onWeightChange`, `reps`, `onRepsChange`,
   `onCompleteSet`.
+
+### GymTextField
+
+A themed text input field used for search and forms.
+
+- **Props**: `value`, `onValueChange`, `placeholder`, `leadingIcon`, `trailingIcon`.
+
+### GymActionCard
+
+A horizontal action card often used for "Add" or "Create" actions.
+
+- **Props**: `text`, `icon`, `onClick`, `isDashed`, `contentColor`, `backgroundColor`.
+
+### GymExerciseSelectionItem
+
+A list item for selecting exercises from a library.
+
+- **Props**: `name`, `category`, `equipment`, `initials`, `onAddClick`, `onItemClick`,
+  `avatarColor`, `isAlreadyAdded`.

@@ -20,7 +20,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -39,7 +38,7 @@ fun GymChip(
             .height(GymTheme.sizes.buttonHeightSmall)
             .clip(CircleShape)
             .background(backgroundColor)
-            .border(1.dp, borderColor, CircleShape)
+            .border(GymTheme.sizes.borderWidth, borderColor, CircleShape)
             .padding(horizontal = GymTheme.spacing.medium),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -88,6 +87,6 @@ fun GymBadge(
         modifier = modifier
             .clip(CircleShape)
             .background(backgroundColor)
-            .padding(horizontal = 8.dp, vertical = 2.dp)
+            .padding(horizontal = GymTheme.spacing.small, vertical = GymTheme.spacing.tiny)
     )
 }

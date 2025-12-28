@@ -51,9 +51,9 @@ fun GymNumberInput(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(GymTheme.shapes.md)
+                .clip(GymTheme.shapes.medium)
                 .background(GymTheme.colors.background)
-                .border(1.dp, GymTheme.colors.border, GymTheme.shapes.md)
+                .border(1.dp, GymTheme.colors.border, GymTheme.shapes.medium)
                 .padding(vertical = GymTheme.spacing.medium),
             contentAlignment = Alignment.Center
         ) {

@@ -9,21 +9,21 @@ import androidx.compose.ui.unit.dp
 @Immutable
 data class GymShapes(
     val none: Shape,
-    val sm: Shape,
-    val md: Shape,
+    val small: Shape,
+    val medium: Shape,
     val default: Shape,
-    val lg: Shape,
-    val xl: Shape,
+    val large: Shape,
+    val xLarge: Shape,
     val full: Shape
 )
 
 val DefaultGymShapes = GymShapes(
     none = RoundedCornerShape(0.dp),
-    sm = RoundedCornerShape(8.dp),
-    md = RoundedCornerShape(12.dp),
+    small = RoundedCornerShape(8.dp),
+    medium = RoundedCornerShape(12.dp),
     default = RoundedCornerShape(16.dp),
-    lg = RoundedCornerShape(32.dp),
-    xl = RoundedCornerShape(48.dp),
+    large = RoundedCornerShape(32.dp),
+    xLarge = RoundedCornerShape(48.dp),
     full = RoundedCornerShape(9999.dp)
 )
 

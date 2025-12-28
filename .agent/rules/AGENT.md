@@ -76,6 +76,8 @@ GymOS is a personal gym operating system designed for workout planning, executio
 - **Design System Sync:** Whenever there is change in design tokens or foundation components, its
   mandatory to update `design_system.md` file located in `.agent/rules/design_system.md`
   accordingly.
+- **Token Consistency**: Always use `GymTheme.sizes` for dimensions (width, height, icon size) and
+  `GymTheme.spacing` for layout gaps and padding. Hardcoded DP/SP values are PROHIBITED.
 
 ## 11. Non-Goals
 - **AI Integration:** Not planned for MVP.
