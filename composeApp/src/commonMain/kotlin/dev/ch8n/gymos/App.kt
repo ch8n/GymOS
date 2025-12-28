@@ -8,6 +8,7 @@ import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.calendar.CalendarScreen
 import dev.ch8n.gymos.ui.dayview.DayViewPagerScreen
 import dev.ch8n.gymos.ui.exercise.ExerciseDetailScreen
+import dev.ch8n.gymos.ui.exercise.ExerciseSummaryScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
 import dev.ch8n.gymos.ui.navigation.GymRoute
 import dev.ch8n.gymos.ui.navigation.gymNavConfig
@@ -45,7 +46,23 @@ fun App() {
                 }
                 entry<GymRoute.ExerciseDetailScreen> {
                     ExerciseDetailScreen(
-                        onBackClick = { backStack.removeLastOrNull() }
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onSummaryClick = { backStack.add(GymRoute.ExerciseSummaryScreen) }
+                    )
+                }
+                entry<GymRoute.ExerciseSummaryScreen> {
+                    ExerciseSummaryScreen(
+                        onCloseClick = { backStack.removeLastOrNull() },
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onFinishClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        }
                     )
                 }
                 entry<GymRoute.ShowcaseScreen> {

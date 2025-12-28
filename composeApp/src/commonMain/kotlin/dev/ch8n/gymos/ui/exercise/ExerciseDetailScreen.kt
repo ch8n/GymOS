@@ -44,7 +44,8 @@ import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
 
 @Composable
 fun ExerciseDetailScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onSummaryClick: () -> Unit
 ) {
     var weight by remember { mutableStateOf("100") }
     var reps by remember { mutableStateOf("") }
@@ -208,8 +209,10 @@ fun ExerciseDetailScreen(
                     energyIndex = energyIndex,
                     onEnergyIndexChange = { energyIndex = it },
                     effortIndex = effortIndex,
-                    onEffortIndexChange = { effortIndex = it },
-                    onCompleteSet = { showExecutionCard = false },
+                    onCompleteSet = {
+                        showExecutionCard = false
+                        onSummaryClick()
+                    },
                     modifier = Modifier.padding(horizontal = GymTheme.spacing.pagePadding)
                 )
             }
