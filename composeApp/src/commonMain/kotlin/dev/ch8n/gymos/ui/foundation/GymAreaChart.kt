@@ -34,7 +34,16 @@ fun GymAreaChart(
                 if (index == 0) {
                     moveTo(x, y)
                 } else {
-                    lineTo(x, y)
+                    val prevX = (index - 1) * stepX
+                    val prevY = height - (data[index - 1] * height)
+                    cubicTo(
+                        x1 = (prevX + x) / 2f,
+                        y1 = prevY,
+                        x2 = (prevX + x) / 2f,
+                        y2 = y,
+                        x3 = x,
+                        y3 = y
+                    )
                 }
             }
         }
