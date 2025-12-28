@@ -78,6 +78,14 @@ Component-specific dimensions for height and icons.
 - `avatarMedium`: 48.dp
 - `avatarLarge`: 80.dp
 - `avatarXLarge`: 120.dp
+- `chartHeightMedium`: 100.dp
+- `chartHeightLarge`: 150.dp
+- `cardHeightMedium`: 120.dp
+- `cardHeightLarge`: 150.dp
+- `glowSizeSmall`: 80.dp
+- `glowSizeMedium`: 120.dp
+- `glowSizeLarge`: 128.dp
+- `donutSizeMedium`: 120.dp
 
 ---
 
@@ -196,6 +204,12 @@ A header component for the exercise summary.
 
 - **Props**: `exerciseName`, `categoryName`, `completionTime`.
 
+### GymSegmentedProgressBar
+
+A linear progress indicator split into equal segments, used for tracking sets or progress goals.
+
+- **Props**: `progress`, `maxProgress`, `activeColor`, `inactiveColor`.
+
 ### GymFeelingSlider
 
 A customized slider for tracking how an exercise felt.
@@ -290,3 +304,34 @@ A card for profile metrics like Height and Weight with inline numeric input and 
 A comprehensive card for BMI display, featuring a continuous progress range and status badge.
 
 - **Props**: `bmiValue`, `statusText`, `statusIcon`, `statusColor`, `progress`, `description`.
+
+### Analytics & Chart Components
+
+Located in `composeApp/src/commonMain/kotlin/dev/ch8n/gymos/ui/foundation/`.
+
+#### GymAnalyticsStatCard
+
+A metric card for dashboard overview with optional trend indicators (badges) and background glow
+effects.
+
+- **Props**: `label`, `value`, `trend`, `unit`, `accentColor`.
+
+#### GymBarChart
+
+A data-driven bar chart for periodic consistency (e.g., weekly attendance).
+
+- **Props**: `data` (List of `BarData`), `barColor`, `backgroundColor`.
+
+#### GymAreaChart
+
+A smooth visualization using Canvas for trends (e.g., Weight or Energy). Features gradient fills and
+line smoothing.
+
+- **Props**: `data` (List of Floats 0..1), `lineColor`, `fillColor`.
+
+#### GymDonutChart
+
+A circular chart for category distribution (e.g., Muscle Volume). Supports custom center content for
+totals.
+
+- **Props**: `data` (List of `DonutData`), `thickness`, `centerContent`.
