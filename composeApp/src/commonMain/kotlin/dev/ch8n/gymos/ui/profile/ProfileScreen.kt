@@ -78,10 +78,10 @@ fun ProfileScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = GymTheme.spacing.pagePadding)
+                .padding(horizontal = GymTheme.spacing.medium)
                 .padding(bottom = GymTheme.spacing.large),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.sectionGap)
+            verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.large)
         ) {
             // User Profile Section
             Column(

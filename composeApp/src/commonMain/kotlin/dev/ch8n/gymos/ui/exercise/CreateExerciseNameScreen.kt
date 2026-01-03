@@ -49,7 +49,7 @@ fun CreateExerciseNameScreen(
                         icon = Icons.Default.Close.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 },
                 actions = {
@@ -81,7 +81,7 @@ fun CreateExerciseNameScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = GymTheme.spacing.pagePadding)
+                .padding(horizontal = GymTheme.spacing.medium)
         ) {
             Spacer(modifier = Modifier.height(GymTheme.spacing.small))
 
@@ -141,7 +141,7 @@ fun CreateExerciseNameScreen(
                         value = description,
                         onValueChange = { description = it },
                         placeholder = "Technique cues, equipment needed...",
-                        modifier = Modifier.height(GymTheme.sizes.cardHeightMedium),
+                        modifier = Modifier.height(GymTheme.sizes.xxxxLarge),
                         shape = GymTheme.shapes.medium,
                         singleLine = false
                     )

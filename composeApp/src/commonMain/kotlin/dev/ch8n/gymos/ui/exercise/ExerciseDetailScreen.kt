@@ -68,7 +68,7 @@ fun ExerciseDetailScreen(
                         icon = Icons.Default.ChevronLeft.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 },
                 actions = {
@@ -97,7 +97,7 @@ fun ExerciseDetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
-                    .padding(horizontal = GymTheme.spacing.pagePadding),
+                    .padding(horizontal = GymTheme.spacing.medium),
                 verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.large)
             ) {
                 Spacer(modifier = Modifier.height(GymTheme.spacing.xSmall))
@@ -221,7 +221,7 @@ fun ExerciseDetailScreen(
                         showExecutionCard = false
                         onSummaryClick()
                     },
-                    modifier = Modifier.padding(horizontal = GymTheme.spacing.pagePadding)
+                    modifier = Modifier.padding(horizontal = GymTheme.spacing.medium)
                 )
             }
         }

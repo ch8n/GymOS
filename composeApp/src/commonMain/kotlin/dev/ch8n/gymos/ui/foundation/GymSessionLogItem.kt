@@ -111,7 +111,7 @@ fun GymSessionLogItem(
                 imageVector = if (isCompleted) Icons.Default.CheckCircle else Icons.Default.RadioButtonUnchecked,
                 contentDescription = if (isCompleted) "Completed" else "Incomplete",
                 tint = if (isCompleted) GymTheme.colors.tertiary else GymTheme.colors.textMuted,
-                modifier = Modifier.size(GymTheme.sizes.iconSmall)
+                modifier = Modifier.size(GymTheme.sizes.xSmall)
             )
         }
     }

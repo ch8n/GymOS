@@ -127,7 +127,7 @@ fun GymIconSquare(
     ) {
         GymIcon(
             icon = icon,
-            modifier = Modifier.size(GymTheme.sizes.iconSmall),
+            modifier = Modifier.size(GymTheme.sizes.xSmall),
             tint = iconColor
         )
     }

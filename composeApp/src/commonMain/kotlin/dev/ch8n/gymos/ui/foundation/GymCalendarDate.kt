@@ -42,7 +42,7 @@ fun GymCalendarDate(
         isSelected -> Color.White
         status == CalendarDateStatus.Completed -> GymTheme.colors.tertiary
         status == CalendarDateStatus.Rest -> GymTheme.colors.surfaceHighlight
-        status == CalendarDateStatus.Missed -> GymTheme.colors.warning.copy(alpha = 0.1f)
+        status == CalendarDateStatus.Missed -> GymTheme.colors.primary.copy(alpha = 0.1f)
         else -> Color.Transparent
     }
 
@@ -50,13 +50,13 @@ fun GymCalendarDate(
         isSelected -> GymTheme.colors.surface
         status == CalendarDateStatus.Completed -> GymTheme.colors.surface
         status == CalendarDateStatus.Rest -> GymTheme.colors.textSecondary
-        status == CalendarDateStatus.Missed -> GymTheme.colors.warning
+        status == CalendarDateStatus.Missed -> GymTheme.colors.primary
         !isCurrentMonth -> GymTheme.colors.textMuted
         else -> GymTheme.colors.textPrimary
     }
 
     val borderColor = when {
-        status == CalendarDateStatus.Missed -> GymTheme.colors.warning.copy(alpha = 0.4f)
+        status == CalendarDateStatus.Missed -> GymTheme.colors.primary.copy(alpha = 0.4f)
         isToday && !isSelected -> GymTheme.colors.textPrimary.copy(alpha = 0.2f)
         else -> Color.Transparent
     }

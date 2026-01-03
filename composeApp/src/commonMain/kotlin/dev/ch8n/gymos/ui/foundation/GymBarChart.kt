@@ -30,7 +30,7 @@ fun GymBarChart(
     backgroundColor: Color = GymTheme.colors.surfaceHighlight
 ) {
     Row(
-        modifier = modifier.height(GymTheme.sizes.chartHeightMedium),
+        modifier = modifier.height(GymTheme.sizes.xxxLarge),
         horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small),
         verticalAlignment = Alignment.Bottom
     ) {

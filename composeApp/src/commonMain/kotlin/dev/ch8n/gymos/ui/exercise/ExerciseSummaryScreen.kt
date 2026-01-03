@@ -59,7 +59,7 @@ fun ExerciseSummaryScreen(
                         icon = Icons.Default.Close.asGymIcon,
                         onClick = onCloseClick,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 },
                 actions = {
@@ -101,9 +101,9 @@ fun ExerciseSummaryScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = GymTheme.spacing.pagePadding)
+                .padding(horizontal = GymTheme.spacing.medium)
                 .padding(bottom = GymTheme.spacing.xxxLarge),
-            verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.sectionGap)
+            verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.large)
         ) {
             GymSummaryHeader(
                 exerciseName = "Barbell Squat",

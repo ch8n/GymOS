@@ -85,7 +85,7 @@ fun GymStepperInput(
 
             Row(
                 modifier = Modifier
-                    .clip(GymTheme.shapes.extraLarge)
+                    .clip(GymTheme.shapes.xLarge)
                     .background(GymTheme.colors.background.copy(alpha = 0.3f))
                     .padding(GymTheme.spacing.xSmall),
                 verticalAlignment = Alignment.CenterVertically,
@@ -102,7 +102,7 @@ fun GymStepperInput(
                     Icon(
                         imageVector = Icons.Default.Remove,
                         contentDescription = "Decrease",
-                        modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                        modifier = Modifier.size(GymTheme.sizes.xSmall),
                         tint = if (value > minValue) GymTheme.colors.textPrimary else GymTheme.colors.textSecondary
                     )
                 }
@@ -128,7 +128,7 @@ fun GymStepperInput(
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = "Increase",
-                        modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                        modifier = Modifier.size(GymTheme.sizes.xSmall),
                         tint = androidx.compose.ui.graphics.Color.White
                     )
                 }

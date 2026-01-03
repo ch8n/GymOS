@@ -41,14 +41,14 @@ fun GymActionCard(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(themeSizes.buttonHeightMedium)
+            .height(themeSizes.medium)
             .clip(CircleShape)
             .clickable(onClick = onClick)
             .background(backgroundColor)
             .padding(themeSizes.borderWidth) // Space for border
     ) {
         if (isDashed) {
-            val cornerRadius = themeSizes.buttonHeightMedium / 2
+            val cornerRadius = themeSizes.medium / 2
             val borderColor = contentColor.copy(alpha = 0.5f)
             Canvas(modifier = Modifier.matchParentSize()) {
                 drawRoundRect(
@@ -71,14 +71,14 @@ fun GymActionCard(
         ) {
             Box(
                 modifier = Modifier
-                    .size(themeSizes.buttonHeightSmall)
+                    .size(themeSizes.small)
                     .clip(CircleShape)
                     .background(contentColor.copy(alpha = 0.1f)),
                 contentAlignment = Alignment.Center
             ) {
                 GymIcon(
                     icon = icon,
-                    size = themeSizes.iconSmall,
+                    size = themeSizes.xSmall,
                     tint = contentColor
                 )
             }
@@ -97,7 +97,7 @@ fun GymActionCard(
             Icon(
                 imageVector = Icons.Default.ArrowForward,
                 contentDescription = null,
-                modifier = Modifier.size(themeSizes.iconSmall),
+                modifier = Modifier.size(themeSizes.xSmall),
                 tint = contentColor.copy(alpha = 0.5f)
             )
 

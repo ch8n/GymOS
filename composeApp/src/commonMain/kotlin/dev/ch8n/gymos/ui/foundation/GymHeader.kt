@@ -41,7 +41,7 @@ fun GymSectionHeader(
             if (icon != null) {
                 GymIcon(
                     icon = icon,
-                    size = GymTheme.sizes.iconSmall,
+                    size = GymTheme.sizes.xSmall,
                     tint = iconColor
                 )
             }

@@ -26,12 +26,12 @@ fun GymAnalyticsStatCard(
     value: String,
     modifier: Modifier = Modifier,
     trend: String? = null,
-    trendColor: Color = GymTheme.colors.success,
+    trendColor: Color = GymTheme.colors.tertiary,
     unit: String? = null,
     accentColor: Color = GymTheme.colors.primary
 ) {
     GymCard(
-        modifier = modifier.height(GymTheme.sizes.cardHeightMedium),
+        modifier = modifier.height(GymTheme.sizes.medium),
         shape = GymTheme.shapes.large
     ) {
         Box(modifier = Modifier.padding(GymTheme.spacing.medium)) {
@@ -40,7 +40,7 @@ fun GymAnalyticsStatCard(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .offset(x = GymTheme.spacing.medium, y = -GymTheme.spacing.medium)
-                    .size(GymTheme.sizes.glowSizeSmall)
+                    .size(GymTheme.sizes.xxLarge)
                     .background(accentColor.copy(alpha = 0.1f), CircleShape)
                     .blur(GymTheme.spacing.xxLarge)
             )

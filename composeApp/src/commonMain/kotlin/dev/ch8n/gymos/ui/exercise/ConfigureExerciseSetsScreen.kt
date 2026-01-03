@@ -57,7 +57,7 @@ fun ConfigureExerciseSetsScreen(
                         icon = Icons.Default.ArrowBackIosNew.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 }
             )
@@ -82,7 +82,7 @@ fun ConfigureExerciseSetsScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = GymTheme.spacing.pagePadding),
+                .padding(horizontal = GymTheme.spacing.medium),
             verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.large)
         ) {
             Spacer(modifier = Modifier.height(GymTheme.spacing.small))

@@ -50,7 +50,7 @@ fun GymStatGridCard(
                 )
                 GymIcon(
                     icon = icon,
-                    size = GymTheme.sizes.iconSmall,
+                    size = GymTheme.sizes.xSmall,
                     tint = accentColor
                 )
             }

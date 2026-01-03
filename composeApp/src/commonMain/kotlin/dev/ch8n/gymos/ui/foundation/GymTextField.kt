@@ -47,7 +47,7 @@ fun GymTextField(
         onValueChange = onValueChange,
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = GymTheme.sizes.buttonHeightMedium)
+            .heightIn(min = GymTheme.sizes.medium)
             .clip(shape)
             .background(backgroundColor)
             .border(GymTheme.sizes.borderWidth, GymTheme.colors.border, shape),

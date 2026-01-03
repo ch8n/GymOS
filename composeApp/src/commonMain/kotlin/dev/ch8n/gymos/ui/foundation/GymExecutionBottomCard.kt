@@ -94,7 +94,7 @@ fun GymExecutionBottomCard(
                     imageVector = Icons.Default.Timer,
                     contentDescription = "Timer",
                     tint = GymTheme.colors.primary,
-                    modifier = Modifier.size(GymTheme.sizes.iconSmall)
+                    modifier = Modifier.size(GymTheme.sizes.xSmall)
                 )
                 Text(
                     text = timerText,

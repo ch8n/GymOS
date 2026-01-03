@@ -34,7 +34,7 @@ fun GymButton(
 ) {
     Box(
         modifier = modifier
-            .height(GymTheme.sizes.buttonHeightMedium) // Use token for height
+            .height(GymTheme.sizes.medium) // Use token for height
             .shadow(
                 elevation = GymTheme.spacing.small,
                 shape = CircleShape,
@@ -97,7 +97,7 @@ fun GymTextButton(
         if (icon != null) {
             GymIcon(
                 icon = icon,
-                size = GymTheme.sizes.iconSmall,
+                size = GymTheme.sizes.xSmall,
                 tint = contentColor
             )
             Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))

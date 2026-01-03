@@ -26,7 +26,7 @@ fun GymDonutChart(
     centerContent: @Composable () -> Unit = {}
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
-        Canvas(modifier = Modifier.size(GymTheme.sizes.donutSizeMedium)) {
+        Canvas(modifier = Modifier.size(GymTheme.sizes.xxxxLarge)) {
             var startAngle = -90f
             data.forEach { item ->
                 val sweepAngle = item.percentage * 360f

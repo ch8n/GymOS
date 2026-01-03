@@ -51,14 +51,14 @@ fun GymAreaChart(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(themeSizes.chartHeightLarge)
+            .height(themeSizes.xxxxxLarge)
             .padding(top = themeSpacing.small, end = themeSpacing.small)
     ) {
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxWidth()
-                .height(themeSizes.chartHeightLarge)
+                .height(themeSizes.xxxxxLarge)
                 .pointerInput(data) {
                     detectTapGestures { offset ->
                         val availableWidth = size.width - leftPadding.toPx()

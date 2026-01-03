@@ -50,7 +50,7 @@ fun GymCheckbox(
             Icon(
                 imageVector = Icons.Default.Check,
                 contentDescription = null,
-                modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                modifier = Modifier.size(GymTheme.sizes.xSmall),
                 tint = checkColor
             )
         }

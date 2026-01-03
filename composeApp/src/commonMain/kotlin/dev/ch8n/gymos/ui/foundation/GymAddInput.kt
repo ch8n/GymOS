@@ -48,7 +48,7 @@ fun GymAddInput(
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
-                modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                modifier = Modifier.size(GymTheme.sizes.xSmall),
                 tint = GymTheme.colors.quaternary
             )
         }

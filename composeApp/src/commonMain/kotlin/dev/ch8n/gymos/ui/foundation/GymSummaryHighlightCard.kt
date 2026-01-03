@@ -62,7 +62,7 @@ fun GymSummaryHighlightCard(
                     GymIcon(
                         icon = icon,
                         tint = accentColor,
-                        size = GymTheme.sizes.iconSmall
+                        size = GymTheme.sizes.xSmall
                     )
                     Spacer(modifier = Modifier.width(GymTheme.spacing.small))
                     Text(

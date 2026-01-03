@@ -13,7 +13,6 @@ data class GymShapes(
     val medium: Shape,
     val default: Shape,
     val large: Shape,
-    val extraLarge: Shape,
     val xLarge: Shape,
     val full: Shape
 )
@@ -24,7 +23,6 @@ val DefaultGymShapes = GymShapes(
     medium = RoundedCornerShape(12.dp),
     default = RoundedCornerShape(16.dp),
     large = RoundedCornerShape(32.dp),
-    extraLarge = RoundedCornerShape(40.dp),
     xLarge = RoundedCornerShape(48.dp),
     full = RoundedCornerShape(9999.dp)
 )

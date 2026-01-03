@@ -20,7 +20,7 @@ fun GymCard(
     shape: Shape = GymTheme.shapes.default,
     backgroundColor: Color = GymTheme.colors.surface,
     borderColor: Color = GymTheme.colors.border,
-    contentPadding: PaddingValues = PaddingValues(GymTheme.spacing.cardPadding),
+    contentPadding: PaddingValues = PaddingValues(GymTheme.spacing.medium),
     onClick: (() -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit
 ) {

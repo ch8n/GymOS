@@ -59,7 +59,7 @@ fun AddExerciseScreen(
                         icon = Icons.Default.Close.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 }
             )
@@ -83,7 +83,7 @@ fun AddExerciseScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = GymTheme.spacing.pagePadding),
+                    .padding(horizontal = GymTheme.spacing.medium),
                 verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
             ) {
                 GymTextField(
@@ -123,7 +123,7 @@ fun AddExerciseScreen(
                     GymSectionHeader(
                         title = "Recent",
                         icon = Icons.Default.History.asGymIcon,
-                        modifier = Modifier.padding(horizontal = GymTheme.spacing.pagePadding)
+                        modifier = Modifier.padding(horizontal = GymTheme.spacing.medium)
                     )
                 }
 
@@ -145,7 +145,7 @@ fun AddExerciseScreen(
                     GymSectionHeader(
                         title = "Popular Exercises",
                         icon = Icons.Default.Whatshot.asGymIcon,
-                        modifier = Modifier.padding(horizontal = GymTheme.spacing.pagePadding)
+                        modifier = Modifier.padding(horizontal = GymTheme.spacing.medium)
                     )
                 }
 
@@ -174,7 +174,7 @@ fun CategoryTabs(
     val categories = listOf("All", "Chest", "Back", "Legs", "Shoulders", "Arms", "Core")
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small),
-        contentPadding = PaddingValues(horizontal = GymTheme.spacing.pagePadding)
+        contentPadding = PaddingValues(horizontal = GymTheme.spacing.medium)
     ) {
         items(categories) { category ->
             val isSelected = category == selectedCategory

@@ -212,7 +212,7 @@ fun ShowcaseList(
                         icon = Icons.Default.ChevronLeft.asGymIcon,
                         onClick = onBack,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 }
             )
@@ -266,7 +266,7 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                         icon = Icons.Default.ChevronLeft.asGymIcon,
                         onClick = onBack,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 }
             )
@@ -448,7 +448,7 @@ fun GymChipShowcase() {
         ShowcaseSection("Chips with Status Dots") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
                 GymChip(text = "Completed", dotColor = GymTheme.colors.tertiary)
-                GymChip(text = "Missed", dotColor = GymTheme.colors.warning)
+                GymChip(text = "Missed", dotColor = GymTheme.colors.primary)
                 GymChip(text = "Rest", dotColor = GymTheme.colors.textMuted)
             }
         }
@@ -1312,7 +1312,7 @@ fun GymAnalyticsStatCardShowcase() {
                 value = "185",
                 unit = "lbs",
                 trend = "↓ 1.2%",
-                trendColor = GymTheme.colors.warning,
+                trendColor = GymTheme.colors.primary,
                 accentColor = GymTheme.colors.quaternary,
                 modifier = Modifier.fillMaxWidth()
             )

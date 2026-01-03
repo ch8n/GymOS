@@ -16,11 +16,7 @@ data class GymColors(
     val textPrimary: Color,
     val textSecondary: Color,
     val textMuted: Color,
-    val border: Color,
-    val success: Color,
-    val warning: Color,
-    val info: Color,
-    val active: Color
+    val border: Color
 )
 
 val DarkGymColors = GymColors(
@@ -34,11 +30,7 @@ val DarkGymColors = GymColors(
     textPrimary = Color(0xFFFFFFFF),
     textSecondary = Color(0x99FFFFFF),
     textMuted = Color(0x66FFFFFF),
-    border = Color(0x0DFFFFFF),
-    success = Color(0xFFA1C181),
-    warning = Color(0xFFFE7F2D),
-    info = Color(0xFFFCCA46),
-    active = Color(0xFFFE7F2D)
+    border = Color(0x0DFFFFFF)
 )
 
 val LocalGymColors = staticCompositionLocalOf { DarkGymColors }

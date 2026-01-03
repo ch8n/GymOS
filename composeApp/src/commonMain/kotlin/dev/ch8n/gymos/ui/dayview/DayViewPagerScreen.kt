@@ -192,7 +192,7 @@ fun DayViewPagerScreen(
                         icon = Icons.Default.Close.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 },
                 actions = {
@@ -269,7 +269,7 @@ fun DayContent(
     onAddExerciseClick: () -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(horizontal = GymTheme.spacing.pagePadding),
+        modifier = Modifier.fillMaxSize().padding(horizontal = GymTheme.spacing.medium),
         verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium),
         contentPadding = PaddingValues(bottom = GymTheme.spacing.xxxLarge * 2) // Space for FAB
     ) {

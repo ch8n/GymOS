@@ -72,7 +72,7 @@ fun GymExerciseCard(
                     Icon(
                         imageVector = Icons.Default.Repeat,
                         contentDescription = null,
-                        modifier = Modifier.size(GymTheme.sizes.iconSmall * 0.8f),
+                        modifier = Modifier.size(GymTheme.sizes.xSmall * 0.8f),
                         tint = GymTheme.colors.tertiary
                     )
                     Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))

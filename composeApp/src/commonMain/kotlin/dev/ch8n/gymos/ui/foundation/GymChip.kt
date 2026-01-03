@@ -32,7 +32,7 @@ fun GymChip(
 ) {
     Row(
         modifier = modifier
-            .height(GymTheme.sizes.buttonHeightSmall)
+            .height(GymTheme.sizes.small)
             .clip(CircleShape)
             .background(backgroundColor)
             .border(GymTheme.sizes.borderWidth, borderColor, CircleShape)
@@ -51,7 +51,7 @@ fun GymChip(
         } else if (icon != null) {
             GymIcon(
                 icon = icon,
-                size = GymTheme.sizes.iconSmall,
+                size = GymTheme.sizes.xSmall,
                 tint = GymTheme.colors.quaternary
             )
             Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))
@@ -85,7 +85,7 @@ fun GymStatusBadge(
     ) {
         GymIcon(
             icon = icon,
-            size = GymTheme.sizes.iconSmall,
+            size = GymTheme.sizes.xSmall,
             tint = contentColor
         )
         Text(

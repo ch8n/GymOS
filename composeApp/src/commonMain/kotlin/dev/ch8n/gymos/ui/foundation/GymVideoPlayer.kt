@@ -44,7 +44,7 @@ fun GymVideoPlayer(
         Box(
             modifier = Modifier
                 .align(Alignment.Center)
-                .size(GymTheme.sizes.buttonHeightLarge)
+                .size(GymTheme.sizes.large)
                 .clip(CircleShape)
                 .background(GymTheme.colors.primary.copy(alpha = 0.9f))
                 .clickable { onPlayClick() },

@@ -89,7 +89,7 @@ fun ReminderAndHabitScreen(
                         icon = Icons.AutoMirrored.Filled.ArrowBack.asGymIcon,
                         onClick = onBack,
                         size = GymTheme.sizes.small,
-                        iconSize = GymTheme.sizes.iconSmall
+                        iconSize = GymTheme.sizes.xSmall
                     )
                 },
                 actions = {
@@ -98,7 +98,7 @@ fun ReminderAndHabitScreen(
                         onClick = onSave,
                         backgroundColor = GymTheme.colors.surfaceHighlight,
                         contentColor = GymTheme.colors.primary,
-                        modifier = Modifier.height(GymTheme.sizes.buttonHeightSmall)
+                        modifier = Modifier.height(GymTheme.sizes.small)
                     )
                 }
             )
@@ -118,7 +118,7 @@ fun ReminderAndHabitScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = GymTheme.spacing.pagePadding)
+                .padding(horizontal = GymTheme.spacing.medium)
                 .padding(bottom = GymTheme.spacing.large),
             verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
         ) {
@@ -196,7 +196,7 @@ fun ReminderAndHabitScreen(
                                         imageVector = item.icon,
                                         contentDescription = null,
                                         tint = GymTheme.colors.textMuted,
-                                        modifier = Modifier.size(GymTheme.sizes.iconSmall)
+                                        modifier = Modifier.size(GymTheme.sizes.xSmall)
                                     )
                                 }
                             )

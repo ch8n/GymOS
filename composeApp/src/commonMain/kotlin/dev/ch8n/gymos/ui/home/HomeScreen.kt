@@ -81,9 +81,9 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = GymTheme.spacing.pagePadding)
+                .padding(horizontal = GymTheme.spacing.medium)
                 .padding(bottom = GymTheme.spacing.large),
-            verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.sectionGap)
+            verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.large)
         ) {
             Spacer(modifier = Modifier.height(GymTheme.spacing.small))
 
@@ -118,7 +118,7 @@ fun HomeHeader(
         modifier = Modifier
             .fillMaxWidth()
             .safeDrawingPadding()
-            .padding(horizontal = GymTheme.spacing.pagePadding, vertical = GymTheme.spacing.medium),
+            .padding(horizontal = GymTheme.spacing.medium, vertical = GymTheme.spacing.medium),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -143,7 +143,7 @@ fun HomeHeader(
         }
         GymImageAvatar(
             painter = painterResource(Res.drawable.img_avatar),
-            size = GymTheme.sizes.avatarMedium,
+            size = GymTheme.sizes.medium,
             modifier = Modifier.clickable { onOpenProfile() }
         )
     }
