@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +45,8 @@ fun ProfileScreen(
     onBack: () -> Unit,
     onOpenHome: () -> Unit,
     onOpenCalendar: () -> Unit,
-    onOpenProgress: () -> Unit
+    onOpenProgress: () -> Unit,
+    onOpenReminders: () -> Unit = {}
 ) {
     var height by remember { mutableStateOf("180") }
     var weight by remember { mutableStateOf("75.5") }
@@ -154,6 +156,11 @@ fun ProfileScreen(
                     text = "View Weight History",
                     icon = Icons.Default.History.asGymIcon,
                     onClick = { /* Navigate to History */ }
+                )
+                GymTextButton(
+                    text = "Reminders & Habits",
+                    icon = Icons.Default.Notifications.asGymIcon,
+                    onClick = onOpenReminders
                 )
             }
         }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -25,7 +24,6 @@ import androidx.compose.material.icons.filled.MonitorWeight
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.WaterDrop
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,13 +40,12 @@ import dev.ch8n.gymos.ui.foundation.GymAddInput
 import dev.ch8n.gymos.ui.foundation.GymBottomNavigation
 import dev.ch8n.gymos.ui.foundation.GymButton
 import dev.ch8n.gymos.ui.foundation.GymCard
-import dev.ch8n.gymos.ui.foundation.GymCheckbox
+import dev.ch8n.gymos.ui.foundation.GymChecklistItem
 import dev.ch8n.gymos.ui.foundation.GymIconButton
-import dev.ch8n.gymos.ui.foundation.GymIconCircle
-import dev.ch8n.gymos.ui.foundation.GymIconSquare
 import dev.ch8n.gymos.ui.foundation.GymListItem
+import dev.ch8n.gymos.ui.foundation.GymMealTimerItem
 import dev.ch8n.gymos.ui.foundation.GymSwitch
-import dev.ch8n.gymos.ui.foundation.GymTimePickerButton
+import dev.ch8n.gymos.ui.foundation.GymTimeListItem
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.asGymIcon
 
@@ -129,24 +126,19 @@ fun ReminderAndHabitScreen(
             ReminderSection(title = "GYM ROUTINE") {
                 GymCard(modifier = Modifier.fillMaxWidth()) {
                     Column {
-                        GymListItem(
+                        GymTimeListItem(
                             title = "Workout Time",
                             subtitle = "Scheduled for mornings",
-                            leadingContent = {
-                                GymIconCircle(
-                                    icon = Icons.Default.Schedule.asGymIcon,
-                                    backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
-                                    iconColor = GymTheme.colors.quaternary
-                                )
-                            },
-                            trailingContent = {
-                                GymTimePickerButton(time = "06:30 AM", onClick = {})
-                            }
+                            time = "06:30 AM",
+                            icon = Icons.Default.Schedule.asGymIcon,
+                            iconBackgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
+                            iconTint = GymTheme.colors.quaternary,
+                            onTimeClick = {}
                         )
                         GymListItem(
                             title = "Push Notifications",
                             leadingContent = {
-                                GymIconCircle(
+                                dev.ch8n.gymos.ui.foundation.GymIconCircle(
                                     icon = Icons.Default.NotificationsActive.asGymIcon,
                                     backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
                                     iconColor = GymTheme.colors.secondary
@@ -179,26 +171,15 @@ fun ReminderAndHabitScreen(
                 GymCard(modifier = Modifier.fillMaxWidth()) {
                     Column {
                         checklistItems.forEach { item ->
-                            GymListItem(
-                                title = item.name,
-                                leadingContent = {
-                                    GymCheckbox(
-                                        checked = item.isChecked,
-                                        onCheckedChange = { checked ->
-                                            checklistItems = checklistItems.map {
-                                                if (it.name == item.name) it.copy(isChecked = checked) else it
-                                            }
-                                        }
-                                    )
+                            GymChecklistItem(
+                                label = item.name,
+                                checked = item.isChecked,
+                                onCheckedChange = { checked ->
+                                    checklistItems = checklistItems.map {
+                                        if (it.name == item.name) it.copy(isChecked = checked) else it
+                                    }
                                 },
-                                trailingContent = {
-                                    Icon(
-                                        imageVector = item.icon,
-                                        contentDescription = null,
-                                        tint = GymTheme.colors.textMuted,
-                                        modifier = Modifier.size(GymTheme.sizes.xSmall)
-                                    )
-                                }
+                                trailingIcon = item.icon.asGymIcon
                             )
                         }
                         GymAddInput(
@@ -226,7 +207,7 @@ fun ReminderAndHabitScreen(
                         title = "Daily Weigh-in",
                         subtitle = "Remind me at 08:00 AM",
                         leadingContent = {
-                            GymIconCircle(
+                            dev.ch8n.gymos.ui.foundation.GymIconCircle(
                                 icon = Icons.Default.MonitorWeight.asGymIcon,
                                 backgroundColor = GymTheme.colors.primary.copy(alpha = 0.2f),
                                 iconColor = GymTheme.colors.primary
@@ -246,73 +227,36 @@ fun ReminderAndHabitScreen(
             ReminderSection(title = "MEAL TIMERS") {
                 GymCard(modifier = Modifier.fillMaxWidth()) {
                     Column {
-                        GymListItem(
-                            title = "Breakfast",
-                            leadingContent = {
-                                GymIconSquare(
-                                    icon = Icons.Default.BakeryDining.asGymIcon,
-                                    backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
-                                    iconColor = GymTheme.colors.tertiary
-                                )
-                            },
-                            trailingContent = {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
-                                ) {
-                                    GymTimePickerButton(time = "07:00 AM", onClick = {})
-                                    GymSwitch(
-                                        checked = breakfastEnabled,
-                                        onCheckedChange = { breakfastEnabled = it })
-                                }
-                            }
+                        GymMealTimerItem(
+                            label = "Breakfast",
+                            time = "07:00 AM",
+                            icon = Icons.Default.BakeryDining.asGymIcon,
+                            checked = breakfastEnabled,
+                            onCheckedChange = { breakfastEnabled = it },
+                            iconBackgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                            iconTint = GymTheme.colors.tertiary,
+                            onTimeClick = {}
                         )
-                        GymListItem(
-                            title = "Lunch",
-                            leadingContent = {
-                                GymIconSquare(
-                                    icon = Icons.Default.LunchDining.asGymIcon,
-                                    backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
-                                    iconColor = GymTheme.colors.tertiary
-                                )
-                            },
-                            trailingContent = {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
-                                ) {
-                                    GymTimePickerButton(time = "01:00 PM", onClick = {})
-                                    GymSwitch(
-                                        checked = lunchEnabled,
-                                        onCheckedChange = { lunchEnabled = it })
-                                }
-                            }
+                        GymMealTimerItem(
+                            label = "Lunch",
+                            time = "01:00 PM",
+                            icon = Icons.Default.LunchDining.asGymIcon,
+                            checked = lunchEnabled,
+                            onCheckedChange = { lunchEnabled = it },
+                            iconBackgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                            iconTint = GymTheme.colors.tertiary,
+                            onTimeClick = {}
                         )
-                        GymListItem(
-                            title = "Dinner",
-                            enabled = dinnerEnabled,
-                            leadingContent = {
-                                GymIconSquare(
-                                    icon = Icons.Default.DinnerDining.asGymIcon,
-                                    backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
-                                    iconColor = GymTheme.colors.tertiary
-                                )
-                            },
-                            trailingContent = {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
-                                ) {
-                                    GymTimePickerButton(
-                                        time = "08:00 PM",
-                                        onClick = {},
-                                        enabled = dinnerEnabled
-                                    )
-                                    GymSwitch(
-                                        checked = dinnerEnabled,
-                                        onCheckedChange = { dinnerEnabled = it })
-                                }
-                            }
+                        GymMealTimerItem(
+                            label = "Dinner",
+                            time = "08:00 PM",
+                            icon = Icons.Default.DinnerDining.asGymIcon,
+                            checked = dinnerEnabled,
+                            onCheckedChange = { dinnerEnabled = it },
+                            iconBackgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                            iconTint = GymTheme.colors.tertiary,
+                            onTimeClick = {},
+                            enabled = dinnerEnabled
                         )
                     }
                 }
@@ -321,19 +265,14 @@ fun ReminderAndHabitScreen(
             // RECOVERY Section
             ReminderSection(title = "RECOVERY") {
                 GymCard(modifier = Modifier.fillMaxWidth()) {
-                    GymListItem(
+                    GymTimeListItem(
                         title = "Bedtime Goal",
                         subtitle = "Sleep duration tracking",
-                        leadingContent = {
-                            GymIconCircle(
-                                icon = Icons.Default.Bedtime.asGymIcon,
-                                backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
-                                iconColor = GymTheme.colors.quaternary
-                            )
-                        },
-                        trailingContent = {
-                            GymTimePickerButton(time = "10:45 PM", onClick = {})
-                        }
+                        time = "10:45 PM",
+                        icon = Icons.Default.Bedtime.asGymIcon,
+                        iconBackgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
+                        iconTint = GymTheme.colors.quaternary,
+                        onTimeClick = {}
                     )
                 }
             }

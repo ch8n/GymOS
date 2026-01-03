@@ -94,7 +94,7 @@ fun HomeScreen(
             )
 
             // Scheduled Time Card
-            ScheduledTimeCard()
+            ScheduledTimeCard(onOpenReminder)
 
             // Exercise Tags
             ExerciseTagsSection()
@@ -150,10 +150,10 @@ fun HomeHeader(
 }
 
 @Composable
-fun ScheduledTimeCard() {
+fun ScheduledTimeCard(onOpenReminder: () -> Unit) {
     GymCard(
         modifier = Modifier.fillMaxWidth(),
-        onClick = { /* Edit Schedule */ }
+        onClick = onOpenReminder
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(GymTheme.spacing.medium),
@@ -182,7 +182,7 @@ fun ScheduledTimeCard() {
             }
             GymIconButton(
                 icon = Icons.Default.Edit.asGymIcon,
-                onClick = { },
+                onClick = onOpenReminder,
                 contentColor = GymTheme.colors.textSecondary
             )
         }

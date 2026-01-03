@@ -74,8 +74,8 @@ GymOS is a personal gym operating system designed for workout planning, executio
 - **Verification:** Always run existing tests and add new ones for added logic.
 - **Refactoring:** Ensure single responsibility and adhere to the line count limits (80/200).
 - **Design System Sync:** Whenever there is change in design tokens or foundation components, its
-  mandatory to update `design_system.md` file located in `.agent/rules/design_system.md`
-  accordingly.
+  mandatory to update `design_system.md` and `design_components.md` file located in
+  `.agent/rules/design_system.md` and `.agent/rules/design_components.md` accordingly.
 - **Token Consistency**: Always use `GymTheme.sizes` for dimensions (width, height, icon size) and
   `GymTheme.spacing` for layout gaps and padding. Hardcoded DP/SP values are PROHIBITED.
 

@@ -102,7 +102,36 @@ fun App() {
                 entry<GymRoute.ReminderAndHabitScreen> {
                     ReminderAndHabitScreen(
                         onBack = { backStack.removeLastOrNull() },
-                        onSave = { backStack.removeLastOrNull() }
+                        onSave = { backStack.removeLastOrNull() },
+                        onHomeClick = {
+                            while (backStack.lastOrNull() != GymRoute.HomeScreen) {
+                                backStack.removeLastOrNull()
+                            }
+                        },
+                        onCalendarClick = {
+                            while (backStack.lastOrNull() != GymRoute.CalendarScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                            if (backStack.lastOrNull() != GymRoute.CalendarScreen) {
+                                backStack.add(GymRoute.CalendarScreen)
+                            }
+                        },
+                        onProgressClick = {
+                            while (backStack.lastOrNull() != GymRoute.ProgressAnalyticsScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                            if (backStack.lastOrNull() != GymRoute.ProgressAnalyticsScreen) {
+                                backStack.add(GymRoute.ProgressAnalyticsScreen)
+                            }
+                        },
+                        onProfileClick = {
+                            while (backStack.lastOrNull() != GymRoute.ProfileScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                            if (backStack.lastOrNull() != GymRoute.ProfileScreen) {
+                                backStack.add(GymRoute.ProfileScreen)
+                            }
+                        }
                     )
                 }
                 entry<GymRoute.ProfileScreen> {
@@ -128,6 +157,9 @@ fun App() {
                             if (backStack.lastOrNull() != GymRoute.ProgressAnalyticsScreen) {
                                 backStack.add(GymRoute.ProgressAnalyticsScreen)
                             }
+                        },
+                        onOpenReminders = {
+                            backStack.add(GymRoute.ReminderAndHabitScreen)
                         }
                     )
                 }

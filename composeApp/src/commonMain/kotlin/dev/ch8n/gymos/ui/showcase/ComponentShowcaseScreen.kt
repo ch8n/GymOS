@@ -77,6 +77,7 @@ import dev.ch8n.gymos.ui.foundation.GymCalendarWeekHeader
 import dev.ch8n.gymos.ui.foundation.GymCard
 import dev.ch8n.gymos.ui.foundation.GymCategoryHeader
 import dev.ch8n.gymos.ui.foundation.GymCheckbox
+import dev.ch8n.gymos.ui.foundation.GymChecklistItem
 import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
 import dev.ch8n.gymos.ui.foundation.GymDonutChart
@@ -91,6 +92,7 @@ import dev.ch8n.gymos.ui.foundation.GymIconCircle
 import dev.ch8n.gymos.ui.foundation.GymIconSquare
 import dev.ch8n.gymos.ui.foundation.GymImageAvatar
 import dev.ch8n.gymos.ui.foundation.GymListItem
+import dev.ch8n.gymos.ui.foundation.GymMealTimerItem
 import dev.ch8n.gymos.ui.foundation.GymMetricInputCard
 import dev.ch8n.gymos.ui.foundation.GymNumberInput
 import dev.ch8n.gymos.ui.foundation.GymSearchField
@@ -111,6 +113,7 @@ import dev.ch8n.gymos.ui.foundation.GymTagType
 import dev.ch8n.gymos.ui.foundation.GymTextAvatar
 import dev.ch8n.gymos.ui.foundation.GymTextButton
 import dev.ch8n.gymos.ui.foundation.GymTextField
+import dev.ch8n.gymos.ui.foundation.GymTimeListItem
 import dev.ch8n.gymos.ui.foundation.GymTimePickerButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
@@ -200,7 +203,10 @@ fun ShowcaseList(
         "GymSteppedProgressBar",
         "GymTag",
         "GymExerciseContextCard",
-        "GymStepperInput"
+        "GymStepperInput",
+        "GymChecklistItem",
+        "GymTimeListItem",
+        "GymMealTimerItem"
     )
 
     Scaffold(
@@ -323,6 +329,9 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymTag" -> GymTagShowcase()
                 "GymExerciseContextCard" -> GymExerciseContextCardShowcase()
                 "GymStepperInput" -> GymStepperInputShowcase()
+                "GymChecklistItem" -> GymChecklistItemShowcase()
+                "GymTimeListItem" -> GymTimeListItemShowcase()
+                "GymMealTimerItem" -> GymMealTimerItemShowcase()
             }
         }
     }
@@ -1568,6 +1577,155 @@ fun GymTagShowcase() {
                 type = GymTagType.Suggested,
                 onTagClick = { tag -> selectedTags = selectedTags + tag }
             )
+        }
+    }
+}
+
+@Composable
+fun GymChecklistItemShowcase() {
+    var checked1 by remember { mutableStateOf(false) }
+    var checked2 by remember { mutableStateOf(true) }
+    var checked3 by remember { mutableStateOf(true) }
+
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+    ) {
+        ShowcaseSection("Checklist Items") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Column {
+                    GymChecklistItem(
+                        label = "Water Bottle",
+                        checked = checked1,
+                        onCheckedChange = { checked1 = it },
+                        trailingIcon = Icons.Default.Whatshot.asGymIcon
+                    )
+                    GymChecklistItem(
+                        label = "Gym Towel",
+                        checked = checked2,
+                        onCheckedChange = { checked2 = it },
+                        trailingIcon = Icons.Default.CheckCircle.asGymIcon
+                    )
+                    GymChecklistItem(
+                        label = "Weightlifting Gloves",
+                        checked = checked3,
+                        onCheckedChange = { checked3 = it },
+                        trailingIcon = Icons.Default.Favorite.asGymIcon
+                    )
+                }
+            }
+        }
+
+        ShowcaseSection("Disabled State") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                GymChecklistItem(
+                    label = "Disabled Item",
+                    checked = false,
+                    onCheckedChange = {},
+                    enabled = false
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymTimeListItemShowcase() {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+    ) {
+        ShowcaseSection("Workout Time") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                GymTimeListItem(
+                    title = "Workout Time",
+                    subtitle = "Scheduled for mornings",
+                    time = "06:30 AM",
+                    icon = Icons.Default.Schedule.asGymIcon,
+                    iconBackgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
+                    iconTint = GymTheme.colors.quaternary,
+                    onTimeClick = {}
+                )
+            }
+        }
+
+        ShowcaseSection("Bedtime Goal") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                GymTimeListItem(
+                    title = "Bedtime Goal",
+                    subtitle = "Sleep duration tracking",
+                    time = "10:45 PM",
+                    icon = Icons.Default.Timer.asGymIcon,
+                    iconBackgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
+                    iconTint = GymTheme.colors.quaternary,
+                    onTimeClick = {},
+                    onClick = {}
+                )
+            }
+        }
+
+        ShowcaseSection("Daily Weigh-in") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                GymTimeListItem(
+                    title = "Daily Weigh-in",
+                    subtitle = "Remind me at 08:00 AM",
+                    time = "08:00 AM",
+                    icon = Icons.Default.NotificationsActive.asGymIcon,
+                    iconBackgroundColor = GymTheme.colors.primary.copy(alpha = 0.2f),
+                    iconTint = GymTheme.colors.primary,
+                    onTimeClick = {}
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GymMealTimerItemShowcase() {
+    var breakfast by remember { mutableStateOf(true) }
+    var lunch by remember { mutableStateOf(true) }
+    var dinner by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+    ) {
+        ShowcaseSection("Meal Timers") {
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Column {
+                    GymMealTimerItem(
+                        label = "Breakfast",
+                        time = "07:00 AM",
+                        icon = Icons.Default.BakeryDining.asGymIcon,
+                        checked = breakfast,
+                        onCheckedChange = { breakfast = it },
+                        iconBackgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                        iconTint = GymTheme.colors.tertiary,
+                        onTimeClick = {}
+                    )
+                    GymMealTimerItem(
+                        label = "Lunch",
+                        time = "01:00 PM",
+                        icon = Icons.Default.BakeryDining.asGymIcon,
+                        checked = lunch,
+                        onCheckedChange = { lunch = it },
+                        iconBackgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                        iconTint = GymTheme.colors.tertiary,
+                        onTimeClick = {}
+                    )
+                    GymMealTimerItem(
+                        label = "Dinner",
+                        time = "08:00 PM",
+                        icon = Icons.Default.BakeryDining.asGymIcon,
+                        checked = dinner,
+                        onCheckedChange = { dinner = it },
+                        iconBackgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
+                        iconTint = GymTheme.colors.tertiary,
+                        onTimeClick = {},
+                        enabled = false
+                    )
+                }
+            }
         }
     }
 }
