@@ -91,6 +91,7 @@ import dev.ch8n.gymos.ui.foundation.GymImageAvatar
 import dev.ch8n.gymos.ui.foundation.GymListItem
 import dev.ch8n.gymos.ui.foundation.GymMetricInputCard
 import dev.ch8n.gymos.ui.foundation.GymNumberInput
+import dev.ch8n.gymos.ui.foundation.GymSearchField
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
 import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
 import dev.ch8n.gymos.ui.foundation.GymSegmentedProgressBar
@@ -98,9 +99,12 @@ import dev.ch8n.gymos.ui.foundation.GymSessionLogItem
 import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymStatGridCard
 import dev.ch8n.gymos.ui.foundation.GymStatusBadge
+import dev.ch8n.gymos.ui.foundation.GymSteppedProgressBar
 import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
 import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
 import dev.ch8n.gymos.ui.foundation.GymSwitch
+import dev.ch8n.gymos.ui.foundation.GymTagRow
+import dev.ch8n.gymos.ui.foundation.GymTagType
 import dev.ch8n.gymos.ui.foundation.GymTextAvatar
 import dev.ch8n.gymos.ui.foundation.GymTextButton
 import dev.ch8n.gymos.ui.foundation.GymTextField
@@ -188,7 +192,9 @@ fun ShowcaseList(
         "GymAnalyticsStatCard",
         "GymBarChart",
         "GymAreaChart",
-        "GymDonutChart"
+        "GymDonutChart",
+        "GymSteppedProgressBar",
+        "GymTag"
     )
 
     Scaffold(
@@ -307,6 +313,8 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymBarChart" -> GymBarChartShowcase()
                 "GymAreaChart" -> GymAreaChartShowcase()
                 "GymDonutChart" -> GymDonutChartShowcase()
+                "GymSteppedProgressBar" -> GymSteppedProgressBarShowcase()
+                "GymTag" -> GymTagShowcase()
             }
         }
     }
@@ -975,6 +983,15 @@ fun GymTextFieldShowcase() {
                 leadingIcon = Icons.Default.Search
             )
         }
+        ShowcaseSection("GymSearchField (Specialized)") {
+            var searchText by remember { mutableStateOf("") }
+            GymSearchField(
+                value = searchText,
+                onValueChange = { searchText = it },
+                placeholder = "Type to add (e.g. Chest)",
+                onMicClick = {}
+            )
+        }
     }
 }
 
@@ -1386,6 +1403,56 @@ fun GymDonutChartShowcase() {
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun GymSteppedProgressBarShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Stepped Progress Bar") {
+            GymSteppedProgressBar(
+                currentStep = 2,
+                totalSteps = 4,
+                stepName = "Muscles"
+            )
+        }
+        ShowcaseSection("First Step") {
+            GymSteppedProgressBar(
+                currentStep = 1,
+                totalSteps = 3,
+                stepName = "Exercise Name"
+            )
+        }
+        ShowcaseSection("Final Step") {
+            GymSteppedProgressBar(
+                currentStep = 5,
+                totalSteps = 5,
+                stepName = "Summary"
+            )
+        }
+    }
+}
+
+@Composable
+fun GymTagShowcase() {
+    var selectedTags by remember { mutableStateOf(listOf("Chest", "Triceps")) }
+    val suggestedTags = listOf("Back", "Biceps", "Legs", "Shoulders")
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Selected Tags") {
+            GymTagRow(
+                tags = selectedTags,
+                type = GymTagType.Selected,
+                onTagClick = { tag -> selectedTags = selectedTags.filter { it != tag } }
+            )
+        }
+        ShowcaseSection("Suggested Tags") {
+            GymTagRow(
+                tags = suggestedTags.filter { it !in selectedTags },
+                type = GymTagType.Suggested,
+                onTagClick = { tag -> selectedTags = selectedTags + tag }
+            )
         }
     }
 }

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GymOS - New Exercise</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47825",
+                        "primary-dark": "#d66215",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#2d211a", // Slightly lighter than background-dark for inputs
+                        "surface-border": "#45362e",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Lexend", "sans-serif"], // Ensuring sans uses Lexend too
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", // 16px
+                        "lg": "1.5rem", // 24px - Adjusted for better input feel
+                        "xl": "2rem", // 32px
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for dark mode textareas if needed */
+        .dark textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        .dark textarea::-webkit-scrollbar-track {
+            background: #221710; 
+        }
+        .dark textarea::-webkit-scrollbar-thumb {
+            background: #45362e; 
+            border-radius: 4px;
+        }
+        
+        /* Hide scrollbar for clean UI mostly */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+    <!-- Top Navigation -->
+    <header class="flex items-center justify-between p-4 pb-2 sticky top-0 z-50 bg-background-light dark:bg-background-dark/95 backdrop-blur-sm">
+        <button aria-label="Go back"
+                class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+            <span class="material-symbols-outlined text-gray-900 dark:text-white"
+                  style="font-size: 24px;">arrow_back</span>
+        </button>
+        <h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">New
+            Exercise</h1>
+        <button class="flex h-10 items-center justify-center rounded-full px-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+            <span class="text-gray-500 dark:text-[#baa89c] text-sm font-bold tracking-wide">Cancel</span>
+        </button>
+    </header>
+    <!-- Progress Indicator -->
+    <div class="px-6 py-2">
+        <div class="flex justify-between items-center mb-2">
+            <p class="text-primary text-sm font-semibold tracking-wide uppercase">Step 1 of 3</p>
+            <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">Details</span>
+        </div>
+        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-surface-border overflow-hidden">
+            <div class="h-full rounded-full bg-primary w-1/3 shadow-[0_0_10px_rgba(244,120,37,0.5)]"></div>
+        </div>
+    </div>
+    <!-- Main Content Form -->
+    <main class="flex-1 flex flex-col px-6 pt-6 pb-28 max-w-lg mx-auto w-full">
+        <!-- Headline -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold leading-tight tracking-tight mb-2">Name your exercise</h2>
+            <p class="text-gray-500 dark:text-[#baa89c] text-base leading-relaxed">
+                Give it a clear name so you can track your progress easily.
+            </p>
+        </div>
+        <!-- Exercise Name Input -->
+        <div class="flex flex-col gap-6">
+            <div class="group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-[#baa89c] mb-2 ml-1"
+                       for="exercise-name">
+                    Exercise Name <span class="text-primary">*</span>
+                </label>
+                <div class="relative">
+                    <input autocomplete="off"
+                           class="peer w-full bg-white dark:bg-surface-dark border-2 border-gray-200 dark:border-surface-border text-gray-900 dark:text-white rounded-lg px-5 py-4 text-lg placeholder:text-gray-400 dark:placeholder:text-[#6b5a50] focus:outline-none focus:border-primary dark:focus:border-primary transition-all shadow-sm"
+                           id="exercise-name" placeholder="e.g., Dumbbell Row" type="text"/>
+                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-primary opacity-0 peer-focus:opacity-100 transition-opacity material-symbols-outlined">
+                            edit
+                        </span>
+                </div>
+            </div>
+            <!-- Description Input -->
+            <div class="group">
+                <label class="block text-sm font-medium text-gray-700 dark:text-[#baa89c] mb-2 ml-1"
+                       for="exercise-desc">
+                    Description / Notes (Optional)
+                </label>
+                <textarea
+                        class="w-full min-h-[160px] bg-white dark:bg-surface-dark border-2 border-gray-200 dark:border-surface-border text-gray-900 dark:text-white rounded-lg px-5 py-4 text-base placeholder:text-gray-400 dark:placeholder:text-[#6b5a50] focus:outline-none focus:border-primary dark:focus:border-primary resize-none transition-all shadow-sm"
+                        id="exercise-desc"
+                        placeholder="Technique cues, equipment needed, machine settings, etc."></textarea>
+            </div>
+        </div>
+    </main>
+    <!-- Sticky Footer -->
+    <div class="fixed bottom-0 left-0 w-full p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent pt-12">
+        <div class="max-w-lg mx-auto w-full">
+            <button class="w-full bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 px-6 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+                Next: Select Body Part
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

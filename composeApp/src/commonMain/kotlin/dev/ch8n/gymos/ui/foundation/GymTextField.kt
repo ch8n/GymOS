@@ -13,6 +13,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -82,6 +85,31 @@ fun GymTextField(
                     trailingIcon()
                 }
             }
+        }
+    )
+}
+
+@Composable
+fun GymSearchField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+    onMicClick: () -> Unit = {}
+) {
+    GymTextField(
+        value = value,
+        onValueChange = onValueChange,
+        placeholder = placeholder,
+        modifier = modifier,
+        leadingIcon = Icons.Default.Search,
+        trailingIcon = {
+            GymIconButton(
+                icon = Icons.Default.Mic,
+                onClick = onMicClick,
+                backgroundColor = Color.Transparent,
+                contentColor = GymTheme.colors.textMuted
+            )
         }
     )
 }
