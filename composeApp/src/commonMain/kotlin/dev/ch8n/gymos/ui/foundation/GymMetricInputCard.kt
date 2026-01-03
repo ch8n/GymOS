@@ -1,6 +1,7 @@
 package dev.ch8n.gymos.ui.foundation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -22,8 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -33,6 +36,7 @@ fun GymMetricInputCard(
     unit: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
     accentColor: Color? = null,
     placeholder: String = "0"
 ) {
@@ -42,6 +46,7 @@ fun GymMetricInputCard(
 
     GymCard(
         modifier = modifier.fillMaxWidth(),
+        shape = GymTheme.shapes.xLarge
     ) {
         Box {
             // Accent decoration
@@ -61,13 +66,27 @@ fun GymMetricInputCard(
                     .padding(GymTheme.spacing.medium)
                     .fillMaxWidth()
             ) {
-                Text(
-                    text = label,
-                    style = GymTheme.typography.bodySmall.copy(
-                        color = themeMuted,
-                        fontWeight = FontWeight.Medium
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
+                ) {
+                    if (icon != null) {
+                        androidx.compose.material3.Icon(
+                            imageVector = icon,
+                            contentDescription = null,
+                            modifier = Modifier.size(GymTheme.sizes.iconMedium),
+                            tint = accentColor ?: themeMuted
+                        )
+                    }
+                    Text(
+                        text = label.uppercase(),
+                        style = GymTheme.typography.bodySmall.copy(
+                            color = themeMuted,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.sp
+                        )
                     )
-                )
+                }
 
                 Spacer(modifier = Modifier.size(GymTheme.spacing.medium))
 

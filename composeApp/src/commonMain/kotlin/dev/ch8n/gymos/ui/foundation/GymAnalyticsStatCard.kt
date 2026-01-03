@@ -26,6 +26,7 @@ fun GymAnalyticsStatCard(
     value: String,
     modifier: Modifier = Modifier,
     trend: String? = null,
+    trendColor: Color = GymTheme.colors.success,
     unit: String? = null,
     accentColor: Color = GymTheme.colors.primary
 ) {
@@ -82,8 +83,8 @@ fun GymAnalyticsStatCard(
                     if (trend != null) {
                         GymBadge(
                             text = trend,
-                            backgroundColor = GymTheme.colors.success.copy(alpha = 0.1f),
-                            contentColor = GymTheme.colors.success,
+                            backgroundColor = trendColor.copy(alpha = 0.1f),
+                            contentColor = trendColor,
                             modifier = Modifier.offset(y = (-GymTheme.spacing.xSmall))
                         )
                     }

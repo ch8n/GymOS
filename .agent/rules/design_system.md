@@ -87,6 +87,19 @@ Component-specific dimensions for height and icons.
 - `glowSizeLarge`: 128.dp
 - `donutSizeMedium`: 120.dp
 
+### Shapes (`GymShapes`)
+
+Corner radius definitions for cards and containers.
+
+- `none`: 0.dp
+- `small`: 8.dp
+- `medium`: 12.dp
+- `default`: 16.dp
+- `large`: 32.dp
+- `extraLarge`: 40.dp
+- `xLarge`: 48.dp
+- `full`: 9999.dp
+
 ---
 
 ## Atomic Components
@@ -238,7 +251,9 @@ A themed numeric input field with a unit suffix.
 
 A control for selecting between multiple options (e.g., Energy, Effort).
 
-- **Props**: `items`, `selectedIndex`, `onItemSelected`, `label`, `activeColor`, `statusText`.
+- **Props**: `items`, `selectedIndex`, `onItemSelected`, `label` (optional), `activeColor`,
+  `statusText`.
+- **Note**: Supports a "pill" look when no label is provided.
 
 ### GymExecutionBottomCard
 
@@ -251,7 +266,9 @@ A bottom card for the active set execution UI.
 
 A themed text input field used for search and forms.
 
-- **Props**: `value`, `onValueChange`, `placeholder`, `leadingIcon`, `trailingIcon`.
+- **Props**: `value`, `onValueChange`, `placeholder`, `leadingIcon`, `trailingIcon`, `shape`,
+  `singleLine`, `maxLines`.
+- **GymSearchField**: A specialized variant with a leading search icon and trailing mic action.
 
 ### GymActionCard
 
@@ -297,13 +314,39 @@ A specialized input field with an inline "+" action for adding items to a list.
 
 A card for profile metrics like Height and Weight with inline numeric input and unit labels.
 
-- **Props**: `label`, `value`, `unit`, `onValueChange`, `accentColor`, `placeholder`.
+- **Props**: `label`, `value`, `unit`, `onValueChange`, `icon` (optional), `accentColor`,
+  `placeholder`.
 
 ### GymBMICard
 
 A comprehensive card for BMI display, featuring a continuous progress range and status badge.
 
 - **Props**: `bmiValue`, `statusText`, `statusIcon`, `statusColor`, `progress`, `description`.
+
+### GymSteppedProgressBar
+
+A multi-step progress indicator with visual segments and step labels.
+
+- **Props**: `currentStep`, `totalSteps`, `stepName`.
+
+### GymTag & GymTagRow
+
+Components for managing selectable or removable tags (e.g., muscle groups).
+
+- **GymTag Props**: `text`, `type` (`Selected` or `Suggested`), `onClick`.
+- **GymTagRow**: A flow layout container for multiple tags.
+
+### GymExerciseContextCard
+
+A descriptive card displayed at the top of configuration screens to provide context or instructions.
+
+- **Props**: `exerciseName`, `description`, `icon`.
+
+### GymStepperInput
+
+A split control for incrementing/decrementing values (like sets or reps) with a central display.
+
+- **Props**: `label`, `subLabel`, `value`, `onValueChange`, `icon`, `minValue`, `maxValue`.
 
 ### Analytics & Chart Components
 
@@ -314,7 +357,7 @@ Located in `composeApp/src/commonMain/kotlin/dev/ch8n/gymos/ui/foundation/`.
 A metric card for dashboard overview with optional trend indicators (badges) and background glow
 effects.
 
-- **Props**: `label`, `value`, `trend`, `unit`, `accentColor`.
+- **Props**: `label`, `value`, `trend`, `trendColor`, `unit`, `accentColor`.
 
 #### GymBarChart
 

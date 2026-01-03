@@ -81,6 +81,7 @@ import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
 import dev.ch8n.gymos.ui.foundation.GymDonutChart
 import dev.ch8n.gymos.ui.foundation.GymExecutionBottomCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseCard
+import dev.ch8n.gymos.ui.foundation.GymExerciseContextCard
 import dev.ch8n.gymos.ui.foundation.GymExerciseSelectionItem
 import dev.ch8n.gymos.ui.foundation.GymFeelingSlider
 import dev.ch8n.gymos.ui.foundation.GymIcon
@@ -100,6 +101,7 @@ import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymStatGridCard
 import dev.ch8n.gymos.ui.foundation.GymStatusBadge
 import dev.ch8n.gymos.ui.foundation.GymSteppedProgressBar
+import dev.ch8n.gymos.ui.foundation.GymStepperInput
 import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
 import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
 import dev.ch8n.gymos.ui.foundation.GymSwitch
@@ -194,7 +196,9 @@ fun ShowcaseList(
         "GymAreaChart",
         "GymDonutChart",
         "GymSteppedProgressBar",
-        "GymTag"
+        "GymTag",
+        "GymExerciseContextCard",
+        "GymStepperInput"
     )
 
     Scaffold(
@@ -315,6 +319,8 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 "GymDonutChart" -> GymDonutChartShowcase()
                 "GymSteppedProgressBar" -> GymSteppedProgressBarShowcase()
                 "GymTag" -> GymTagShowcase()
+                "GymExerciseContextCard" -> GymExerciseContextCardShowcase()
+                "GymStepperInput" -> GymStepperInputShowcase()
             }
         }
     }
@@ -858,6 +864,16 @@ fun GymSegmentedControlShowcase() {
                 )
             }
         }
+        ShowcaseSection("Pill Segmented Control (No Label)") {
+            var selectedRange by remember { mutableStateOf(1) }
+            GymSegmentedControl(
+                items = listOf("7D", "30D", "3M", "YTD"),
+                selectedIndex = selectedRange,
+                onItemSelected = { selectedRange = it },
+                activeColor = GymTheme.colors.primary,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
     }
 }
 
@@ -1171,13 +1187,14 @@ fun GymMetricInputCardShowcase() {
                 unit = "cm"
             )
         }
-        ShowcaseSection("Accented Metric Card") {
+        ShowcaseSection("Metric Card with Icon") {
             GymMetricInputCard(
-                label = "Weight",
-                value = weight,
-                onValueChange = { weight = it },
-                unit = "KG",
-                accentColor = GymTheme.colors.primary
+                label = "Rest Time",
+                value = "60",
+                onValueChange = { },
+                unit = "Sec",
+                icon = Icons.Default.Timer,
+                accentColor = GymTheme.colors.secondary
             )
         }
     }
@@ -1238,6 +1255,56 @@ fun GymAnalyticsStatCardShowcase() {
                     unit = "m",
                     accentColor = GymTheme.colors.secondary,
                     modifier = Modifier.weight(1f)
+                )
+            }
+        }
+        ShowcaseSection("Analytics Stats (Downward Trend)") {
+            GymAnalyticsStatCard(
+                label = "Body Weight",
+                value = "185",
+                unit = "lbs",
+                trend = "↓ 1.2%",
+                trendColor = GymTheme.colors.warning,
+                accentColor = GymTheme.colors.quaternary,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Composable
+fun GymExerciseContextCardShowcase() {
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Exercise Context") {
+            GymExerciseContextCard(
+                exerciseName = "Dumbbell Press",
+                description = "Define your baseline targets for this exercise to speed up logging."
+            )
+        }
+    }
+}
+
+@Composable
+fun GymStepperInputShowcase() {
+    var sets by remember { mutableStateOf(3) }
+    var reps by remember { mutableStateOf(10) }
+
+    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+        ShowcaseSection("Stepper Inputs") {
+            Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+                GymStepperInput(
+                    label = "Default Sets",
+                    subLabel = "Target volume",
+                    value = sets,
+                    onValueChange = { sets = it },
+                    icon = Icons.Default.List
+                )
+                GymStepperInput(
+                    label = "Default Reps",
+                    subLabel = "Per set",
+                    value = reps,
+                    onValueChange = { reps = it },
+                    icon = Icons.Default.History
                 )
             }
         }

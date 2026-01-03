@@ -25,8 +25,8 @@ fun GymSegmentedControl(
     items: List<String>,
     selectedIndex: Int,
     onItemSelected: (Int) -> Unit,
-    label: String,
     modifier: Modifier = Modifier,
+    label: String? = null,
     activeColor: Color = GymTheme.colors.secondary,
     statusText: String? = null,
     statusColor: Color = GymTheme.colors.secondary
@@ -36,14 +36,16 @@ fun GymSegmentedControl(
         verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = label.uppercase(),
-            style = GymTheme.typography.tiny.copy(
-                color = GymTheme.colors.textMuted,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp
+        if (label != null) {
+            Text(
+                text = label.uppercase(),
+                style = GymTheme.typography.tiny.copy(
+                    color = GymTheme.colors.textMuted,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 1.sp
+                )
             )
-        )
+        }
 
         Box(
             modifier = Modifier
