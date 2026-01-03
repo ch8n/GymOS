@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -29,10 +28,10 @@ fun GymSwitch(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    val trackWidth = 44.dp
-    val trackHeight = 24.dp
-    val thumbSize = 20.dp
-    val padding = 2.dp
+    val trackWidth = GymTheme.sizes.switchTrackWidth
+    val trackHeight = GymTheme.sizes.switchTrackHeight
+    val thumbSize = GymTheme.sizes.switchThumbSize
+    val padding = GymTheme.spacing.tiny
 
     val trackColor by animateColorAsState(
         targetValue = if (checked) {

@@ -5,14 +5,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -20,7 +17,7 @@ import dev.ch8n.gymos.theme.GymTheme
 fun GymStatGridCard(
     label: String,
     value: String,
-    icon: ImageVector,
+    icon: GymIconResource,
     modifier: Modifier = Modifier,
     subValue: String? = null,
     accentColor: Color = GymTheme.colors.primary,
@@ -51,11 +48,10 @@ fun GymStatGridCard(
                         fontWeight = FontWeight.Medium
                     )
                 )
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = accentColor,
-                    modifier = Modifier.size(GymTheme.sizes.iconSmall)
+                GymIcon(
+                    icon = icon,
+                    size = GymTheme.sizes.iconSmall,
+                    tint = accentColor
                 )
             }
 

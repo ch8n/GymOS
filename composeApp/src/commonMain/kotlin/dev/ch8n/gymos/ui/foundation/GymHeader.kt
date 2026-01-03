@@ -9,15 +9,12 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -28,7 +25,7 @@ fun GymSectionHeader(
     title: String,
     modifier: Modifier = Modifier,
     label: String? = null,
-    icon: ImageVector? = null,
+    icon: GymIconResource? = null,
     iconColor: Color = GymTheme.colors.primary,
     trailingContent: (@Composable () -> Unit)? = null
 ) {
@@ -42,10 +39,9 @@ fun GymSectionHeader(
             horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
         ) {
             if (icon != null) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(GymTheme.sizes.iconSmall),
+                GymIcon(
+                    icon = icon,
+                    size = GymTheme.sizes.iconSmall,
                     tint = iconColor
                 )
             }

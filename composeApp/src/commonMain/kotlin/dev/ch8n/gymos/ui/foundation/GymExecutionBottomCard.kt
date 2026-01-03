@@ -160,7 +160,7 @@ fun GymExecutionBottomCard(
             text = "Complete Set",
             onClick = onCompleteSet,
             modifier = Modifier.fillMaxWidth(),
-            icon = Icons.Default.CheckCircle,
+            icon = Icons.Default.CheckCircle.asGymIcon,
             backgroundColor = GymTheme.colors.primary,
             contentColor = Color.White
         )

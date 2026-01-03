@@ -62,6 +62,12 @@ data class GymSizes(
     val cardHeightLarge: Dp = size150,
     val donutSizeMedium: Dp = size120,
     val donutThickness: Dp = 8.dp,
+
+    // Switch Sizes
+    val switchTrackWidth: Dp = 44.dp,
+    val switchTrackHeight: Dp = 24.dp,
+    val switchThumbSize: Dp = 20.dp,
+
     val barWidthMedium: Dp = 12.dp,
 
     // Visual Effects

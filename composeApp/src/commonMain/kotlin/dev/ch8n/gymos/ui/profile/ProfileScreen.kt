@@ -34,6 +34,7 @@ import dev.ch8n.gymos.ui.foundation.GymImageAvatar
 import dev.ch8n.gymos.ui.foundation.GymMetricInputCard
 import dev.ch8n.gymos.ui.foundation.GymTextButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 import gymos.composeapp.generated.resources.Res
 import gymos.composeapp.generated.resources.img_avatar
 import org.jetbrains.compose.resources.painterResource
@@ -55,7 +56,7 @@ fun ProfileScreen(
                 title = "Profile",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ArrowBack,
+                        icon = Icons.Default.ArrowBack.asGymIcon,
                         onClick = onBack,
                         contentColor = GymTheme.colors.textPrimary
                     )
@@ -131,7 +132,7 @@ fun ProfileScreen(
             GymBMICard(
                 bmiValue = "23.3",
                 statusText = "Normal",
-                statusIcon = Icons.Default.CheckCircle,
+                statusIcon = Icons.Default.CheckCircle.asGymIcon,
                 statusColor = GymTheme.colors.tertiary,
                 progress = 0.46f,
                 description = "Your BMI is in the Healthy Weight range. Keep up the good work maintaining your balance."
@@ -145,13 +146,13 @@ fun ProfileScreen(
             ) {
                 GymButton(
                     text = "Update Weight",
-                    trailingIcon = Icons.Default.ArrowForward,
+                    trailingIcon = Icons.Default.ArrowForward.asGymIcon,
                     onClick = { /* Handle Weight Update */ },
                     modifier = Modifier.fillMaxWidth()
                 )
                 GymTextButton(
                     text = "View Weight History",
-                    icon = Icons.Default.History,
+                    icon = Icons.Default.History.asGymIcon,
                     onClick = { /* Navigate to History */ }
                 )
             }

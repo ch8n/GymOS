@@ -35,6 +35,7 @@ import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
 import dev.ch8n.gymos.ui.foundation.GymTextField
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun AddExerciseScreen(
@@ -55,7 +56,7 @@ fun AddExerciseScreen(
                 title = "Add Exercise",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.Close,
+                        icon = Icons.Default.Close.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -89,12 +90,12 @@ fun AddExerciseScreen(
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
                     placeholder = "Search bench press, squat...",
-                    leadingIcon = Icons.Default.Search
+                    leadingIcon = Icons.Default.Search.asGymIcon
                 )
 
                 GymActionCard(
                     text = "Create Custom Exercise",
-                    icon = Icons.Default.Edit,
+                    icon = Icons.Default.Edit.asGymIcon,
                     onClick = onCustomExerciseClick,
                     isDashed = true
                 )
@@ -121,7 +122,7 @@ fun AddExerciseScreen(
                 item {
                     GymSectionHeader(
                         title = "Recent",
-                        icon = Icons.Default.History,
+                        icon = Icons.Default.History.asGymIcon,
                         modifier = Modifier.padding(horizontal = GymTheme.spacing.pagePadding)
                     )
                 }
@@ -143,7 +144,7 @@ fun AddExerciseScreen(
                     Spacer(modifier = Modifier.height(GymTheme.spacing.medium))
                     GymSectionHeader(
                         title = "Popular Exercises",
-                        icon = Icons.Default.Whatshot,
+                        icon = Icons.Default.Whatshot.asGymIcon,
                         modifier = Modifier.padding(horizontal = GymTheme.spacing.pagePadding)
                     )
                 }

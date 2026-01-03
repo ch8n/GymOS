@@ -36,6 +36,7 @@ import dev.ch8n.gymos.ui.foundation.GymStatGridCard
 import dev.ch8n.gymos.ui.foundation.GymSummaryHeader
 import dev.ch8n.gymos.ui.foundation.GymSummaryHighlightCard
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun ExerciseSummaryScreen(
@@ -55,7 +56,7 @@ fun ExerciseSummaryScreen(
                 title = "Exercise Summary",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.Close,
+                        icon = Icons.Default.Close.asGymIcon,
                         onClick = onCloseClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -78,7 +79,7 @@ fun ExerciseSummaryScreen(
             Column {
                 GymButton(
                     text = "Mark Exercise Done",
-                    icon = Icons.Default.Check,
+                    icon = Icons.Default.Check.asGymIcon,
                     onClick = onFinishClick,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -123,14 +124,14 @@ fun ExerciseSummaryScreen(
                         label = "Sets Done",
                         value = "5",
                         subValue = "/ 5",
-                        icon = Icons.Default.CheckCircle,
+                        icon = Icons.Default.CheckCircle.asGymIcon,
                         accentColor = GymTheme.colors.tertiary,
                         modifier = Modifier.weight(1f)
                     )
                     GymStatGridCard(
                         label = "Rep Range",
                         value = "8 - 12",
-                        icon = Icons.Default.FormatListNumbered,
+                        icon = Icons.Default.FormatListNumbered.asGymIcon,
                         accentColor = GymTheme.colors.quaternary,
                         modifier = Modifier.weight(1f)
                     )
@@ -141,7 +142,7 @@ fun ExerciseSummaryScreen(
                         label = "Avg Energy",
                         value = "2",
                         subValue = "/ 3",
-                        icon = Icons.Default.Timer,
+                        icon = Icons.Default.Timer.asGymIcon,
                         accentColor = GymTheme.colors.secondary,
                         progress = 2,
                         maxProgress = 3,
@@ -151,7 +152,7 @@ fun ExerciseSummaryScreen(
                         label = "Avg Effort",
                         value = "3",
                         subValue = "/ 3",
-                        icon = Icons.Default.Speed,
+                        icon = Icons.Default.Speed.asGymIcon,
                         accentColor = GymTheme.colors.primary,
                         progress = 3,
                         maxProgress = 3,

@@ -39,6 +39,7 @@ import dev.ch8n.gymos.ui.foundation.GymCard
 import dev.ch8n.gymos.ui.foundation.GymChip
 import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun CalendarScreen(
@@ -109,7 +110,7 @@ fun CalendarHeader(onShowcaseClick: () -> Unit) {
                 }
                 Spacer(modifier = Modifier.width(GymTheme.spacing.small))
                 GymBadgeIconButton(
-                    icon = Icons.Default.Notifications,
+                    icon = Icons.Default.Notifications.asGymIcon,
                     onClick = onShowcaseClick // Reuse for showcase access if needed
                 )
             }
@@ -133,11 +134,10 @@ fun SummaryStatsSection() {
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     GymIcon(
-                        imageVector = Icons.Default.FitnessCenter,
+                        icon = Icons.Default.FitnessCenter.asGymIcon,
                         tint = GymTheme.colors.tertiary,
                         backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.1f),
                         size = 32.dp,
-                        iconSize = 16.dp
                     )
                     Spacer(modifier = Modifier.width(GymTheme.spacing.small))
                     Text(
@@ -172,11 +172,10 @@ fun SummaryStatsSection() {
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     GymIcon(
-                        imageVector = Icons.Default.LocalFireDepartment,
+                        icon = Icons.Default.LocalFireDepartment.asGymIcon,
                         tint = GymTheme.colors.primary,
                         backgroundColor = GymTheme.colors.primary.copy(alpha = 0.1f),
                         size = 32.dp,
-                        iconSize = 16.dp
                     )
                     Spacer(modifier = Modifier.width(GymTheme.spacing.small))
                     Text(

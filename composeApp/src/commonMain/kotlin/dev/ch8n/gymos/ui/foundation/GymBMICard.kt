@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -27,7 +26,7 @@ import dev.ch8n.gymos.theme.GymTheme
 fun GymBMICard(
     bmiValue: String,
     statusText: String,
-    statusIcon: ImageVector,
+    statusIcon: GymIconResource,
     statusColor: Color,
     progress: Float,
     description: String,

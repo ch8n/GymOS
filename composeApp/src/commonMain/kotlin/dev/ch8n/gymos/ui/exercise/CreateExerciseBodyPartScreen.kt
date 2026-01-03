@@ -32,6 +32,7 @@ import dev.ch8n.gymos.ui.foundation.GymTagRow
 import dev.ch8n.gymos.ui.foundation.GymTagType
 import dev.ch8n.gymos.ui.foundation.GymTextButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun CreateExerciseBodyPartScreen(
@@ -51,7 +52,7 @@ fun CreateExerciseBodyPartScreen(
                 title = "Assign Body Parts",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ArrowBackIosNew,
+                        icon = Icons.Default.ArrowBackIosNew.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -76,7 +77,7 @@ fun CreateExerciseBodyPartScreen(
                     text = "Next Step",
                     onClick = { onNextClick(selectedBodyParts) },
                     modifier = Modifier.fillMaxWidth(),
-                    trailingIcon = Icons.Default.ArrowForward
+                    trailingIcon = Icons.Default.ArrowForward.asGymIcon
                 )
             }
         }

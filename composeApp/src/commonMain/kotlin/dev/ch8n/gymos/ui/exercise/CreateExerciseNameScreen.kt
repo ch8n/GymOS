@@ -28,6 +28,7 @@ import dev.ch8n.gymos.ui.foundation.GymSteppedProgressBar
 import dev.ch8n.gymos.ui.foundation.GymTextButton
 import dev.ch8n.gymos.ui.foundation.GymTextField
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun CreateExerciseNameScreen(
@@ -45,7 +46,7 @@ fun CreateExerciseNameScreen(
                 title = "New Exercise",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.Close,
+                        icon = Icons.Default.Close.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -70,7 +71,7 @@ fun CreateExerciseNameScreen(
                     text = "Next: Select Body Part",
                     onClick = { onNextClick(name, description) },
                     modifier = Modifier.fillMaxWidth(),
-                    trailingIcon = Icons.Default.ArrowForward
+                    trailingIcon = Icons.Default.ArrowForward.asGymIcon,
                 )
             }
         }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -91,9 +89,9 @@ private fun Modifier.alphaIf(condition: Boolean, alpha: Float): Modifier {
 
 @Composable
 fun GymIconCircle(
-    icon: ImageVector,
+    icon: GymIconResource,
     modifier: Modifier = Modifier,
-    backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.1f),
+    backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.15f),
     iconColor: Color = GymTheme.colors.primary,
     size: androidx.compose.ui.unit.Dp = GymTheme.sizes.avatarSmall
 ) {
@@ -104,9 +102,8 @@ fun GymIconCircle(
             .background(backgroundColor),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
+        GymIcon(
+            icon = icon,
             modifier = Modifier.size(GymTheme.sizes.iconMedium),
             tint = iconColor
         )
@@ -115,9 +112,9 @@ fun GymIconCircle(
 
 @Composable
 fun GymIconSquare(
-    icon: ImageVector,
+    icon: GymIconResource,
     modifier: Modifier = Modifier,
-    backgroundColor: Color = GymTheme.colors.secondary.copy(alpha = 0.1f),
+    backgroundColor: Color = GymTheme.colors.secondary.copy(alpha = 0.15f),
     iconColor: Color = GymTheme.colors.secondary,
     size: androidx.compose.ui.unit.Dp = GymTheme.sizes.avatarSmall
 ) {
@@ -128,9 +125,8 @@ fun GymIconSquare(
             .background(backgroundColor),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
+        GymIcon(
+            icon = icon,
             modifier = Modifier.size(GymTheme.sizes.iconSmall),
             tint = iconColor
         )

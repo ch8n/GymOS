@@ -50,6 +50,7 @@ import dev.ch8n.gymos.ui.foundation.GymIcon
 import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymImageAvatar
 import dev.ch8n.gymos.ui.foundation.GymSectionHeader
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 import gymos.composeapp.generated.resources.Res
 import gymos.composeapp.generated.resources.img_avatar
 import gymos.composeapp.generated.resources.img_workout_upper_body
@@ -161,7 +162,7 @@ fun ScheduledTimeCard() {
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 GymIcon(
-                    imageVector = Icons.Default.Schedule,
+                    icon = Icons.Default.Schedule.asGymIcon,
                     tint = GymTheme.colors.primary,
                     backgroundColor = GymTheme.colors.primary.copy(alpha = 0.1f)
                 )
@@ -180,7 +181,7 @@ fun ScheduledTimeCard() {
                 }
             }
             GymIconButton(
-                icon = Icons.Default.Edit,
+                icon = Icons.Default.Edit.asGymIcon,
                 onClick = { },
                 contentColor = GymTheme.colors.textSecondary
             )
@@ -194,9 +195,9 @@ fun ExerciseTagsSection() {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
     ) {
-        GymChip(text = "Chest", icon = Icons.Default.FitnessCenter)
+        GymChip(text = "Chest", icon = Icons.Default.FitnessCenter.asGymIcon)
         GymChip(text = "Triceps")
-        GymChip(text = "Cardio", icon = Icons.Default.MonitorHeart)
+        GymChip(text = "Cardio", icon = Icons.Default.MonitorHeart.asGymIcon)
     }
 }
 
@@ -273,7 +274,7 @@ fun FeaturedWorkoutCard() {
                 }
                 GymButton(
                     text = "Start Workout",
-                    icon = Icons.Default.PlayArrow,
+                    icon = Icons.Default.PlayArrow.asGymIcon,
                     onClick = { },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -298,7 +299,7 @@ fun StatsGrid(onOpenProgress: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
             ) {
                 GymIcon(
-                    imageVector = Icons.Default.LocalFireDepartment,
+                    icon = Icons.Default.LocalFireDepartment.asGymIcon,
                     tint = GymTheme.colors.secondary,
                     backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.1f)
                 )
@@ -335,7 +336,7 @@ fun StatsGrid(onOpenProgress: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
             ) {
                 GymIcon(
-                    imageVector = Icons.Default.MonitorWeight,
+                    icon = Icons.Default.MonitorWeight.asGymIcon,
                     tint = GymTheme.colors.quaternary,
                     backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.1f)
                 )

@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -30,7 +29,7 @@ fun GymExerciseCard(
     isCompleted: Boolean,
     onCompletedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    icon: ImageVector = Icons.Default.FitnessCenter,
+    icon: GymIconResource = Icons.Default.FitnessCenter.asGymIcon,
     iconColor: Color = GymTheme.colors.primary,
     onClick: (() -> Unit)? = null
 ) {
@@ -46,11 +45,11 @@ fun GymExerciseCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             GymIcon(
-                imageVector = icon,
+                icon = icon,
                 tint = iconColor,
                 backgroundColor = iconColor.copy(alpha = 0.1f),
-                size = GymTheme.sizes.large,
-                iconSize = GymTheme.sizes.checkbox
+                modifier = Modifier.size(GymTheme.sizes.large),
+                size = GymTheme.sizes.checkbox
             )
 
             Spacer(modifier = Modifier.width(GymTheme.spacing.medium))

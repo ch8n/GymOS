@@ -17,7 +17,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowForward
@@ -31,7 +33,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.LunchDining
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.NotificationsActive
@@ -113,6 +114,7 @@ import dev.ch8n.gymos.ui.foundation.GymTextField
 import dev.ch8n.gymos.ui.foundation.GymTimePickerButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 import gymos.composeapp.generated.resources.Res
 import gymos.composeapp.generated.resources.img_avatar
 import gymos.composeapp.generated.resources.img_workout_upper_body
@@ -207,7 +209,7 @@ fun ShowcaseList(
                 title = "Showcase",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ChevronLeft,
+                        icon = Icons.Default.ChevronLeft.asGymIcon,
                         onClick = onBack,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -261,7 +263,7 @@ fun ShowcaseDetail(componentName: String, onBack: () -> Unit) {
                 title = componentName,
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ChevronLeft,
+                        icon = Icons.Default.ChevronLeft.asGymIcon,
                         onClick = onBack,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -341,19 +343,25 @@ fun ShowcaseSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 
 @Composable
 fun GymButtonShowcase() {
-    Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+    ) {
         ShowcaseSection("Primary Button") {
             GymButton(text = "Start Workout", onClick = {})
         }
         ShowcaseSection("Button with Icon") {
-            GymButton(text = "Start Workout", icon = Icons.Default.PlayArrow, onClick = {})
+            GymButton(
+                text = "Start Workout",
+                icon = Icons.Default.PlayArrow.asGymIcon,
+                onClick = {})
         }
         ShowcaseSection("Icon Buttons") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-                GymIconButton(icon = Icons.Default.Edit, onClick = {})
-                GymIconButton(icon = Icons.Default.Add, onClick = {})
+                GymIconButton(icon = Icons.Default.Edit.asGymIcon, onClick = {})
+                GymIconButton(icon = Icons.Default.Add.asGymIcon, onClick = {})
                 GymIconButton(
-                    icon = Icons.Default.Delete,
+                    icon = Icons.Default.Delete.asGymIcon,
                     onClick = {},
                     backgroundColor = Color.Red.copy(alpha = 0.2f),
                     contentColor = Color.Red
@@ -363,21 +371,24 @@ fun GymButtonShowcase() {
         ShowcaseSection("Large Button with Trailing Icon") {
             GymButton(
                 text = "Update Weight",
-                trailingIcon = Icons.Default.ArrowForward,
+                trailingIcon = Icons.Default.ArrowForward.asGymIcon,
                 onClick = {}
             )
         }
         ShowcaseSection("Text Buttons") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-                GymTextButton(text = "View History", icon = Icons.Default.History, onClick = {})
+                GymTextButton(
+                    text = "View History",
+                    icon = Icons.Default.History.asGymIcon,
+                    onClick = {})
                 GymTextButton(text = "Cancel", onClick = {})
             }
         }
         ShowcaseSection("Badge Icon Button") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-                GymBadgeIconButton(icon = Icons.Default.Notifications, onClick = {})
+                GymBadgeIconButton(icon = Icons.Default.Notifications.asGymIcon, onClick = {})
                 GymBadgeIconButton(
-                    icon = Icons.Default.Mail,
+                    icon = Icons.Default.Mail.asGymIcon,
                     onClick = {},
                     badgeColor = GymTheme.colors.secondary
                 )
@@ -430,8 +441,8 @@ fun GymChipShowcase() {
         }
         ShowcaseSection("Chips with Icons") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
-                GymChip(text = "Cardio", icon = Icons.Default.Favorite)
-                GymChip(text = "Strength", icon = Icons.Default.Settings)
+                GymChip(text = "Cardio", icon = Icons.Default.Favorite.asGymIcon)
+                GymChip(text = "Strength", icon = Icons.Default.Settings.asGymIcon)
             }
         }
         ShowcaseSection("Chips with Status Dots") {
@@ -459,17 +470,17 @@ fun GymIconShowcase() {
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
         ShowcaseSection("Themed Icons") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-                GymIcon(imageVector = Icons.Default.CheckCircle)
-                GymIcon(imageVector = Icons.Default.Favorite, tint = GymTheme.colors.secondary)
-                GymIcon(imageVector = Icons.Default.Home, tint = GymTheme.colors.quaternary)
+                GymIcon(icon = Icons.Default.CheckCircle.asGymIcon)
+                GymIcon(icon = Icons.Default.Favorite.asGymIcon, tint = GymTheme.colors.secondary)
+                GymIcon(icon = Icons.Default.Home.asGymIcon, tint = GymTheme.colors.quaternary)
             }
         }
         ShowcaseSection("Large Icons") {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
                 GymIcon(
-                    imageVector = Icons.Default.List,
-                    size = GymTheme.spacing.xxxLarge,
-                    iconSize = GymTheme.sizes.iconLarge
+                    icon = Icons.Default.List.asGymIcon,
+                    modifier = Modifier.size(GymTheme.spacing.xxxLarge),
+                    size = GymTheme.sizes.iconLarge
                 )
             }
         }
@@ -482,14 +493,14 @@ fun GymHeaderShowcase() {
         ShowcaseSection("Section Header with Icon") {
             GymSectionHeader(
                 title = "Recent",
-                icon = Icons.Default.History,
+                icon = Icons.Default.History.asGymIcon,
                 iconColor = GymTheme.colors.primary
             )
         }
         ShowcaseSection("Section Header with Secondary Icon") {
             GymSectionHeader(
                 title = "Popular Exercises",
-                icon = Icons.Default.Whatshot,
+                icon = Icons.Default.Whatshot.asGymIcon,
                 iconColor = GymTheme.colors.secondary
             )
         }
@@ -934,7 +945,7 @@ fun GymStatGridCardShowcase() {
                     label = "Sets Done",
                     value = "5",
                     subValue = "/ 5",
-                    icon = Icons.Default.CheckCircle,
+                    icon = Icons.Default.CheckCircle.asGymIcon,
                     accentColor = GymTheme.colors.tertiary,
                     modifier = Modifier.weight(1f)
                 )
@@ -942,7 +953,7 @@ fun GymStatGridCardShowcase() {
                     label = "Avg Energy",
                     value = "2",
                     subValue = "/ 3",
-                    icon = Icons.Default.Timer, // Replace with appropriate icon if needed
+                    icon = Icons.Default.Timer.asGymIcon, // Replace with appropriate icon if needed
                     accentColor = GymTheme.colors.secondary,
                     progress = 2,
                     maxProgress = 3,
@@ -996,7 +1007,7 @@ fun GymTextFieldShowcase() {
                 value = search,
                 onValueChange = { search = it },
                 placeholder = "Search bench press, squat...",
-                leadingIcon = Icons.Default.Search
+                leadingIcon = Icons.Default.Search.asGymIcon
             )
         }
         ShowcaseSection("GymSearchField (Specialized)") {
@@ -1017,14 +1028,14 @@ fun GymActionCardShowcase() {
         ShowcaseSection("Dashed Action Card") {
             GymActionCard(
                 text = "Create Custom Exercise",
-                icon = Icons.Default.Edit,
+                icon = Icons.Default.Edit.asGymIcon,
                 onClick = {}
             )
         }
         ShowcaseSection("Solid Action Card") {
             GymActionCard(
                 text = "Add Exercise",
-                icon = Icons.Default.Add,
+                icon = Icons.Default.Add.asGymIcon,
                 isDashed = false,
                 onClick = {}
             )
@@ -1087,7 +1098,7 @@ fun GymListItemShowcase() {
                     subtitle = "Scheduled for mornings",
                     leadingContent = {
                         GymIconCircle(
-                            icon = Icons.Default.Schedule,
+                            icon = Icons.Default.Schedule.asGymIcon,
                             backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
                             iconColor = GymTheme.colors.quaternary
                         )
@@ -1101,7 +1112,7 @@ fun GymListItemShowcase() {
                     title = "Push Notifications",
                     leadingContent = {
                         GymIconCircle(
-                            icon = Icons.Default.NotificationsActive,
+                            icon = Icons.Default.NotificationsActive.asGymIcon,
                             backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
                             iconColor = GymTheme.colors.secondary
                         )
@@ -1113,13 +1124,13 @@ fun GymListItemShowcase() {
             }
         }
 
-        ShowcaseSection("Meal Timer List Items") {
+        ShowcaseSection("Meal Timer - Both Actions") {
             Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)) {
                 GymListItem(
                     title = "Breakfast",
                     leadingContent = {
                         GymIconSquare(
-                            icon = Icons.Default.BakeryDining,
+                            icon = Icons.Default.BakeryDining.asGymIcon,
                             backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
                             iconColor = GymTheme.colors.tertiary
                         )
@@ -1130,19 +1141,56 @@ fun GymListItemShowcase() {
                     }
                 )
                 GymListItem(
-                    title = "Lunch",
+                    title = "Dinner (Disabled)",
+                    enabled = false,
                     leadingContent = {
                         GymIconSquare(
-                            icon = Icons.Default.LunchDining,
+                            icon = Icons.Default.BakeryDining.asGymIcon,
                             backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
                             iconColor = GymTheme.colors.tertiary
                         )
                     },
                     trailingContent = {
-                        GymTimePickerButton(time = "01:00 PM", onClick = {})
-                        GymSwitch(checked = true, onCheckedChange = {})
+                        GymTimePickerButton(time = "08:00 PM", onClick = {}, enabled = false)
+                        GymSwitch(checked = false, onCheckedChange = {}, enabled = false)
                     }
                 )
+            }
+        }
+
+        ShowcaseSection("Checklist Items") {
+            var checked1 by remember { mutableStateOf(true) }
+            var checked2 by remember { mutableStateOf(false) }
+
+            GymCard(modifier = Modifier.fillMaxWidth()) {
+                Column {
+                    GymListItem(
+                        title = "Water Bottle",
+                        leadingContent = {
+                            GymCheckbox(checked = checked1, onCheckedChange = { checked1 = it })
+                        },
+                        trailingContent = {
+                            Icon(
+                                imageVector = Icons.Default.Notifications, // Placeholder for water_drop
+                                contentDescription = null,
+                                tint = GymTheme.colors.textMuted
+                            )
+                        }
+                    )
+                    GymListItem(
+                        title = "Gym Towel",
+                        leadingContent = {
+                            GymCheckbox(checked = checked2, onCheckedChange = { checked2 = it })
+                        },
+                        trailingContent = {
+                            Icon(
+                                imageVector = Icons.Default.Home, // Placeholder for laundry
+                                contentDescription = null,
+                                tint = GymTheme.colors.textMuted
+                            )
+                        }
+                    )
+                }
             }
         }
     }
@@ -1164,7 +1212,7 @@ fun GymTimePickerButtonShowcase() {
 fun GymAddInputShowcase() {
     var value by remember { mutableStateOf("") }
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
-        ShowcaseSection("Add Input Field") {
+        ShowcaseSection("Add Item Row") {
             GymAddInput(
                 value = value,
                 onValueChange = { value = it },
@@ -1193,7 +1241,7 @@ fun GymMetricInputCardShowcase() {
                 value = "60",
                 onValueChange = { },
                 unit = "Sec",
-                icon = Icons.Default.Timer,
+                icon = Icons.Default.Timer.asGymIcon,
                 accentColor = GymTheme.colors.secondary
             )
         }
@@ -1207,7 +1255,7 @@ fun GymBMICardShowcase() {
             GymBMICard(
                 bmiValue = "23.3",
                 statusText = "Healthy",
-                statusIcon = Icons.Default.CheckCircle,
+                statusIcon = Icons.Default.CheckCircle.asGymIcon,
                 statusColor = GymTheme.colors.tertiary,
                 progress = 0.46f,
                 description = "Your BMI is in the Healthy Weight range. Keep up the good work maintaining your balance."
@@ -1223,13 +1271,13 @@ fun GymStatusBadgeShowcase() {
             Row(horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
                 GymStatusBadge(
                     text = "Normal",
-                    icon = Icons.Default.CheckCircle,
+                    icon = Icons.Default.CheckCircle.asGymIcon,
                     backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
                     contentColor = GymTheme.colors.tertiary
                 )
                 GymStatusBadge(
                     text = "High",
-                    icon = Icons.Default.Whatshot,
+                    icon = Icons.Default.Whatshot.asGymIcon,
                     backgroundColor = GymTheme.colors.primary.copy(alpha = 0.2f),
                     contentColor = GymTheme.colors.primary
                 )
@@ -1297,14 +1345,14 @@ fun GymStepperInputShowcase() {
                     subLabel = "Target volume",
                     value = sets,
                     onValueChange = { sets = it },
-                    icon = Icons.Default.List
+                    icon = Icons.Default.List.asGymIcon
                 )
                 GymStepperInput(
                     label = "Default Reps",
                     subLabel = "Per set",
                     value = reps,
                     onValueChange = { reps = it },
-                    icon = Icons.Default.History
+                    icon = Icons.Default.History.asGymIcon
                 )
             }
         }

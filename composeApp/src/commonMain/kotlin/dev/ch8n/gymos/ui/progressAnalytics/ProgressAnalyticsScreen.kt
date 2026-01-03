@@ -39,6 +39,7 @@ import dev.ch8n.gymos.ui.foundation.GymDonutChart
 import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 /**
  * The Progress & Analytics Dashboard screen.
@@ -60,7 +61,7 @@ fun ProgressAnalyticsScreen(
                 title = "Your Progress",
                 actions = {
                     GymIconButton(
-                        icon = Icons.Default.CalendarMonth,
+                        icon = Icons.Default.CalendarMonth.asGymIcon,
                         onClick = onCalendarClick
                     )
                 }

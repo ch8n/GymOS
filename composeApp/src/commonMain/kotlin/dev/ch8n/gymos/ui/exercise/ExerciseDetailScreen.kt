@@ -41,6 +41,7 @@ import dev.ch8n.gymos.ui.foundation.GymSessionLogItem
 import dev.ch8n.gymos.ui.foundation.GymStatCard
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 import dev.ch8n.gymos.ui.foundation.GymVideoPlayer
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun ExerciseDetailScreen(
@@ -64,7 +65,7 @@ fun ExerciseDetailScreen(
                 title = "Barbell Squat",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ChevronLeft,
+                        icon = Icons.Default.ChevronLeft.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall

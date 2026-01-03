@@ -37,6 +37,7 @@ import dev.ch8n.gymos.ui.foundation.GymDashedPlaceholder
 import dev.ch8n.gymos.ui.foundation.GymExerciseCard
 import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 import kotlinx.coroutines.launch
 
 data class ExerciseData(
@@ -188,7 +189,7 @@ fun DayViewPagerScreen(
                 subtitle = if (currentDay.isToday) "Today" else null,
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.Close,
+                        icon = Icons.Default.Close.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -290,7 +291,7 @@ fun DayContent(
                     reps = exercise.reps,
                     isCompleted = exercise.isCompleted,
                     onCompletedChange = { /* TODO */ },
-                    icon = exercise.icon,
+                    icon = exercise.icon.asGymIcon,
                     iconColor = exercise.iconColor,
                     onClick = onExerciseClick
                 )

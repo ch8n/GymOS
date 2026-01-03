@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -29,8 +27,8 @@ fun GymButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: ImageVector? = null,
-    trailingIcon: ImageVector? = null,
+    icon: GymIconResource? = null,
+    trailingIcon: GymIconResource? = null,
     backgroundColor: Color = GymTheme.colors.primary,
     contentColor: Color = Color.White
 ) {
@@ -54,10 +52,9 @@ fun GymButton(
             horizontalArrangement = Arrangement.Center
         ) {
             if (icon != null) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(GymTheme.sizes.iconMedium),
+                GymIcon(
+                    icon = icon,
+                    size = GymTheme.sizes.iconMedium,
                     tint = contentColor
                 )
                 Spacer(modifier = Modifier.width(GymTheme.spacing.small))
@@ -71,10 +68,9 @@ fun GymButton(
             )
             if (trailingIcon != null) {
                 Spacer(modifier = Modifier.width(GymTheme.spacing.small))
-                Icon(
-                    imageVector = trailingIcon,
-                    contentDescription = null,
-                    modifier = Modifier.size(GymTheme.sizes.iconMedium),
+                GymIcon(
+                    icon = trailingIcon,
+                    size = GymTheme.sizes.iconMedium,
                     tint = contentColor
                 )
             }
@@ -87,7 +83,7 @@ fun GymTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    icon: ImageVector? = null,
+    icon: GymIconResource? = null,
     contentColor: Color = GymTheme.colors.textSecondary
 ) {
     Row(
@@ -99,10 +95,9 @@ fun GymTextButton(
         horizontalArrangement = Arrangement.Center
     ) {
         if (icon != null) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(GymTheme.sizes.iconSmall),
+            GymIcon(
+                icon = icon,
+                size = GymTheme.sizes.iconSmall,
                 tint = contentColor
             )
             Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))
@@ -119,7 +114,7 @@ fun GymTextButton(
 
 @Composable
 fun GymIconButton(
-    icon: ImageVector,
+    icon: GymIconResource,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     backgroundColor: Color = GymTheme.colors.surface,
@@ -135,10 +130,9 @@ fun GymIconButton(
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            modifier = Modifier.size(iconSize),
+        GymIcon(
+            icon = icon,
+            size = iconSize,
             tint = contentColor
         )
     }
@@ -146,7 +140,7 @@ fun GymIconButton(
 
 @Composable
 fun GymBadgeIconButton(
-    icon: ImageVector,
+    icon: GymIconResource,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     badgeColor: Color = GymTheme.colors.primary,
@@ -160,12 +154,10 @@ fun GymBadgeIconButton(
             .background(backgroundColor)
             .clickable(onClick = onClick)
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .size(GymTheme.sizes.iconMedium),
+        GymIcon(
+            icon = icon,
+            modifier = Modifier.align(Alignment.Center),
+            size = GymTheme.sizes.iconMedium,
             tint = contentColor
         )
         Box(

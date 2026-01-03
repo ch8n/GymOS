@@ -10,32 +10,51 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
+
+sealed class GymIconResource {
+    data class Vector(val imageVector: ImageVector) : GymIconResource()
+    data class Resource(val painter: Painter) : GymIconResource()
+}
+
+val ImageVector.asGymIcon: GymIconResource get() = GymIconResource.Vector(this)
+val Painter.asGymIcon: GymIconResource get() = GymIconResource.Resource(this)
 
 @Composable
 fun GymIcon(
-    imageVector: ImageVector,
+    icon: GymIconResource,
     modifier: Modifier = Modifier,
     tint: Color = GymTheme.colors.primary,
-    backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.1f),
-    size: Dp = GymTheme.sizes.medium,
-    iconSize: Dp = GymTheme.sizes.iconMedium
+    backgroundColor: Color = Color.Transparent,
+    size: Dp = GymTheme.sizes.iconMedium,
 ) {
     Box(
         modifier = modifier
-            .size(size)
             .clip(CircleShape)
             .background(backgroundColor),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = imageVector,
-            contentDescription = null,
-            modifier = Modifier.size(iconSize),
-            tint = tint
-        )
+        when (icon) {
+            is GymIconResource.Vector -> {
+                Icon(
+                    imageVector = icon.imageVector,
+                    contentDescription = null,
+                    modifier = Modifier.size(size),
+                    tint = tint
+                )
+            }
+
+            is GymIconResource.Resource -> {
+                Icon(
+                    painter = icon.painter,
+                    contentDescription = null,
+                    modifier = Modifier.size(size),
+                    tint = tint
+                )
+            }
+        }
     }
 }

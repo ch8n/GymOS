@@ -53,7 +53,7 @@ fun GymAvatar(
                         color = GymTheme.colors.background,
                         shape = CircleShape
                     ),
-                icon = Icons.Default.Edit,
+                icon = Icons.Default.Edit.asGymIcon,
                 onClick = onEditClick,
                 backgroundColor = GymTheme.colors.primary,
                 contentColor = Color.White,

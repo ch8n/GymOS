@@ -1,21 +1,15 @@
 package dev.ch8n.gymos.ui.foundation
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FitnessCenter
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import dev.ch8n.gymos.theme.GymTheme
@@ -25,7 +19,7 @@ fun GymExerciseContextCard(
     exerciseName: String,
     description: String,
     modifier: Modifier = Modifier,
-    icon: ImageVector = Icons.Default.FitnessCenter
+    icon: GymIconResource = Icons.Default.FitnessCenter.asGymIcon
 ) {
     GymCard(
         modifier = modifier.fillMaxWidth(),
@@ -37,20 +31,13 @@ fun GymExerciseContextCard(
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(
-                modifier = Modifier
-                    .size(GymTheme.sizes.xLarge)
-                    .clip(CircleShape)
-                    .background(GymTheme.colors.primary.copy(alpha = 0.1f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(GymTheme.sizes.iconLarge),
-                    tint = GymTheme.colors.primary
-                )
-            }
+            GymIcon(
+                icon = icon,
+                modifier = Modifier.size(GymTheme.sizes.xLarge),
+                size = GymTheme.sizes.iconLarge,
+                backgroundColor = GymTheme.colors.primary.copy(alpha = 0.1f),
+                tint = GymTheme.colors.primary
+            )
 
             Text(
                 text = exerciseName,

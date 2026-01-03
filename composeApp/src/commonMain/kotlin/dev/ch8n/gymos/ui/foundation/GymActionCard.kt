@@ -24,14 +24,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
 fun GymActionCard(
     text: String,
-    icon: ImageVector,
+    icon: GymIconResource,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isDashed: Boolean = true,
@@ -77,10 +76,9 @@ fun GymActionCard(
                     .background(contentColor.copy(alpha = 0.1f)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(themeSizes.iconSmall),
+                GymIcon(
+                    icon = icon,
+                    size = themeSizes.iconSmall,
                     tint = contentColor
                 )
             }

@@ -35,6 +35,7 @@ import dev.ch8n.gymos.ui.foundation.GymMetricInputCard
 import dev.ch8n.gymos.ui.foundation.GymSteppedProgressBar
 import dev.ch8n.gymos.ui.foundation.GymStepperInput
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun ConfigureExerciseSetsScreen(
@@ -53,7 +54,7 @@ fun ConfigureExerciseSetsScreen(
                 title = "Configuration",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.Default.ArrowBackIosNew,
+                        icon = Icons.Default.ArrowBackIosNew.asGymIcon,
                         onClick = onBackClick,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -71,7 +72,7 @@ fun ConfigureExerciseSetsScreen(
                     text = "Save to Library",
                     onClick = onSaveToLibrary,
                     modifier = Modifier.fillMaxWidth(),
-                    trailingIcon = Icons.Default.CheckCircle
+                    trailingIcon = Icons.Default.CheckCircle.asGymIcon
                 )
             }
         }
@@ -96,7 +97,7 @@ fun ConfigureExerciseSetsScreen(
             GymExerciseContextCard(
                 exerciseName = "Dumbbell Press",
                 description = "Define your baseline targets for this exercise to speed up logging.",
-                icon = Icons.Default.FitnessCenter
+                icon = Icons.Default.FitnessCenter.asGymIcon
             )
 
             Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {
@@ -114,7 +115,7 @@ fun ConfigureExerciseSetsScreen(
                     value = sets,
                     onValueChange = { sets = it },
                     subLabel = "Target volume",
-                    icon = Icons.Default.Layers
+                    icon = Icons.Default.Layers.asGymIcon
                 )
 
                 GymStepperInput(
@@ -122,7 +123,7 @@ fun ConfigureExerciseSetsScreen(
                     value = reps,
                     onValueChange = { reps = it },
                     subLabel = "Per set",
-                    icon = Icons.Default.Repeat
+                    icon = Icons.Default.Repeat.asGymIcon
                 )
             }
 
@@ -146,7 +147,7 @@ fun ConfigureExerciseSetsScreen(
                         onValueChange = { weight = it },
                         unit = "kg",
                         modifier = Modifier.weight(1f),
-                        icon = Icons.Default.FitnessCenter,
+                        icon = Icons.Default.FitnessCenter.asGymIcon,
                         accentColor = GymTheme.colors.primary
                     )
 
@@ -156,7 +157,7 @@ fun ConfigureExerciseSetsScreen(
                         onValueChange = { restTime = it },
                         unit = "sec",
                         modifier = Modifier.weight(1f),
-                        icon = Icons.Default.Timer,
+                        icon = Icons.Default.Timer.asGymIcon,
                         accentColor = GymTheme.colors.secondary
                     )
                 }

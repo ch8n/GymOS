@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
@@ -31,7 +30,7 @@ fun GymStepperInput(
     onValueChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
     subLabel: String? = null,
-    icon: ImageVector? = null,
+    icon: GymIconResource? = null,
     minValue: Int = 0,
     maxValue: Int = 999
 ) {
@@ -56,20 +55,13 @@ fun GymStepperInput(
                 horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
             ) {
                 if (icon != null) {
-                    Box(
-                        modifier = Modifier
-                            .size(GymTheme.sizes.medium)
-                            .clip(GymTheme.shapes.extraLarge)
-                            .background(GymTheme.colors.background.copy(alpha = 0.5f)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = null,
-                            modifier = Modifier.size(GymTheme.sizes.iconMedium),
-                            tint = GymTheme.colors.textPrimary
-                        )
-                    }
+                    GymIcon(
+                        icon = icon,
+                        modifier = Modifier.size(GymTheme.sizes.medium),
+                        size = GymTheme.sizes.iconMedium,
+                        backgroundColor = GymTheme.colors.background.copy(alpha = 0.5f),
+                        tint = GymTheme.colors.textPrimary
+                    )
                 }
 
                 Column {

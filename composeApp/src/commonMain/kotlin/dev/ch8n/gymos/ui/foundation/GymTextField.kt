@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
@@ -16,7 +15,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,7 +23,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -35,7 +32,7 @@ fun GymTextField(
     onValueChange: (String) -> Unit,
     placeholder: String,
     modifier: Modifier = Modifier,
-    leadingIcon: ImageVector? = null,
+    leadingIcon: GymIconResource? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     backgroundColor: Color = GymTheme.colors.surfaceHighlight,
@@ -70,12 +67,11 @@ fun GymTextField(
                 verticalAlignment = if (singleLine) Alignment.CenterVertically else Alignment.Top
             ) {
                 if (leadingIcon != null) {
-                    Icon(
-                        imageVector = leadingIcon,
-                        contentDescription = null,
+                    GymIcon(
+                        icon = leadingIcon,
                         modifier = Modifier
-                            .padding(top = if (singleLine) 0.dp else GymTheme.spacing.xSmall)
-                            .size(GymTheme.sizes.iconMedium),
+                            .padding(top = if (singleLine) 0.dp else GymTheme.spacing.xSmall),
+                        size = GymTheme.sizes.iconMedium,
                         tint = GymTheme.colors.primary
                     )
                     Spacer(modifier = Modifier.width(GymTheme.spacing.small))
@@ -118,10 +114,10 @@ fun GymSearchField(
         onValueChange = onValueChange,
         placeholder = placeholder,
         modifier = modifier,
-        leadingIcon = Icons.Default.Search,
+        leadingIcon = Icons.Default.Search.asGymIcon,
         trailingIcon = {
             GymIconButton(
-                icon = Icons.Default.Mic,
+                icon = Icons.Default.Mic.asGymIcon,
                 onClick = onMicClick,
                 backgroundColor = Color.Transparent,
                 contentColor = GymTheme.colors.textMuted

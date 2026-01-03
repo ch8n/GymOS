@@ -13,14 +13,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FitnessCenter
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import dev.ch8n.gymos.theme.GymTheme
@@ -30,8 +28,8 @@ fun GymSummaryHighlightCard(
     label: String,
     value: String,
     unit: String,
-    icon: ImageVector = Icons.Default.FitnessCenter,
     modifier: Modifier = Modifier,
+    icon: GymIconResource = Icons.Default.FitnessCenter.asGymIcon,
     accentColor: Color = GymTheme.colors.quaternary
 ) {
     GymCard(
@@ -61,11 +59,10 @@ fun GymSummaryHighlightCard(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(bottom = GymTheme.spacing.small)
                 ) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = null,
+                    GymIcon(
+                        icon = icon,
                         tint = accentColor,
-                        modifier = Modifier.size(GymTheme.sizes.iconSmall)
+                        size = GymTheme.sizes.iconSmall
                     )
                     Spacer(modifier = Modifier.width(GymTheme.spacing.small))
                     Text(

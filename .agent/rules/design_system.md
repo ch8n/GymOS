@@ -78,6 +78,9 @@ Component-specific dimensions for height and icons.
 - `avatarMedium`: 48.dp
 - `avatarLarge`: 80.dp
 - `avatarXLarge`: 120.dp
+- `switchTrackWidth`: 44.dp
+- `switchTrackHeight`: 24.dp
+- `switchThumbSize`: 20.dp
 - `chartHeightMedium`: 100.dp
 - `chartHeightLarge`: 150.dp
 - `cardHeightMedium`: 120.dp
@@ -110,7 +113,8 @@ Located in `composeApp/src/commonMain/kotlin/dev/ch8n/gymos/ui/foundation/`.
 
 A primary call-to-action button with a pill shape and brand-matched shadow.
 
-- **Props**: `text`, `onClick`, `icon`, `trailingIcon`, `backgroundColor`, `contentColor`.
+- **Props**: `text`, `onClick`, `icon` (`GymIconResource?`), `trailingIcon` (`GymIconResource?`),
+  `backgroundColor`, `contentColor`.
 - **States**: Default, With Icon (Start/End).
 - **GymTextButton**: A subtle variant for secondary actions.
 
@@ -119,7 +123,8 @@ A primary call-to-action button with a pill shape and brand-matched shadow.
 Circular icon buttons for secondary actions. `GymBadgeIconButton` includes a notification/status
 dot.
 
-- **Props**: `icon`, `onClick`, `badgeColor` (Badge only), `backgroundColor`, `contentColor`.
+- **Props**: `icon` (`GymIconResource`), `onClick`, `badgeColor` (Badge only), `backgroundColor`,
+  `contentColor`.
 
 ### GymCard
 
@@ -132,12 +137,13 @@ The fundamental container for grouping related content.
 
 Small labels for categorization or status.
 
-- **GymChip Props**: `text`, `icon`, `dotColor`, `backgroundColor`, `contentColor`.
+- **GymChip Props**: `text`, `icon` (`GymIconResource?`), `dotColor`, `backgroundColor`,
+  `contentColor`.
 - **GymBadge Props**: `text`, `backgroundColor`, `contentColor`.
 - **Note**: `GymBadge` is a smaller, more compact version of a chip used for status tags like "
   TODAY".
-- **GymStatusBadge**: A pill-shaped badge with an icon and label, used for status like "Normal",
-  "High", etc.
+- **GymStatusBadge**: A pill-shaped badge with an icon (`GymIconResource`) and label, used for
+  status like "Normal", "High", etc.
 
 ### GymCheckbox
 
@@ -147,9 +153,10 @@ A custom animated circular checkbox.
 
 ### GymIcon
 
-A themed icon wrapper with a circular tinted background.
+A themed icon wrapper that uses a sealed class `GymIconResource` to support both `ImageVector` and
+`Painter`. Features an optional circular tinted background.
 
-- **Props**: `imageVector`, `tint`, `backgroundColor`, `size`, `iconSize`.
+- **Props**: `icon` (`GymIconResource`), `tint`, `backgroundColor`, `size`.
 
 ### GymCategoryHeader, GymTopBar & GymSectionHeader
 
@@ -158,15 +165,15 @@ Composite components for headers.
 - **GymCategoryHeader Props**: `title`, `count`, `titleColor`. (Displays title with a divider line
   and count).
 - **GymTopBar Props**: `title`, `subtitle`, `navigationIcon`, `actions`.
-- **GymSectionHeader Props**: `title`, `label`, `icon`, `iconColor`, `trailingContent`. (Title
-  section with optional icon and status label).
+- **GymSectionHeader Props**: `title`, `label`, `icon` (`GymIconResource?`), `iconColor`,
+  `trailingContent`. (Title section with optional icon and status label).
 
 ### GymExerciseCard
 
 A specialized card for displaying exercise details.
 
-- **Props**: `name`, `sets`, `reps`, `isCompleted`, `onCompletedChange`, `icon`, `iconColor`,
-  `onClick`.
+- **Props**: `name`, `sets`, `reps`, `isCompleted`, `onCompletedChange`, `icon` (`GymIconResource`),
+  `iconColor`, `onClick`.
 
 ### GymDashedPlaceholder
 
@@ -203,13 +210,14 @@ A small card for displaying a value and a label (e.g., 1RM, Target, Sets).
 
 A flexible card for the 2x2 stats grid.
 
-- **Props**: `label`, `value`, `icon`, `subValue`, `accentColor`, `progress`, `maxProgress`.
+- **Props**: `label`, `value`, `icon` (`GymIconResource`), `subValue`, `accentColor`, `progress`,
+  `maxProgress`.
 
 ### GymSummaryHighlightCard
 
 A large card for highlighting key metrics.
 
-- **Props**: `label`, `value`, `unit`, `icon`, `accentColor`.
+- **Props**: `label`, `value`, `unit`, `icon` (`GymIconResource`), `accentColor`.
 
 ### GymSummaryHeader
 
@@ -266,15 +274,16 @@ A bottom card for the active set execution UI.
 
 A themed text input field used for search and forms.
 
-- **Props**: `value`, `onValueChange`, `placeholder`, `leadingIcon`, `trailingIcon`, `shape`,
-  `singleLine`, `maxLines`.
+- **Props**: `value`, `onValueChange`, `placeholder`, `leadingIcon` (`GymIconResource?`),
+  `trailingIcon`, `shape`, `singleLine`, `maxLines`.
 - **GymSearchField**: A specialized variant with a leading search icon and trailing mic action.
 
 ### GymActionCard
 
 A horizontal action card often used for "Add" or "Create" actions.
 
-- **Props**: `text`, `icon`, `onClick`, `isDashed`, `contentColor`, `backgroundColor`.
+- **Props**: `text`, `icon` (`GymIconResource`), `onClick`, `isDashed`, `contentColor`,
+  `backgroundColor`.
 
 ### GymExerciseSelectionItem
 
@@ -288,7 +297,8 @@ A list item for selecting exercises from a library.
 A custom animated switch component for toggling settings.
 
 - **Props**: `checked`, `onCheckedChange`, `enabled`.
-- **Note**: Follows the primary brand color for the active state.
+- **Note**: Follows the primary brand color for the active state. Uses standardized `GymSizes` for
+  track and thumb.
 
 ### GymListItem
 
@@ -296,7 +306,7 @@ A versatile row component for reminders, habits, and checklist items.
 
 - **Props**: `title`, `subtitle`, `leadingContent`, `trailingContent`, `onClick`, `enabled`.
 - **Helpers**: Includes `GymIconCircle` (circular background) and `GymIconSquare` (rounded square
-  background) for leading icons.
+  background) for leading icons. Both helpers support `GymIconResource`.
 
 ### GymTimePickerButton
 
@@ -306,7 +316,8 @@ A stylized button for displaying and triggering time selection.
 
 ### GymAddInput
 
-A specialized input field with an inline "+" action for adding items to a list.
+A specialized input field with an inline "+" action for adding items to a list. Features a refined
+seagrass (`quaternary`) styling for the action button.
 
 - **Props**: `value`, `onValueChange`, `placeholder`, `onAddClick`.
 
@@ -314,14 +325,15 @@ A specialized input field with an inline "+" action for adding items to a list.
 
 A card for profile metrics like Height and Weight with inline numeric input and unit labels.
 
-- **Props**: `label`, `value`, `unit`, `onValueChange`, `icon` (optional), `accentColor`,
+- **Props**: `label`, `value`, `unit`, `onValueChange`, `icon` (`GymIconResource?`), `accentColor`,
   `placeholder`.
 
 ### GymBMICard
 
 A comprehensive card for BMI display, featuring a continuous progress range and status badge.
 
-- **Props**: `bmiValue`, `statusText`, `statusIcon`, `statusColor`, `progress`, `description`.
+- **Props**: `bmiValue`, `statusText`, `statusIcon` (`GymIconResource`), `statusColor`, `progress`,
+  `description`.
 
 ### GymSteppedProgressBar
 
@@ -340,13 +352,14 @@ Components for managing selectable or removable tags (e.g., muscle groups).
 
 A descriptive card displayed at the top of configuration screens to provide context or instructions.
 
-- **Props**: `exerciseName`, `description`, `icon`.
+- **Props**: `exerciseName`, `description`, `icon` (`GymIconResource`).
 
 ### GymStepperInput
 
 A split control for incrementing/decrementing values (like sets or reps) with a central display.
 
-- **Props**: `label`, `subLabel`, `value`, `onValueChange`, `icon`, `minValue`, `maxValue`.
+- **Props**: `label`, `subLabel`, `value`, `onValueChange`, `icon` (`GymIconResource?`), `minValue`,
+  `maxValue`.
 
 ### Analytics & Chart Components
 

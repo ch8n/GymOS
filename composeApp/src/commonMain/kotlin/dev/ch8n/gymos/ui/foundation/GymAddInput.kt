@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 
 @Composable
@@ -33,14 +32,14 @@ fun GymAddInput(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(GymTheme.colors.surface.copy(alpha = 0.2f))
-            .padding(GymTheme.spacing.medium),
+            .background(GymTheme.colors.surface.copy(alpha = 0.3f))
+            .padding(GymTheme.spacing.mediumSmall),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+        horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.mediumSmall)
     ) {
         Box(
             modifier = Modifier
-                .size(32.dp)
+                .size(GymTheme.sizes.iconLarge)
                 .clip(CircleShape)
                 .background(GymTheme.colors.quaternary.copy(alpha = 0.2f))
                 .clickable { onAddClick() },
@@ -58,7 +57,7 @@ fun GymAddInput(
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier.weight(1f),
-            textStyle = GymTheme.typography.bodySmall.copy(
+            textStyle = GymTheme.typography.bodyMedium.copy(
                 color = GymTheme.colors.textPrimary
             ),
             cursorBrush = SolidColor(GymTheme.colors.primary),
@@ -66,7 +65,7 @@ fun GymAddInput(
                 if (value.isEmpty()) {
                     Text(
                         text = placeholder,
-                        style = GymTheme.typography.bodySmall.copy(
+                        style = GymTheme.typography.bodyMedium.copy(
                             color = GymTheme.colors.textSecondary.copy(alpha = 0.5f)
                         )
                     )

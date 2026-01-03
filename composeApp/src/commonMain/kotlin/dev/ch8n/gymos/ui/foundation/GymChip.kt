@@ -11,14 +11,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import dev.ch8n.gymos.theme.GymTheme
 
@@ -26,7 +24,7 @@ import dev.ch8n.gymos.theme.GymTheme
 fun GymChip(
     text: String,
     modifier: Modifier = Modifier,
-    icon: ImageVector? = null,
+    icon: GymIconResource? = null,
     dotColor: Color? = null,
     backgroundColor: Color = GymTheme.colors.surface,
     contentColor: Color = GymTheme.colors.textPrimary,
@@ -51,10 +49,9 @@ fun GymChip(
             )
             Spacer(modifier = Modifier.width(GymTheme.spacing.small))
         } else if (icon != null) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(GymTheme.sizes.iconSmall),
+            GymIcon(
+                icon = icon,
+                size = GymTheme.sizes.iconSmall,
                 tint = GymTheme.colors.quaternary
             )
             Spacer(modifier = Modifier.width(GymTheme.spacing.xSmall))
@@ -73,7 +70,7 @@ fun GymChip(
 @Composable
 fun GymStatusBadge(
     text: String,
-    icon: ImageVector,
+    icon: GymIconResource,
     modifier: Modifier = Modifier,
     backgroundColor: Color = GymTheme.colors.primary.copy(alpha = 0.1f),
     contentColor: Color = GymTheme.colors.primary
@@ -86,10 +83,9 @@ fun GymStatusBadge(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.xSmall)
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            modifier = Modifier.size(GymTheme.sizes.iconSmall),
+        GymIcon(
+            icon = icon,
+            size = GymTheme.sizes.iconSmall,
             tint = contentColor
         )
         Text(

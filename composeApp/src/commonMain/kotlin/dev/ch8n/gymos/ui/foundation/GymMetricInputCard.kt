@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
@@ -36,7 +35,7 @@ fun GymMetricInputCard(
     unit: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    icon: ImageVector? = null,
+    icon: GymIconResource? = null,
     accentColor: Color? = null,
     placeholder: String = "0"
 ) {
@@ -71,10 +70,9 @@ fun GymMetricInputCard(
                     horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
                 ) {
                     if (icon != null) {
-                        androidx.compose.material3.Icon(
-                            imageVector = icon,
-                            contentDescription = null,
-                            modifier = Modifier.size(GymTheme.sizes.iconMedium),
+                        GymIcon(
+                            icon = icon,
+                            size = GymTheme.sizes.iconMedium,
                             tint = accentColor ?: themeMuted
                         )
                     }

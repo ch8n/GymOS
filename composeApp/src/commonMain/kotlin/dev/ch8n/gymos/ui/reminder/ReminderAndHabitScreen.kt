@@ -50,6 +50,7 @@ import dev.ch8n.gymos.ui.foundation.GymListItem
 import dev.ch8n.gymos.ui.foundation.GymSwitch
 import dev.ch8n.gymos.ui.foundation.GymTimePickerButton
 import dev.ch8n.gymos.ui.foundation.GymTopBar
+import dev.ch8n.gymos.ui.foundation.asGymIcon
 
 @Composable
 fun ReminderAndHabitScreen(
@@ -85,7 +86,7 @@ fun ReminderAndHabitScreen(
                 title = "Reminders & Habits",
                 navigationIcon = {
                     GymIconButton(
-                        icon = Icons.AutoMirrored.Filled.ArrowBack,
+                        icon = Icons.AutoMirrored.Filled.ArrowBack.asGymIcon,
                         onClick = onBack,
                         size = GymTheme.sizes.small,
                         iconSize = GymTheme.sizes.iconSmall
@@ -133,7 +134,7 @@ fun ReminderAndHabitScreen(
                             subtitle = "Scheduled for mornings",
                             leadingContent = {
                                 GymIconCircle(
-                                    icon = Icons.Default.Schedule,
+                                    icon = Icons.Default.Schedule.asGymIcon,
                                     backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
                                     iconColor = GymTheme.colors.quaternary
                                 )
@@ -146,7 +147,7 @@ fun ReminderAndHabitScreen(
                             title = "Push Notifications",
                             leadingContent = {
                                 GymIconCircle(
-                                    icon = Icons.Default.NotificationsActive,
+                                    icon = Icons.Default.NotificationsActive.asGymIcon,
                                     backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
                                     iconColor = GymTheme.colors.secondary
                                 )
@@ -226,7 +227,7 @@ fun ReminderAndHabitScreen(
                         subtitle = "Remind me at 08:00 AM",
                         leadingContent = {
                             GymIconCircle(
-                                icon = Icons.Default.MonitorWeight,
+                                icon = Icons.Default.MonitorWeight.asGymIcon,
                                 backgroundColor = GymTheme.colors.primary.copy(alpha = 0.2f),
                                 iconColor = GymTheme.colors.primary
                             )
@@ -249,7 +250,7 @@ fun ReminderAndHabitScreen(
                             title = "Breakfast",
                             leadingContent = {
                                 GymIconSquare(
-                                    icon = Icons.Default.BakeryDining,
+                                    icon = Icons.Default.BakeryDining.asGymIcon,
                                     backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
                                     iconColor = GymTheme.colors.tertiary
                                 )
@@ -270,7 +271,7 @@ fun ReminderAndHabitScreen(
                             title = "Lunch",
                             leadingContent = {
                                 GymIconSquare(
-                                    icon = Icons.Default.LunchDining,
+                                    icon = Icons.Default.LunchDining.asGymIcon,
                                     backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
                                     iconColor = GymTheme.colors.tertiary
                                 )
@@ -292,7 +293,7 @@ fun ReminderAndHabitScreen(
                             enabled = dinnerEnabled,
                             leadingContent = {
                                 GymIconSquare(
-                                    icon = Icons.Default.DinnerDining,
+                                    icon = Icons.Default.DinnerDining.asGymIcon,
                                     backgroundColor = GymTheme.colors.tertiary.copy(alpha = 0.2f),
                                     iconColor = GymTheme.colors.tertiary
                                 )
@@ -325,7 +326,7 @@ fun ReminderAndHabitScreen(
                         subtitle = "Sleep duration tracking",
                         leadingContent = {
                             GymIconCircle(
-                                icon = Icons.Default.Bedtime,
+                                icon = Icons.Default.Bedtime.asGymIcon,
                                 backgroundColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
                                 iconColor = GymTheme.colors.quaternary
                             )
