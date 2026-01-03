@@ -8,6 +8,8 @@ import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.calendar.CalendarScreen
 import dev.ch8n.gymos.ui.dayview.DayViewPagerScreen
 import dev.ch8n.gymos.ui.exercise.AddExerciseScreen
+import dev.ch8n.gymos.ui.exercise.CreateExerciseBodyPartScreen
+import dev.ch8n.gymos.ui.exercise.CreateExerciseNameScreen
 import dev.ch8n.gymos.ui.exercise.ExerciseDetailScreen
 import dev.ch8n.gymos.ui.exercise.ExerciseSummaryScreen
 import dev.ch8n.gymos.ui.home.HomeScreen
@@ -78,7 +80,7 @@ fun App() {
                 entry<GymRoute.AddExerciseScreen> {
                     AddExerciseScreen(
                         onBackClick = { backStack.removeLastOrNull() },
-                        onCustomExerciseClick = { /* Handle custom */ },
+                        onCustomExerciseClick = { backStack.add(GymRoute.CreateExerciseStep1) },
                         onHomeClick = {
                             while (backStack.lastOrNull() != GymRoute.HomeScreen) {
                                 backStack.removeLastOrNull()
@@ -151,6 +153,28 @@ fun App() {
                                 backStack.add(GymRoute.ProfileScreen)
                             }
                         }
+                    )
+                }
+
+                entry<GymRoute.CreateExerciseStep1> {
+                    CreateExerciseNameScreen(
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onNextClick = { name, desc ->
+                            // In a real app, we'd persist this state in a ViewModel
+                            backStack.add(GymRoute.CreateExerciseStep2)
+                        },
+                        onCancelClick = { backStack.removeLastOrNull() }
+                    )
+                }
+
+                entry<GymRoute.CreateExerciseStep2> {
+                    CreateExerciseBodyPartScreen(
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onNextClick = { bodyParts ->
+                            // Navigate to next step or finish
+                            backStack.removeLastOrNull() // For now, go back
+                        },
+                        onSkipClick = { backStack.removeLastOrNull() }
                     )
                 }
             }

@@ -56,7 +56,9 @@ fun AddExerciseScreen(
                 navigationIcon = {
                     GymIconButton(
                         icon = Icons.Default.Close,
-                        onClick = onBackClick
+                        onClick = onBackClick,
+                        size = GymTheme.sizes.small,
+                        iconSize = GymTheme.sizes.iconSmall
                     )
                 }
             )

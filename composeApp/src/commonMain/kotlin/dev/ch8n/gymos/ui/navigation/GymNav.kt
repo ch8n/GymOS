@@ -37,6 +37,12 @@ sealed interface GymRoute : NavKey {
 
     @Serializable
     data object ProgressAnalyticsScreen : GymRoute
+
+    @Serializable
+    data object CreateExerciseStep1 : GymRoute
+
+    @Serializable
+    data object CreateExerciseStep2 : GymRoute
 }
 
 val gymNavConfig = SavedStateConfiguration {
@@ -69,6 +75,14 @@ val gymNavConfig = SavedStateConfiguration {
             subclass(
                 GymRoute.ProgressAnalyticsScreen::class,
                 GymRoute.ProgressAnalyticsScreen.serializer()
+            )
+            subclass(
+                GymRoute.CreateExerciseStep1::class,
+                GymRoute.CreateExerciseStep1.serializer()
+            )
+            subclass(
+                GymRoute.CreateExerciseStep2::class,
+                GymRoute.CreateExerciseStep2.serializer()
             )
         }
     }
