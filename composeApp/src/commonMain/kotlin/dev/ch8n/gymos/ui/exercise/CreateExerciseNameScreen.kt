@@ -86,7 +86,7 @@ fun CreateExerciseNameScreen(
 
             GymSteppedProgressBar(
                 currentStep = 1,
-                totalSteps = 3,
+                totalSteps = 4,
                 stepName = "Details",
                 modifier = Modifier.fillMaxWidth()
             )

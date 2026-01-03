@@ -8,6 +8,7 @@ import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.calendar.CalendarScreen
 import dev.ch8n.gymos.ui.dayview.DayViewPagerScreen
 import dev.ch8n.gymos.ui.exercise.AddExerciseScreen
+import dev.ch8n.gymos.ui.exercise.ConfigureExerciseSetsScreen
 import dev.ch8n.gymos.ui.exercise.CreateExerciseBodyPartScreen
 import dev.ch8n.gymos.ui.exercise.CreateExerciseNameScreen
 import dev.ch8n.gymos.ui.exercise.ExerciseDetailScreen
@@ -171,10 +172,20 @@ fun App() {
                     CreateExerciseBodyPartScreen(
                         onBackClick = { backStack.removeLastOrNull() },
                         onNextClick = { bodyParts ->
-                            // Navigate to next step or finish
-                            backStack.removeLastOrNull() // For now, go back
+                            backStack.add(GymRoute.ConfigureExerciseSetsScreen)
                         },
-                        onSkipClick = { backStack.removeLastOrNull() }
+                        onSkipClick = { backStack.add(GymRoute.ConfigureExerciseSetsScreen) }
+                    )
+                }
+
+                entry<GymRoute.ConfigureExerciseSetsScreen> {
+                    ConfigureExerciseSetsScreen(
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onSaveToLibrary = {
+                            while (backStack.lastOrNull() != GymRoute.AddExerciseScreen && backStack.size > 1) {
+                                backStack.removeLastOrNull()
+                            }
+                        }
                     )
                 }
             }
