@@ -102,7 +102,7 @@ fun HomeScreen(
             FeaturedWorkoutCard()
 
             // Stats Grid
-            StatsGrid()
+            StatsGrid(onOpenProgress)
         }
     }
 }
@@ -283,14 +283,15 @@ fun FeaturedWorkoutCard() {
 }
 
 @Composable
-fun StatsGrid() {
+fun StatsGrid(onOpenProgress: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
     ) {
         GymCard(
             modifier = Modifier.weight(1f),
-            shape = GymTheme.shapes.medium
+            shape = GymTheme.shapes.medium,
+            onClick = onOpenProgress
         ) {
             Column(
                 modifier = Modifier.padding(GymTheme.spacing.medium),
@@ -326,7 +327,8 @@ fun StatsGrid() {
 
         GymCard(
             modifier = Modifier.weight(1f),
-            shape = GymTheme.shapes.medium
+            shape = GymTheme.shapes.medium,
+            onClick = onOpenProgress
         ) {
             Column(
                 modifier = Modifier.padding(GymTheme.spacing.medium),

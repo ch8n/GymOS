@@ -1,16 +1,21 @@
 package dev.ch8n.gymos.ui.progressAnalytics
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +23,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import dev.ch8n.gymos.theme.GymTheme
 import dev.ch8n.gymos.ui.foundation.BarData
 import dev.ch8n.gymos.ui.foundation.DonutData
@@ -32,6 +40,9 @@ import dev.ch8n.gymos.ui.foundation.GymIconButton
 import dev.ch8n.gymos.ui.foundation.GymSegmentedControl
 import dev.ch8n.gymos.ui.foundation.GymTopBar
 
+/**
+ * The Progress & Analytics Dashboard screen.
+ */
 @Composable
 fun ProgressAnalyticsScreen(
     onHomeClick: () -> Unit = {},
@@ -60,7 +71,8 @@ fun ProgressAnalyticsScreen(
                 selectedRoute = "Progress",
                 onHomeClick = onHomeClick,
                 onCalendarClick = onCalendarClick,
-                onProfileClick = onProfileClick
+                onProfileClick = onProfileClick,
+                onProgressClick = { /* Already here */ }
             )
         }
     ) { innerPadding ->
@@ -80,10 +92,10 @@ fun ProgressAnalyticsScreen(
                 onItemSelected = { selectedTimeRange = it },
                 label = "",
                 activeColor = GymTheme.colors.primary,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
             )
 
-            // Top Stats Row
+            // Top Stats Summary
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
@@ -105,31 +117,8 @@ fun ProgressAnalyticsScreen(
             }
 
             // Consistency Section
-            ShowcaseCard(title = "Consistency", subtitle = "Last 14 Days") {
+            AnalyticsCard(title = "Consistency", subtitle = "Last 14 Days") {
                 Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column {
-                            // Empty for layout
-                        }
-                        Column(horizontalAlignment = Alignment.End) {
-                            androidx.compose.material3.Text(
-                                text = "85%",
-                                style = GymTheme.typography.h1.copy(
-                                    color = GymTheme.colors.primary,
-                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
-                                )
-                            )
-                            androidx.compose.material3.Text(
-                                text = "Attendance",
-                                style = GymTheme.typography.tiny.copy(color = GymTheme.colors.textMuted)
-                            )
-                        }
-                    }
-
                     val consistencyData = listOf(
                         BarData("M", 0.4f),
                         BarData("T", 0.05f),
@@ -142,15 +131,13 @@ fun ProgressAnalyticsScreen(
 
                     GymBarChart(
                         data = consistencyData,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = GymTheme.spacing.medium)
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
 
             // Weight Trend Section
-            ShowcaseCard(title = "Weight Trend", subtitle = "Oct 1 - Today") {
+            AnalyticsCard(title = "Weight Trend", subtitle = "Oct 1 - Today") {
                 val weightData = listOf(0.4f, 0.6f, 0.5f, 0.7f, 0.55f, 0.8f, 0.65f, 0.9f)
                 val xAxisLabels = listOf("Oct 1", "Oct 8", "Oct 15", "Oct 22", "Today")
 
@@ -160,14 +147,14 @@ fun ProgressAnalyticsScreen(
                         verticalAlignment = Alignment.Bottom,
                         horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
                     ) {
-                        androidx.compose.material3.Text(
+                        Text(
                             text = "185",
                             style = GymTheme.typography.displayMedium.copy(
                                 color = GymTheme.colors.textPrimary,
-                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                                fontWeight = FontWeight.Bold
                             )
                         )
-                        androidx.compose.material3.Text(
+                        Text(
                             text = "lbs",
                             style = GymTheme.typography.bodyLarge.copy(color = GymTheme.colors.textMuted),
                             modifier = Modifier.padding(bottom = GymTheme.spacing.tiny)
@@ -185,89 +172,104 @@ fun ProgressAnalyticsScreen(
                         xAxisLabels = xAxisLabels,
                         lineColor = GymTheme.colors.quaternary,
                         fillColor = GymTheme.colors.quaternary.copy(alpha = 0.2f),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = GymTheme.spacing.medium)
+                        modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
                     )
                 }
             }
 
-            // Muscle Volume & Energy Row
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
-            ) {
-                // Volume by Muscle
-                GymCard(
-                    modifier = Modifier.weight(1.2f),
-                    shape = GymTheme.shapes.large
+            // Distribution Section
+            AnalyticsCard(title = "Muscle Distribution", subtitle = "Monthly Focus") {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.large),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column(
-                        modifier = Modifier.padding(GymTheme.spacing.medium),
-                        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
-                    ) {
-                        androidx.compose.material3.Text(
-                            text = "Muscle Volume",
-                            style = GymTheme.typography.h3.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-                        )
+                    val volumeData = listOf(
+                        DonutData(0.45f, GymTheme.colors.primary, "Chest"),
+                        DonutData(0.25f, GymTheme.colors.secondary, "Back"),
+                        DonutData(0.30f, GymTheme.colors.quaternary, "Legs")
+                    )
 
-                        val volumeData = listOf(
-                            DonutData(0.4f, GymTheme.colors.primary),
-                            DonutData(0.3f, GymTheme.colors.secondary),
-                            DonutData(0.3f, GymTheme.colors.quaternary)
-                        )
-
-                        GymDonutChart(
-                            data = volumeData,
-                            modifier = Modifier.align(Alignment.CenterHorizontally),
-                            centerContent = {
-                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                    androidx.compose.material3.Text(
-                                        text = "Total",
-                                        style = GymTheme.typography.tiny.copy(color = GymTheme.colors.textMuted)
-                                    )
-                                    androidx.compose.material3.Text(
-                                        text = "12.5k",
-                                        style = GymTheme.typography.bodySmall.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-                                    )
-                                }
+                    GymDonutChart(
+                        data = volumeData,
+                        modifier = Modifier.weight(1f),
+                        centerContent = {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = "Total",
+                                    style = GymTheme.typography.tiny.copy(color = GymTheme.colors.textMuted)
+                                )
+                                Text(
+                                    text = "12.5k",
+                                    style = GymTheme.typography.bodySmall.copy(fontWeight = FontWeight.Bold)
+                                )
                             }
-                        )
+                        }
+                    )
+
+                    // Legend
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
+                    ) {
+                        volumeData.forEach { data ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(GymTheme.spacing.small)
+                            ) {
+                                ColorDot(color = data.color)
+                                Text(
+                                    text = data.label ?: "Other",
+                                    style = GymTheme.typography.bodySmall,
+                                    color = GymTheme.colors.textSecondary
+                                )
+                                Text(
+                                    text = "${data.percentage}%",
+                                    style = GymTheme.typography.tiny.copy(fontWeight = FontWeight.Bold),
+                                    color = GymTheme.colors.textPrimary,
+                                    modifier = Modifier.padding(start = GymTheme.spacing.xSmall)
+                                )
+                            }
+                        }
                     }
                 }
+            }
 
-                // Energy Levels
-                GymCard(
-                    modifier = Modifier.weight(1f),
-                    shape = GymTheme.shapes.large
-                ) {
-                    Column(
-                        modifier = Modifier.padding(GymTheme.spacing.medium),
-                        verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
+            // Energy Levels Section
+            AnalyticsCard(title = "Energy Levels", subtitle = "Recovery & Effort") {
+                val energyData = listOf(0.2f, 0.4f, 0.3f, 0.6f, 0.5f, 0.8f, 0.7f, 0.9f)
+                val xAxisLabels = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Today")
+
+                Column {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.Top
-                        ) {
-                            androidx.compose.material3.Text(
-                                text = "Energy",
-                                style = GymTheme.typography.h3.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-                            )
-                            GymBadge(
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
                                 text = "High",
+                                style = GymTheme.typography.h2.copy(
+                                    color = GymTheme.colors.secondary,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            )
+                            Spacer(Modifier.width(GymTheme.spacing.small))
+                            GymBadge(
+                                text = "Optimal",
                                 backgroundColor = GymTheme.colors.secondary.copy(alpha = 0.1f),
                                 contentColor = GymTheme.colors.secondary
                             )
                         }
-
-                        GymAreaChart(
-                            data = listOf(0.2f, 0.4f, 0.3f, 0.6f, 0.5f, 0.8f),
-                            lineColor = GymTheme.colors.secondary,
-                            fillColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
-                            modifier = Modifier.fillMaxWidth()
-                        )
                     }
+
+                    GymAreaChart(
+                        data = energyData,
+                        xAxisLabels = xAxisLabels,
+                        lineColor = GymTheme.colors.secondary,
+                        fillColor = GymTheme.colors.secondary.copy(alpha = 0.2f),
+                        modifier = Modifier.fillMaxWidth().padding(top = GymTheme.spacing.medium)
+                    )
                 }
             }
         }
@@ -275,7 +277,14 @@ fun ProgressAnalyticsScreen(
 }
 
 @Composable
-private fun ShowcaseCard(
+private fun ColorDot(color: Color) {
+    Canvas(modifier = Modifier.size(8.dp)) {
+        drawCircle(color = color)
+    }
+}
+
+@Composable
+private fun AnalyticsCard(
     title: String,
     subtitle: String,
     content: @Composable () -> Unit
@@ -289,14 +298,14 @@ private fun ShowcaseCard(
             verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)
         ) {
             Column {
-                androidx.compose.material3.Text(
+                Text(
                     text = title,
                     style = GymTheme.typography.h3.copy(
                         color = GymTheme.colors.textPrimary,
-                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                        fontWeight = FontWeight.Bold
                     )
                 )
-                androidx.compose.material3.Text(
+                Text(
                     text = subtitle,
                     style = GymTheme.typography.bodySmall.copy(color = GymTheme.colors.textMuted)
                 )

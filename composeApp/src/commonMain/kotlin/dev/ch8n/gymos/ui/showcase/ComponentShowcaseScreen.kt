@@ -1321,9 +1321,9 @@ fun GymAreaChartShowcase() {
 @Composable
 fun GymDonutChartShowcase() {
     val muscleData = listOf(
-        DonutData(0.4f, GymTheme.colors.primary),
-        DonutData(0.3f, GymTheme.colors.secondary),
-        DonutData(0.2f, GymTheme.colors.quaternary)
+        DonutData(0.45f, GymTheme.colors.primary, "Chest"),
+        DonutData(0.25f, GymTheme.colors.secondary, "Back"),
+        DonutData(0.30f, GymTheme.colors.quaternary, "Legs")
     )
 
     Column(verticalArrangement = Arrangement.spacedBy(GymTheme.spacing.medium)) {

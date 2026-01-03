@@ -15,9 +15,6 @@ sealed interface GymRoute : NavKey {
     data object ShowcaseScreen : GymRoute
 
     @Serializable
-    data object ProgressAnalyticsScreen : GymRoute
-
-    @Serializable
     data object CalendarScreen : GymRoute
 
     @Serializable
@@ -37,6 +34,9 @@ sealed interface GymRoute : NavKey {
 
     @Serializable
     data object ProfileScreen : GymRoute
+
+    @Serializable
+    data object ProgressAnalyticsScreen : GymRoute
 }
 
 val gymNavConfig = SavedStateConfiguration {
@@ -44,10 +44,6 @@ val gymNavConfig = SavedStateConfiguration {
         polymorphic(NavKey::class) {
             subclass(GymRoute.HomeScreen::class, GymRoute.HomeScreen.serializer())
             subclass(GymRoute.ShowcaseScreen::class, GymRoute.ShowcaseScreen.serializer())
-            subclass(
-                GymRoute.ProgressAnalyticsScreen::class,
-                GymRoute.ProgressAnalyticsScreen.serializer()
-            )
             subclass(GymRoute.CalendarScreen::class, GymRoute.CalendarScreen.serializer())
             subclass(GymRoute.DayViewPagerScreen::class, GymRoute.DayViewPagerScreen.serializer())
             subclass(
@@ -69,6 +65,10 @@ val gymNavConfig = SavedStateConfiguration {
             subclass(
                 GymRoute.ProfileScreen::class,
                 GymRoute.ProfileScreen.serializer()
+            )
+            subclass(
+                GymRoute.ProgressAnalyticsScreen::class,
+                GymRoute.ProgressAnalyticsScreen.serializer()
             )
         }
     }

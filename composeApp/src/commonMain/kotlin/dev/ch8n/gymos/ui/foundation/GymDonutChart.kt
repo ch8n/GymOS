@@ -14,7 +14,8 @@ import dev.ch8n.gymos.theme.GymTheme
 
 data class DonutData(
     val percentage: Float, // 0.0 to 1.0
-    val color: Color
+    val color: Color,
+    val label: String
 )
 
 @Composable
